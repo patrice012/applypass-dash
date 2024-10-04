@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const RootPage = () => {
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   useEffect(() => {
     console.log("Session status:", status);

@@ -55,10 +55,7 @@ const items = [
   { id: "tech-project-manager", label: "Technical Project Manager" },
 ];
 
-export default function SelectDomainsCheckList({
-  className,
-  ...props
-}: CardProps) {
+export default function SelectDomainsCheckList() {
   const [itemsList, setItemsList] = useState([
     {
       id: "",
@@ -86,14 +83,8 @@ export default function SelectDomainsCheckList({
   }, [searchTerm]);
 
   return (
-    <Card
-      className={cn(
-        "w-[630px] border-none shadow-none bg-[#E5E7EB]",
-        className
-      )}
-      {...props}
-    >
-      <CardHeader className="flex flex-col gap-[1rem]">
+    <Card className={cn("sm:w-[680px] border-none shadow-none bg-[#E5E7EB]")}>
+      <CardHeader className="sm:w-[90%] flex flex-col gap-[1rem]">
         <CardTitle className="text-center leading-8 tracking-normal">
           Welcome, start by selecting the types of roles you are targeting so we
           can show your matches!

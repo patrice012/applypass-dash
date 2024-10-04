@@ -36,7 +36,7 @@ const Header = ({
 
   return (
     <>
-      <header className="bg-white py-4 z-30 border-b justify-between flex items-center px-[10px] lg:px-8 w-full">
+      <header className=" bg-white py-4 z-30 border-b justify-between flex items-center px-[10px] lg:px-8 w-full">
         <div className="hidden lg:flex items-center gap-3">
           <CustomDrawer isOpened={isDrawerOpen}>
             <button onClick={handleOpenDrawer}>

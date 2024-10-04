@@ -38,8 +38,8 @@ const ProfileScore = () => {
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <p>"Good grade" number of points</p>
-            <p>"Bad grade" number of points</p>
+            <p>&quot;Good grade&quot; number of points</p>
+            <p>&quot;Bad grade&quot; number of points</p>
           </div>
           <div className="flex flex-col">
             <IndicatorContainer title="Geographic location" />

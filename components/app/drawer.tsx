@@ -1,7 +1,6 @@
 import * as React from "react";
 import {
   BookOpen,
-  FileUser,
   Home,
   LayoutGrid,
   Settings,
@@ -28,6 +27,7 @@ export function CustomDrawer({
 }
 
 export const SideContent = ({ isOpened }: { isOpened: boolean }) => {
+  console.log(isOpened, 'isOpened')
   return (
     <>
       <nav className="flex text-sm font-medium text-white flex-col items-start gap-2">

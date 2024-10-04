@@ -2,8 +2,6 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -29,7 +27,7 @@ export function JobDetail({ children }: PropsWithChildren) {
                 <span className="font-bold uppercase">Requirements</span>
                 <span>
                   Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
+                  typesetting industry. Lorem Ipsum has been the industry&apos;s
                   standard dummy text ever since the 1500s, when an unknown
                   printer took a galley of type and scrambled it to make a type
                   specimen book. It has survived not only five centuries, but
@@ -41,7 +39,7 @@ export function JobDetail({ children }: PropsWithChildren) {
                 </span>
                 <span>
                   Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
+                  typesetting industry. Lorem Ipsum has been the industry&apos;s
                   standard dummy text ever since the 1500s, when an unknown
                   printer took a galley of type and scrambled it to make a type
                   specimen book. It has survived not only five centuries, but
@@ -49,11 +47,11 @@ export function JobDetail({ children }: PropsWithChildren) {
                   essentially unchanged. It was popularised in the 1960s with
                   the release of Letraset sheets containing Lorem Ipsum
                   passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum
+                  like Aldus PageMaker including versions of Lorem
                 </span>
                 <span>
                   Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
+                  typesetting industry. Lorem Ipsum has been the industry&apos;s
                   standard dummy text ever since the 1500s, when an unknown
                   printer took a galley of type and scrambled it to make a type
                   specimen book. It has survived not only five centuries, but
@@ -61,11 +59,11 @@ export function JobDetail({ children }: PropsWithChildren) {
                   essentially unchanged. It was popularised in the 1960s with
                   the release of Letraset sheets containing Lorem Ipsum
                   passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum
+                  like Aldus PageMaker including versions of Lorem
                 </span>
                 <span>
                   Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
+                  typesetting industry. Lorem Ipsum has been the industry&apos;s
                   standard dummy text ever since the 1500s, when an unknown
                   printer took a galley of type and scrambled it to make a type
                   specimen book. It has survived not only five centuries, but
@@ -73,7 +71,7 @@ export function JobDetail({ children }: PropsWithChildren) {
                   essentially unchanged. It was popularised in the 1960s with
                   the release of Letraset sheets containing Lorem Ipsum
                   passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum
+                  like Aldus PageMaker including versions of Lorem
                 </span>
                 <span>
                   Lorem Ipsum is simply dummy text of the printing and
@@ -127,17 +125,20 @@ export function JobDetail({ children }: PropsWithChildren) {
                   <div className="flex sm:flex-row flex-col gap-[10px]">
                     <Button
                       className="text-[#000]  border border-[#FCAC12] bg-[#FFEDE0] hover:bg-transparent py-6 w-full rounded-[100px]"
-                      type="submit">
+                      type="submit"
+                    >
                       Top Investor
                     </Button>
                     <Button
                       className="bg-[#DCFBE7] text-[#000] border border-[#409348] hover:bg-transparent py-6 w-full rounded-[100px]"
-                      type="submit">
+                      type="submit"
+                    >
                       Venture Backed
                     </Button>
                     <Button
                       className="bg-[#F9E2E2] text-[#000] border border-[#F83E3E] hover:bg-transparent py-6 w-full rounded-[100px]"
-                      type="submit">
+                      type="submit"
+                    >
                       YC Company
                     </Button>
                   </div>

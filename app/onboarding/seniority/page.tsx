@@ -14,8 +14,6 @@ import { CheckboxFormMultiple } from "@/components/onboarding/checkboxesList";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-type CardProps = React.ComponentProps<typeof Card>;
-
 // Define the items as a readonly array to ensure immutability.
 const items = [
   { id: "intern-apprentice", label: "Intern, Apprentice" },
@@ -28,10 +26,7 @@ const items = [
   { id: "president-c-level", label: "President, C-Level" },
 ];
 
-export default function SelectSeniorityCheckList({
-  className,
-  ...props
-}: CardProps) {
+export default function SelectSeniorityCheckList() {
   const [itemsList, setItemsList] = useState([
     {
       id: "",
@@ -46,14 +41,8 @@ export default function SelectSeniorityCheckList({
   const [selectCount, setSelectCount] = useState(0);
 
   return (
-    <Card
-      className={cn(
-        "w-[630px] border-none shadow-none bg-[#E5E7EB]",
-        className
-      )}
-      {...props}
-    >
-      <CardHeader className="flex flex-col gap-[1rem]">
+    <Card className={cn("sm:w-[680px] border-none shadow-none bg-[#E5E7EB]")}>
+      <CardHeader className="sm:w-[90%] flex flex-col gap-[1rem]">
         <CardTitle className="text-center leading-8 tracking-normal">
           Select your Seniority
         </CardTitle>
@@ -77,7 +66,7 @@ export default function SelectSeniorityCheckList({
         </div>
       </CardContent>
       <CardFooter>
-        <div className="flex items-center gap-4 w-full">
+        <div className="flex items-center sm:flex-row  flex-col gap-4 w-full">
           <Link
             href={"/onboarding/"}
             className="w-full py-3 text-center text-[1rem] rounded-full text-[var(--base-hover)] bg-white hover:bg-white/60 border border-[var(--base-hover)] hover:border-[var(--base-hover)] transition-all"
