@@ -188,8 +188,7 @@ const RegisterPage = () => {
             </Link>
           </div>
         </form>
-        <div className="flex flex-col gap-3">
-          <Separator className="my-3" />
+        <div className="flex w-full md:w-[600px] px-8 flex-col mb-[16px] gap-3">
           <Button
             onClick={() => signIn("google")}
             className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
