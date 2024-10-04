@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -14,6 +14,11 @@ import { Dot } from "lucide-react";
 const LoginPage = () => {
   const [error, setError] = useState("");
   const router = useRouter();
+  const { data: session } = useSession();
+
+  if (session) {
+    return router.push("/");
+  }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -49,8 +54,7 @@ const LoginPage = () => {
             <div className="flex flex-col items-start gap-1">
               <label
                 htmlFor="username"
-                className="text-start text-sm font-semibold"
-              >
+                className="text-start text-sm font-semibold">
                 Email address
               </label>
               <Input
@@ -65,8 +69,7 @@ const LoginPage = () => {
             <div className="flex flex-col items-start gap-1">
               <label
                 htmlFor="username"
-                className="text-start text-sm font-semibold"
-              >
+                className="text-start text-sm font-semibold">
                 Password
               </label>
               <Input
@@ -83,8 +86,7 @@ const LoginPage = () => {
                 <Checkbox id="terms" className="" />
                 <label
                   htmlFor="terms"
-                  className=" peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-semibold"
-                >
+                  className=" peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-semibold">
                   Remember me
                 </label>
               </div>
@@ -97,8 +99,7 @@ const LoginPage = () => {
 
             <Button
               type="submit"
-              className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60"
-            >
+              className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60">
               Sign in now
             </Button>
           </form>
@@ -106,8 +107,7 @@ const LoginPage = () => {
             <Separator className="my-3" />
             <Button
               onClick={() => signIn("google")}
-              className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10"
-            >
+              className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
               <div className="flex items-center gap-3 text-sm font-semibold">
                 <img className="size-7" src="/google.png" alt="" />
                 Sign in with Google
