@@ -9,11 +9,17 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Check, Dot } from "lucide-react";
+import { signIn, useSession } from "next-auth/react";
 
 const RegisterPage = () => {
   const [error, setError] = useState<string>();
   const router = useRouter();
   const ref = useRef<HTMLFormElement>(null);
+  const { data: session } = useSession();
+
+  if (session) {
+    return router.push("/");
+  }
 
   const handleSubmit = async (formData: FormData) => {
     const res = await register({
@@ -111,8 +117,7 @@ const RegisterPage = () => {
         <form
           ref={ref}
           action={handleSubmit}
-          className="p-5 mx-auto w-full md:p-7 md:w-[600px] "
-        >
+          className="p-5 mx-auto w-full md:p-7 md:w-[600px] ">
           <h1 className="text-center text-[25px] font-semibold">
             Moments away From Seeing Your Matches
           </h1>
@@ -121,8 +126,7 @@ const RegisterPage = () => {
             <div className="flex flex-col items-start gap-1">
               <label
                 htmlFor="username"
-                className="text-start text-sm font-semibold"
-              >
+                className="text-start text-sm font-semibold">
                 Username
               </label>
               <Input
@@ -137,8 +141,7 @@ const RegisterPage = () => {
             <div className="flex flex-col items-start gap-1">
               <label
                 htmlFor="email"
-                className="text-start text-sm font-semibold"
-              >
+                className="text-start text-sm font-semibold">
                 Email address
               </label>
               <Input
@@ -153,8 +156,7 @@ const RegisterPage = () => {
             <div className="flex flex-col items-start gap-1">
               <label
                 htmlFor="password"
-                className="text-start text-sm font-semibold"
-              >
+                className="text-start text-sm font-semibold">
                 Password
               </label>
               <Input
@@ -171,8 +173,7 @@ const RegisterPage = () => {
                 <Checkbox id="terms" className="" />
                 <label
                   htmlFor="terms"
-                  className=" peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-semibold"
-                >
+                  className=" peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-semibold">
                   I want to receive product updates info and special offers
                 </label>
               </div>
@@ -181,28 +182,29 @@ const RegisterPage = () => {
             <Link className="text-white" href="/">
               <Button
                 type="submit"
-                className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60"
-              >
+                className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60">
                 Register for Free
               </Button>
             </Link>
-            <div className="flex flex-col gap-3">
-              <Separator className="my-3" />
-              <Button className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
-                <div className="flex items-center gap-3 text-sm font-semibold">
-                  <img className="size-7" src="/google.png" alt="" />
-                  Continue with Google
-                </div>
-              </Button>
-            </div>
-            <div className="text-center">
-              Already have an account?{" "}
-              <Link href="/auth/login">
-                <span className="text-[#1165ef] cursor-pointer">Sign in</span>
-              </Link>
-            </div>
           </div>
         </form>
+        <div className="flex flex-col gap-3">
+          <Separator className="my-3" />
+          <Button
+            onClick={() => signIn("google")}
+            className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
+            <div className="flex items-center gap-3 text-sm font-semibold">
+              <img className="size-7" src="/google.png" alt="" />
+              Continue with Google
+            </div>
+          </Button>
+        </div>
+        <div className="text-center">
+          Already have an account?{" "}
+          <Link href="/auth/login">
+            <span className="text-[#1165ef] cursor-pointer">Sign in</span>
+          </Link>
+        </div>
         <div className="w-full gap-3 flex flex-col md:flex-row items-center justify-between px-4 ">
           <div className="text-center">
             Copyright © ApplyPass 2024. All rights reserved.
