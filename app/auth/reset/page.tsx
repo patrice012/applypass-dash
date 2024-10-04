@@ -32,14 +32,14 @@ const ResetPage = () => {
               />
             </div>
 
-            <Link className="text-white" href="/dashboard">
+            <Link className="text-white" href="/">
               <Button className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60">
                 Reset Password
               </Button>
             </Link>
 
             <div className="text-center">
-              <Link href="/">
+              <Link href="/auth/login">
                 <span className="text-[#1165ef] cursor-pointer font-semibold">
                   Back to login
                 </span>

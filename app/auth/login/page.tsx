@@ -4,6 +4,8 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Dot } from "lucide-react";
 import Link from "next/link";
+import register from "@/action/user";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const LoginPage = () => {
   return (
@@ -13,34 +15,32 @@ const LoginPage = () => {
           <h1 className="font-bold text-2xl">applypass</h1>
         </Link>
       </div>
-      <div className="p-5 mx-auto w-full md:p-7 md:w-[600px] shadow-xl rounded-xl">
+      <form
+        action={register}
+        className="p-5 mx-auto w-full md:p-7 md:w-[600px] shadow-xl rounded-xl">
         <h1 className="text-center text-[25px] font-semibold">Sign in</h1>
 
         <div className="flex flex-col gap-6 mt-8">
           <div className="flex flex-col items-start gap-1">
-            <label
-              htmlFor="username"
-              className="text-start text-sm font-semibold"
-            >
+            <label htmlFor="email" className="text-start text-sm font-semibold">
               Email address
             </label>
             <Input
               placeholder="Enter your email"
-              id="username"
+              id="email"
               className="col-span-3 py-6"
             />
           </div>
 
           <div className="flex flex-col items-start gap-1">
             <label
-              htmlFor="username"
-              className="text-start text-sm font-semibold"
-            >
+              htmlFor="password"
+              className="text-start text-sm font-semibold">
               Password
             </label>
             <Input
               placeholder="Enter your password"
-              id="username"
+              id="password"
               className="col-span-3 py-6"
             />
           </div>
@@ -50,12 +50,11 @@ const LoginPage = () => {
               <Checkbox id="terms" className="" />
               <label
                 htmlFor="terms"
-                className=" peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-semibold"
-              >
+                className=" peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-semibold">
                 Remember me
               </label>
             </div>
-            <Link href="/reset">
+            <Link href="/auth/reset">
               <div className="text-sm font-semibold cursor-pointer">
                 Forgot password ?
               </div>
@@ -63,13 +62,17 @@ const LoginPage = () => {
           </div>
 
           <Link className="text-white" href="/">
-            <Button className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60">
+            <Button
+              type="submit"
+              className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60">
               Sign in now
             </Button>
           </Link>
           <div className="flex flex-col gap-3">
             <Separator className="my-3" />
-            <Button className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
+            <Button
+              onClick={() => signIn("google")}
+              className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
               <div className="flex items-center gap-3 text-sm font-semibold">
                 <img className="size-7" src="/google.png" alt="" />
                 Sign in with Google
@@ -81,10 +84,12 @@ const LoginPage = () => {
           </div>
           <div className="text-center">
             Don’t have an account?{" "}
-            <span className="text-[#1165ef] cursor-pointer">Sign up</span>
+            <Link href="/auth/register">
+              <span className="text-[#1165ef] cursor-pointer">Sign up</span>
+            </Link>
           </div>
         </div>
-      </div>
+      </form>
       <div className="w-full gap-3 flex flex-col md:flex-row items-center justify-between bg-white px-8">
         <div className="text-center">
           Copyright © ApplyPass 2024. All rights reserved.
