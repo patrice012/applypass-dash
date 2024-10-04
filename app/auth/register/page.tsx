@@ -38,8 +38,8 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="grid col-span-2 grid-cols-2">
-      <div className="bg-[#6805DA] gap-[24px] flex flex-col items-start p-[100px]">
+    <div className="grid lg:col-span-2 lg:grid-cols-2">
+      <div className="bg-[#6805DA] gap-[24px] hidden lg:flex flex-col items-start lg:px-[50px] lg:py-[100px] xl:p-[100px]">
         <Link href="/">
           <h1 className="font-bold text-[#fff] text-3xl">applypass</h1>
         </Link>
@@ -113,11 +113,11 @@ const RegisterPage = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#e5e7eb] flex flex-col items-center py-[100px] p-[10px] ">
+      <div className="bg-[#e5e7eb]  flex flex-col items-center py-[100px] p-[10px] ">
         <form
           ref={ref}
           action={handleSubmit}
-          className="p-5 mx-auto w-full md:p-7 md:w-[600px] ">
+          className="p-5 mx-auto w-full md:p-7 max-w-[600px] ">
           <h1 className="text-center text-[25px] font-semibold">
             Moments away From Seeing Your Matches
           </h1>
@@ -188,7 +188,7 @@ const RegisterPage = () => {
             </Link>
           </div>
         </form>
-        <div className="flex w-full md:w-[600px] px-8 flex-col mb-[16px] gap-3">
+        <div className="flex w-full px-6 max-w-[600px] flex-col mb-[16px] gap-3">
           <Button
             onClick={() => signIn("google")}
             className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
@@ -204,7 +204,7 @@ const RegisterPage = () => {
             <span className="text-[#1165ef] cursor-pointer">Sign in</span>
           </Link>
         </div>
-        <div className="w-full gap-3 flex flex-col md:flex-row items-center justify-between px-4 ">
+        <div className="w-full max-w-[600px] gap-3 flex flex-col lg:flex-row items-center justify-between px-4 ">
           <div className="text-center">
             Copyright © ApplyPass 2024. All rights reserved.
           </div>
