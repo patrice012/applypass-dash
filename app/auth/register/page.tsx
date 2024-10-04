@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { register } from "@/actions/register";
@@ -9,9 +9,28 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Check, Dot } from "lucide-react";
-import { useSession, signIn, signOut } from "next-auth/react";
 
 const RegisterPage = () => {
+  const [error, setError] = useState<string>();
+  const router = useRouter();
+  const ref = useRef<HTMLFormElement>(null);
+
+  const handleSubmit = async (formData: FormData) => {
+    const res = await register({
+      name: formData.get("name"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+    });
+    ref.current?.reset();
+    if (res?.error) {
+      setError(res.error);
+      alert(res.error);
+      return;
+    } else {
+      return router.push("/login");
+    }
+  };
+
   return (
     <div className="grid col-span-2 grid-cols-2">
       <div className="bg-[#6805DA] gap-[24px] flex flex-col items-start p-[100px]">
@@ -89,12 +108,32 @@ const RegisterPage = () => {
         </div>
       </div>
       <div className="bg-[#e5e7eb] flex flex-col items-center py-[100px] p-[10px] ">
-        <form className="p-5 mx-auto w-full md:p-7 md:w-[600px] ">
+        <form
+          ref={ref}
+          action={handleSubmit}
+          className="p-5 mx-auto w-full md:p-7 md:w-[600px] "
+        >
           <h1 className="text-center text-[25px] font-semibold">
             Moments away From Seeing Your Matches
           </h1>
 
           <div className="flex flex-col gap-6 mt-8">
+            <div className="flex flex-col items-start gap-1">
+              <label
+                htmlFor="username"
+                className="text-start text-sm font-semibold"
+              >
+                Username
+              </label>
+              <Input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Enter your full name"
+                className="col-span-3 py-6"
+              />
+            </div>
+
             <div className="flex flex-col items-start gap-1">
               <label
                 htmlFor="email"
@@ -103,8 +142,10 @@ const RegisterPage = () => {
                 Email address
               </label>
               <Input
-                placeholder="Enter your email"
                 id="email"
+                type="email"
+                name="email"
+                placeholder="Enter your email"
                 className="col-span-3 py-6"
               />
             </div>
@@ -117,8 +158,10 @@ const RegisterPage = () => {
                 Password
               </label>
               <Input
-                placeholder="Enter your password"
                 id="password"
+                name="password"
+                type="password"
+                placeholder="Enter your password"
                 className="col-span-3 py-6"
               />
             </div>
