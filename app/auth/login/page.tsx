@@ -44,8 +44,8 @@ const LoginPage = () => {
       <div className="p-5 mx-auto w-full md:p-7 md:w-[600px] shadow-xl rounded-xl">
         <h1 className="text-center text-[25px] font-semibold">Sign in</h1>
 
-        <form onSubmit={handleSubmit}>
-          <div className="flex flex-col gap-6 mt-8">
+        <div className="flex flex-col mt-8">
+          <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
             <div className="flex flex-col items-start gap-1">
               <label
                 htmlFor="username"
@@ -88,37 +88,40 @@ const LoginPage = () => {
                   Remember me
                 </label>
               </div>
-              <Link href="/reset">
+              <Link href="/auth/reset">
                 <div className="text-sm font-semibold cursor-pointer">
                   Forgot password ?
                 </div>
               </Link>
             </div>
 
-            <Button className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60">
+            <Button
+              type="submit"
+              className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60"
+            >
               Sign in now
             </Button>
-            <div className="flex flex-col gap-3">
-              <Separator className="my-3" />
-              <Button
-                onClick={() => signIn("google")}
-                className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10"
-              >
-                <div className="flex items-center gap-3 text-sm font-semibold">
-                  <img className="size-7" src="/google.png" alt="" />
-                  Sign in with Google
-                </div>
-              </Button>
-              <Button className="py-6 w-full text-sm font-semibold rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
-                Sign in with Magic Link
-              </Button>
-            </div>
-            <Link href="/auth/register" className="text-center">
-              Don’t have an account?{" "}
-              <span className="text-[#1165ef] cursor-pointer">Sign up</span>
-            </Link>
+          </form>
+          <div className="flex flex-col gap-3">
+            <Separator className="my-3" />
+            <Button
+              onClick={() => signIn("google")}
+              className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10"
+            >
+              <div className="flex items-center gap-3 text-sm font-semibold">
+                <img className="size-7" src="/google.png" alt="" />
+                Sign in with Google
+              </div>
+            </Button>
+            <Button className="py-6 w-full text-sm font-semibold rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
+              Sign in with Magic Link
+            </Button>
           </div>
-        </form>
+          <Link href="/auth/register" className="text-center mt-4">
+            Don’t have an account?
+            <span className="text-[#1165ef] cursor-pointer">Sign up</span>
+          </Link>
+        </div>
       </div>
       <div className="w-full gap-3 flex flex-col md:flex-row items-center justify-between bg-white px-8">
         <div className="text-center">
