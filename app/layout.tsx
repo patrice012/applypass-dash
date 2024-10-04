@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
+import { Provider } from "@/provider";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -29,7 +31,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TooltipProvider>{children}</TooltipProvider>
+        <Provider>
+          <TooltipProvider>{children}</TooltipProvider>
+        </Provider>
       </body>
     </html>
   );

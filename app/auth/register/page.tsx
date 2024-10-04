@@ -1,9 +1,8 @@
 "use client";
-
-import { FormEvent, useState } from "react";
-import { signIn } from "next-auth/react";
+import { FormEvent, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { register } from "@/actions/register";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -11,26 +10,24 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Dot } from "lucide-react";
 
-const LoginPage = () => {
-  const [error, setError] = useState("");
+export default function Register() {
+  const [error, setError] = useState<string>();
   const router = useRouter();
+  const ref = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    console.log(formData.get("email"));
-    const res = await signIn("credentials", {
+  const handleSubmit = async (formData: FormData) => {
+    const res = await register({
       email: formData.get("email"),
       password: formData.get("password"),
-      redirect: false,
+      name: "Username",
     });
-    console.log(res);
+    ref.current?.reset();
     if (res?.error) {
-      setError(res.error as string);
-      alert(res.error);
-    }
-    if (res?.ok) {
-      return router.push("/");
+      setError(res.error);
+      alert(error);
+      return;
+    } else {
+      return router.push("/login");
     }
   };
 
@@ -42,9 +39,9 @@ const LoginPage = () => {
         </Link>
       </div>
       <div className="p-5 mx-auto w-full md:p-7 md:w-[600px] shadow-xl rounded-xl">
-        <h1 className="text-center text-[25px] font-semibold">Sign in</h1>
+        <h1 className="text-center text-[25px] font-semibold">Sign up</h1>
 
-        <form onSubmit={handleSubmit}>
+        <form ref={ref} action={handleSubmit}>
           <div className="flex flex-col gap-6 mt-8">
             <div className="flex flex-col items-start gap-1">
               <label
@@ -96,14 +93,11 @@ const LoginPage = () => {
             </div>
 
             <Button className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60">
-              Sign in now
+              Sign Up
             </Button>
             <div className="flex flex-col gap-3">
               <Separator className="my-3" />
-              <Button
-                onClick={() => signIn("google")}
-                className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10"
-              >
+              <Button className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
                 <div className="flex items-center gap-3 text-sm font-semibold">
                   <img className="size-7" src="/google.png" alt="" />
                   Sign in with Google
@@ -113,10 +107,10 @@ const LoginPage = () => {
                 Sign in with Magic Link
               </Button>
             </div>
-            <Link href="/auth/register" className="text-center">
+            <div className="text-center">
               Don’t have an account?{" "}
               <span className="text-[#1165ef] cursor-pointer">Sign up</span>
-            </Link>
+            </div>
           </div>
         </form>
       </div>
@@ -136,6 +130,4 @@ const LoginPage = () => {
       </div>
     </div>
   );
-};
-
-export default LoginPage;
+}

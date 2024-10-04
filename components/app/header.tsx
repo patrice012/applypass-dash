@@ -26,6 +26,7 @@ import { Button } from "../ui/button";
 import { ReactNode, useState } from "react";
 import { CustomDrawer } from "./drawer";
 import NavItem from "../ui/nav-item";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 
 const Header = ({
@@ -39,6 +40,7 @@ const Header = ({
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
+
   return (
     <>
       <header className="bg-white py-4 z-30 border-b justify-between flex items-center px-[10px] lg:px-8 w-full">
@@ -131,9 +133,9 @@ const Header = ({
                 title="Help And Support"
               />
               <DropdownMenuSeparator />
-              <Link href="/">
+              <button onClick={() => signOut()}>
                 <DropdownItem icon={<LogOut size={20} />} title="Sign Out" />
-              </Link>
+              </button>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
