@@ -57,7 +57,7 @@ export function LogInterViewModal({ children }: PropsWithChildren) {
           </div>
           <div className="flex flex-col items-start gap-2">
             <label htmlFor="username" className="text-start">
-              What excites and/or doesn't excites you about this interview ?
+              What excites and/or doesn&apos;t excites you about this interview ?
             </label>
             <Textarea
               placeholder="Enter your message here"

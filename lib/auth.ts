@@ -28,7 +28,7 @@ export const authOptions: NextAuthOptions = {
           user.password
         );
         if (!passwordMatch) throw new Error("Wrong Password");
-        console.log(user)
+        console.log(user);
         return user;
       },
     }),
