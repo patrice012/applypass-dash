@@ -49,14 +49,11 @@ const Dashboard = () => {
       return router.replace("/auth/login");
     }
   };
-
   useEffect(() => {
     checkSession();
   }, [status]);
-
   const isTouchDevice = "ontouchstart" in window;
   const [open, setOpen] = useState(false);
-
   if (status === "loading") {
     return <span className="text-[#888] text-sm mt-7">Loading...</span>;
   }

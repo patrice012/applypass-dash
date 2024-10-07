@@ -39,16 +39,6 @@ export const authOptions: NextAuthOptions = {
   ],
   session: { strategy: "jwt" },
   secret: process.env.NEXTAUTH_SECRET,
-  callbacks: {
-    async signIn({ account, profile }) {
-      // Si l'utilisateur annule, account ou profile sera null
-      if (!account || !profile) {
-        // Empêche la connexion si l'utilisateur annule
-        return false;
-      }
-      return true;
-    },
-  },
   pages: {
     signIn: "/auth/login",
     error: "/auth/login",
