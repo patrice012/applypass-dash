@@ -18,6 +18,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         await connectDB();
+        console.log(req);
         const user = await User.findOne({
           email: credentials?.email,
         }).select("+password");
@@ -27,6 +28,7 @@ export const authOptions: NextAuthOptions = {
           user.password
         );
         if (!passwordMatch) throw new Error("Wrong Password");
+        console.log(user)
         return user;
       },
     }),
@@ -36,4 +38,9 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   session: { strategy: "jwt" },
+  secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/auth/login",
+    error: "/auth/login",
+  },
 };
