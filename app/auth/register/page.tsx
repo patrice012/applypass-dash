@@ -7,7 +7,6 @@ import { register } from "@/actions/register";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 import { Check, Dot } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 
@@ -22,21 +21,25 @@ const RegisterPage = () => {
   }
 
   const handleSubmit = async (formData: FormData) => {
+    console.log("register");
     const res = await register({
       name: formData.get("name"),
       email: formData.get("email"),
       password: formData.get("password"),
     });
+
+    console.log(res);
     ref.current?.reset();
     if (res?.error) {
       setError(res.error);
       alert(res.error);
       return;
     } else {
-      return router.push("/login");
+      return router.push("/");
     }
   };
 
+  console.log(error);
   return (
     <div className="grid lg:col-span-2 lg:grid-cols-2">
       <div className="bg-[#6805DA] gap-[24px] hidden lg:flex flex-col items-start lg:px-[50px] lg:py-[100px] xl:p-[100px]">
@@ -178,14 +181,11 @@ const RegisterPage = () => {
                 </label>
               </div>
             </div>
-
-            <Link className="text-white" href="/">
-              <Button
-                type="submit"
-                className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60">
-                Register for Free
-              </Button>
-            </Link>
+            <Button
+              type="submit"
+              className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60">
+              Register for Free
+            </Button>
           </div>
         </form>
         <div className="flex w-full px-6 max-w-[600px] flex-col mb-[16px] gap-3">

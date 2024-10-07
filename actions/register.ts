@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 
 export const register = async (values: any) => {
   const { email, password, name } = values;
-
+  console.log(values);
   try {
     await connectDB();
     const userFound = await User.findOne({ email });
@@ -21,6 +21,7 @@ export const register = async (values: any) => {
       password: hashedPassword,
     });
     const savedUser = await user.save();
+    console.log(savedUser);
   } catch (e) {
     console.log(e);
   }
