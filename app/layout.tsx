@@ -4,7 +4,6 @@ import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 import { Provider } from "@/provider";
-import AppLayout from "@/components/app/layout";
 
 const SpaceGrotesk = localFont({
   src: "./fonts/SpaceGrotesk.ttf",
@@ -25,9 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${SpaceGrotesk.className} antialiased`}>
         <Provider>
-          <TooltipProvider>
-            <AppLayout>{children}</AppLayout>
-          </TooltipProvider>
+          <TooltipProvider>{children}</TooltipProvider>
         </Provider>
       </body>
     </html>

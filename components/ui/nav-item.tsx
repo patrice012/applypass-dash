@@ -15,7 +15,7 @@ const NavItem = (props: NavItemProps) => {
     <Tooltip>
       <TooltipTrigger asChild>
         <Link
-          href={props.path ?? "/"}
+          href={`/dashboard${props.path}`}
           className={`${
             props.isActive ? "bg-[#6805DA] rounded-[100px]" : ""
           } w-full pl-4 py-3 font-medium text-sm text-white flex gap-3 items-center justify-start rounded-[100px] text-muted-foreground transition-colors`}
