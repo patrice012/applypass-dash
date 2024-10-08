@@ -7,9 +7,11 @@ import { useState } from "react";
 export function CheckboxFormMultiple({
   items,
   setSelectCount,
+  children,
 }: {
   items: { id: string; label: string }[];
   setSelectCount: (value: number) => void;
+  children: React.ReactNode;
 }) {
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
 
@@ -35,10 +37,11 @@ export function CheckboxFormMultiple({
 
   return (
     <div>
-      <div className="mb-4">
-        <span>Select all that apply (select min. 2 domains)</span>
-      </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="mb-4">{children}</div>
+      <div
+        className="grid grid-cols-2 gap-4 max-h-[22rem]
+      overflow-y-auto"
+      >
         {items?.map((item) => (
           <div key={item.id} className="flex items-center gap-2">
             <Checkbox
