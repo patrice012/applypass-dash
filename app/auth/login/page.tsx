@@ -44,10 +44,11 @@ const LoginPage = () => {
     <div className="h-screen w-full flex flex-col">
       <div className="w-full px-5 py-6  border-b">
         <Link href="/">
-          <h1 className="font-bold text-2xl">applypass</h1>
+          {/* <h1 className="font-bold text-2xl">applypass</h1> */}
+          <img src="/logo.svg" alt="" />
         </Link>
       </div>
-      <div className="p-5 mx-auto w-full md:p-7 md:w-[600px] shadow-xl rounded-xl">
+      <div className="p-5 mx-auto w-full md:p-7 md:w-[600px] border my-6 shadow-md rounded-xl">
         <h1 className="text-center text-[25px] font-semibold">Sign in</h1>
 
         <div className="flex flex-col mt-8">
@@ -129,7 +130,7 @@ const LoginPage = () => {
           </Link>
         </div>
       </div>
-      <div className="w-full gap-3 flex flex-col md:flex-row items-center justify-between bg-white px-8">
+      <div className="border w-full gap-3 py-3 flex flex-col md:flex-row items-center justify-self-end self-end justify-between bg-white px-8">
         <div className="text-center">
           Copyright © ApplyPass 2024. All rights reserved.
         </div>

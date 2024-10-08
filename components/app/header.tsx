@@ -55,8 +55,9 @@ const Header = ({
             Good evening, David
           </h3>
         </div>
-        <div className="lg:hidden">
+        <div className="lg:hidden flex items-center gap-3">
           <Menu size="32" onClick={toggleSidebar} />
+          <img src="/logo.svg" className="h-8" alt="applypass-logo" />
         </div>
         <div className="flex items-center gap-4">
           <button className="size-[35px] lg:size-10 flex items-center rounded-full border cursor-pointer">
