@@ -120,9 +120,11 @@ const LoginPage = () => {
                 Sign in with Google
               </div>
             </Button>
-            <Button className="py-6 w-full text-sm font-semibold rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
-              Sign in with Magic Link
-            </Button>
+            <Link href="/auth/magic">
+              <Button className="py-6 w-full text-sm font-semibold rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
+                Sign in with Magic Link
+              </Button>
+            </Link>
           </div>
           <Link href="/auth/register" className="text-center mt-4">
             Don’t have an account?

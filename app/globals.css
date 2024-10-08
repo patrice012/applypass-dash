@@ -7,6 +7,12 @@ body {
 }
 
 @layer utilities {
+  .bg-gradient-custom {
+    background: linear-gradient(to right, #1d4ed8 50%, #1f45bf 50%);
+  }
+}
+
+@layer utilities {
   .text-balance {
     text-wrap: balance;
   }
