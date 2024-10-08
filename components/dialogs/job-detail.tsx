@@ -18,77 +18,137 @@ export function JobDetail({ children }: PropsWithChildren) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="mt-[100px] h-full md:h-auto m-auto sm:max-w-[700px] max-w-[90%] bg-[#FBFAF8] overflow-scroll md:overflow-auto">
-        <DialogHeader className="flex flex-col gap-3 items-start">
-          <DialogTitle className="text-2xl font-bold">
-            Job detail
-          </DialogTitle>
-          <Separator />
-          <div className="flex flex-col gap-2 items-start">
-            <DialogDescription className="text-lg text-[#231232] font-semibold text-start">
-              Congratulations on interview you got with ApplyPass.
-            </DialogDescription>
-            <DialogDescription className="text-start">
-              With this data, we will work to get you more matches like this in
-              the future.
-            </DialogDescription>
-          </div>
+      <DialogContent className="mt-[100px] px-0 gap-0 h-full  m-auto sm:max-h-[90%] sm:max-w-[90%]  bg-[#FBFAF8] overflow-scroll md:overflow-auto">
+        <DialogHeader className="flex flex-col gap-3 items-start px-6">
+          <DialogTitle className="text-2xl font-bold">Job detail</DialogTitle>
+          <Separator className="bg-[#e4e4e4]" />
         </DialogHeader>
-        <div className="flex flex-col gap-6 py-4">
-          <div className="flex flex-col items-start gap-2">
-            <label htmlFor="name" className="text-start">
-              When did you receive the offer for this interview ?
-            </label>
-            <Input
-              placeholder="Enter number"
-              id="name"
-              className="col-span-3"
-            />
-          </div>
-          <div className="flex flex-col items-start gap-2">
-            <label htmlFor="username" className="text-start">
-              What is your interview date ?
-            </label>
-            <Input
-              placeholder="Enter number"
-              id="username"
-              className="col-span-3"
-            />
-          </div>
-          <div className="flex flex-col items-start gap-2">
-            <label htmlFor="username" className="text-start">
-              What excites and/or doesn&apos;t excites you about this interview ?
-            </label>
-            <Textarea
-              placeholder="Enter your message here"
-              id="username"
-              className="col-span-3"
-            />
-          </div>
-          <div className="flex gap-3">
-            <Checkbox id="terms" className="" />
-            <label
-              htmlFor="terms"
-              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              I want to avoid applying to any other listings for this company
-            </label>
+        <div className="flex-1">
+          <div className="grid col-span-5 grid-cols-5">
+            <div className="grid col-span-3 border-r border-[#e4e4e4] py-6 px-6">
+              <div className="flex flex-col gap-[20px]">
+                <span className="font-bold uppercase">Requirements</span>
+                <span>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum
+                  passages, and more recently with desktop publishing software
+                  like Aldus PageMaker including versions of Lorem Ipsum
+                </span>
+                <span>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum
+                  passages, and more recently with desktop publishing software
+                  like Aldus PageMaker including versions of Lorem Ipsum
+                </span>
+                <span>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum
+                  passages, and more recently with desktop publishing software
+                  like Aldus PageMaker including versions of Lorem Ipsum
+                </span>
+                <span>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum
+                  passages, and more recently with desktop publishing software
+                  like Aldus PageMaker including versions of Lorem Ipsum
+                </span>
+              </div>
+            </div>
+            <div className="grid col-span-2 sticky top-1">
+              <div className="grid col-span-3  py-6 px-6">
+                <div className="flex flex-col gap-[20px]">
+                  <div className="flex gap-[12px] items-center">
+                    <div className="size-14 border-[1.5px] border-[#E7E9EB] rounded-full bg-white p-2">
+                      <img
+                        src={
+                          "https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"
+                        }
+                        alt=""
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="font-semibold">Dropbox Inc.</span>
+                      <span>Information and Communication Technology</span>
+                    </div>
+                  </div>
+                  <div className="flex gap-[10px]">
+                    <Button
+                      className="text-[#000]  border border-[#FCAC12] bg-[#FFEDE0] hover:bg-transparent py-6 w-full rounded-[100px]"
+                      type="submit">
+                      Top Investor
+                    </Button>
+                    <Button
+                      className="bg-[#DCFBE7] text-[#000] border border-[#409348] hover:bg-transparent py-6 w-full rounded-[100px]"
+                      type="submit">
+                      Venture Backed
+                    </Button>
+                    <Button
+                      className="bg-[#F9E2E2] text-[#000] border border-[#F83E3E] hover:bg-transparent py-6 w-full rounded-[100px]"
+                      type="submit">
+                      YC Company
+                    </Button>
+                  </div>
+                  <div className="flex flex-col gap-4">
+                    <span className="font-semibold">Dropbox Inc.</span>
+                    <span>
+                      Dropbox is a file hosting service operated by the American
+                      company Dropbox, Inc., headquartered in San Francisco,
+                      California, U.S. that offers cloud storage, file
+                      synchronization, personal cloud, and client software.
+                    </span>
+                  </div>
+                  <div className="bg-[#F9F9FA] flex flex-col shadow-sm rounded-[10px] gap-[15px] py-[15px] px-[15px]">
+                    <div className="flex w-full justify-between">
+                      <span>Headquarters</span>
+                      <span className="font-semibold">San Francisco, CA</span>
+                    </div>
+                    <Separator />
+                    <div className="flex w-full justify-between">
+                      <span>CEO</span>
+                      <span className="font-semibold">Dan Cloe</span>
+                    </div>
+                    <div className="flex w-full justify-between">
+                      <span>Total Funding</span>
+                      <span className="font-semibold">22.7 B</span>
+                    </div>
+                    <div className="flex w-full justify-between">
+                      <span>Headcount</span>
+                      <span className="font-semibold">1022</span>
+                    </div>
+                    <div className="flex w-full justify-between">
+                      <span>Founded</span>
+                      <span className="font-semibold">2010</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <DialogFooter className="flex flex-co md:grid md:grid-cols-2 gap-3">
-          <Button
-            className="bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-transparent py-6 w-full rounded-[100px]"
-            type="submit"
-          >
-            Maybe later
-          </Button>
-          <Button
-            className="py-6 w-full rounded-[100px] border border-[#6805DA] bg-[#6805DA] hover:bg-[#6805DA]/60"
-            type="submit"
-          >
-            Log Interview
-          </Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
