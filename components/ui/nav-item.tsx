@@ -7,6 +7,7 @@ interface NavItemProps {
   icon: ReactNode;
   isActive?: boolean;
   extras?: ReactNode;
+  path?: string;
 }
 
 const NavItem = (props: NavItemProps) => {
@@ -14,7 +15,7 @@ const NavItem = (props: NavItemProps) => {
     <Tooltip>
       <TooltipTrigger asChild>
         <Link
-          href="#"
+          href={props.path ?? "/"}
           className={`${
             props.isActive ? "bg-[#6805DA] rounded-[100px]" : ""
           } w-full pl-4 py-3 font-medium text-sm text-white flex gap-3 items-center justify-start rounded-[100px] text-muted-foreground transition-colors`}
@@ -24,7 +25,6 @@ const NavItem = (props: NavItemProps) => {
           {props.extras}
         </Link>
       </TooltipTrigger>
-      {/* <TooltipContent side="right"> {props.title} </TooltipContent> */}
     </Tooltip>
   );
 };
