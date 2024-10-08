@@ -27,7 +27,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useEffect, useState } from "react";
-import { useWindowSize } from "@/helpers/utils";
+import { useWindowSize } from "@/components/hooks/useWindowSize";
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";

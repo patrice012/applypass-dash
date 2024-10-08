@@ -17,7 +17,7 @@ const RegisterPage = () => {
   const { data: session } = useSession();
 
   if (session) {
-    return router.push("/");
+    return router.push("/onboarding");
   }
 
   const handleSubmit = async (formData: FormData) => {
@@ -120,7 +120,8 @@ const RegisterPage = () => {
         <form
           ref={ref}
           action={handleSubmit}
-          className="p-5 mx-auto w-full md:p-7 max-w-[600px] ">
+          className="p-5 mx-auto w-full md:p-7 max-w-[600px] "
+        >
           <h1 className="text-center text-[25px] font-semibold">
             Moments away From Seeing Your Matches
           </h1>
@@ -129,7 +130,8 @@ const RegisterPage = () => {
             <div className="flex flex-col items-start gap-1">
               <label
                 htmlFor="username"
-                className="text-start text-sm font-semibold">
+                className="text-start text-sm font-semibold"
+              >
                 Username
               </label>
               <Input
@@ -144,7 +146,8 @@ const RegisterPage = () => {
             <div className="flex flex-col items-start gap-1">
               <label
                 htmlFor="email"
-                className="text-start text-sm font-semibold">
+                className="text-start text-sm font-semibold"
+              >
                 Email address
               </label>
               <Input
@@ -159,7 +162,8 @@ const RegisterPage = () => {
             <div className="flex flex-col items-start gap-1">
               <label
                 htmlFor="password"
-                className="text-start text-sm font-semibold">
+                className="text-start text-sm font-semibold"
+              >
                 Password
               </label>
               <Input
@@ -176,14 +180,16 @@ const RegisterPage = () => {
                 <Checkbox id="terms" className="" />
                 <label
                   htmlFor="terms"
-                  className=" peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-semibold">
+                  className=" peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-semibold"
+                >
                   I want to receive product updates info and special offers
                 </label>
               </div>
             </div>
             <Button
               type="submit"
-              className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60">
+              className="py-6 w-full text-sm font-semibold rounded-[90px] bg-[#6805DA] hover:bg-[#6805DA]/60"
+            >
               Register for Free
             </Button>
           </div>
@@ -191,7 +197,8 @@ const RegisterPage = () => {
         <div className="flex w-full px-6 max-w-[600px] flex-col mb-[16px] gap-3">
           <Button
             onClick={() => signIn("google")}
-            className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10">
+            className="py-6 w-full rounded-[90px] bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-[#6805DA]/10"
+          >
             <div className="flex items-center gap-3 text-sm font-semibold">
               <img className="size-7" src="/google.png" alt="" />
               Continue with Google
