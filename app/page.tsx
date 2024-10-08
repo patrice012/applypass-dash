@@ -29,8 +29,7 @@ import {
 import { useEffect, useState } from "react";
 import { useWindowSize } from "@/helpers/utils";
 
-import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
@@ -49,10 +48,22 @@ const Dashboard = () => {
       return router.replace("/auth/login");
     }
   };
+
+  const checkIsTouchDevice = (): boolean => {
+    return (
+      typeof window !== "undefined" &&
+      ("ontouchstart" in window || navigator.maxTouchPoints > 0)
+    );
+  };
+
   useEffect(() => {
     checkSession();
   }, [status]);
-  const isTouchDevice = "ontouchstart" in window;
+
+  // const isTouchDevice = "ontouchstart" in window;
+  const isTouchDevice = checkIsTouchDevice();
+  console.log(isTouchDevice, "isTouchDdevice");
+
   const [open, setOpen] = useState(false);
   if (status === "loading") {
     return <span className="text-[#888] text-sm mt-7">Loading...</span>;
