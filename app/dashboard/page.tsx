@@ -17,7 +17,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Header from "@/components/app/header";
 import JobItem from "@/components/app/job-item";
 import { TabsContent } from "@radix-ui/react-tabs";
 import { LogInterViewModal } from "@/components/dialogs/log-interview";
@@ -28,7 +27,6 @@ import {
 } from "@/components/ui/tooltip";
 import { JobDetail } from "@/components/dialogs/job-detail";
 import { useEffect, useState } from "react";
-import { useWindowSize } from "@/helpers/utils";
 
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -36,13 +34,6 @@ import { useRouter } from "next/navigation";
 const Dashboard = () => {
   const { status } = useSession();
   const router = useRouter();
-  //
-  const [width] = useWindowSize();
-  const [isOpened, setIsOpened] = useState(width > 1024);
-
-  useEffect(() => {
-    setIsOpened(width > 1024);
-  }, [width]);
 
   const checkSession = () => {
     if (status === "unauthenticated") {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useWindowSize } from "@/helpers/utils";
+import { useWindowSize } from "@/components/hooks/useWindowSize";
 import Header from "./header";
 import { PropsWithChildren, useEffect, useState } from "react";
 
