@@ -5,14 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 import { Provider } from "@/provider";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+const SpaceGrotesk = localFont({
+  src: "./fonts/SpaceGrotesk.ttf",
   weight: "100 900",
 });
 
@@ -28,9 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${SpaceGrotesk.className} antialiased`}>
         <Provider>
           <TooltipProvider>{children}</TooltipProvider>
         </Provider>
