@@ -1,12 +1,5 @@
 import * as React from "react";
-import {
-  BookOpen,
-  FileUser,
-  Home,
-  LayoutGrid,
-  Settings,
-  UsersRound,
-} from "lucide-react";
+import { BookOpen, FileUser, LayoutDashboard, UsersRound } from "lucide-react";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import NavItem from "../ui/nav-item";
 
@@ -31,7 +24,7 @@ export const SideContent = () => {
     <>
       <nav className="flex text-sm font-medium text-white flex-col items-start gap-2">
         <img src="/logowhite.svg" alt="" className="h-8 mb-[22px]" />
-        <NavItem path="/" isActive icon={<Home />} title="Dashboard" />
+        <NavItem isActive icon={<LayoutDashboard />} title="Dashboard" />
         <NavItem icon={<UsersRound strokeWidth={1.5} />} title="Community" />
         <NavItem
           extras={
@@ -43,16 +36,6 @@ export const SideContent = () => {
           title="Resume Score"
         />
         <NavItem icon={<BookOpen strokeWidth={1.5} />} title="Courses" />
-        <NavItem
-          path="/tools"
-          icon={<LayoutGrid strokeWidth={1.5} />}
-          title="Tools"
-        />
-        <NavItem
-          path="/settings"
-          icon={<Settings strokeWidth={1.5} />}
-          title="Settings"
-        />
       </nav>
       <div className="mt-auto flex flex-col items-start gap-3 px-3 sm:py-4 bg-[#FFFCE7] text-[#231232] rounded-xl">
         <img src="/gold.svg" alt="Gold" className="-ml-1 size-[64px]" />
