@@ -1,6 +1,6 @@
 git restore --staged
 git filter-branch -f --env-filter '
-WRONG_EMAIL="rbatoulime@gmail.com"
+WRONG_NAME="SamuelAMZ"
 NEW_NAME="yao0237"
 NEW_EMAIL="yao874532@gmail.com"
 
