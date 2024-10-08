@@ -21,7 +21,7 @@ export function JobDetail({ children }: PropsWithChildren) {
       <DialogContent className="mt-[100px] h-full md:h-auto m-auto sm:max-w-[700px] max-w-[90%] bg-[#FBFAF8] overflow-scroll md:overflow-auto">
         <DialogHeader className="flex flex-col gap-3 items-start">
           <DialogTitle className="text-2xl font-bold">
-            Log Interview
+            Job detail
           </DialogTitle>
           <Separator />
           <div className="flex flex-col gap-2 items-start">
