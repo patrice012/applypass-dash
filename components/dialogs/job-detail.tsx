@@ -18,13 +18,13 @@ export function JobDetail({ children }: PropsWithChildren) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="mt-[100px] px-0 gap-0 h-full  m-auto sm:max-h-[90%] sm:max-w-[90%]  bg-[#FBFAF8] overflow-scroll md:overflow-auto">
+      <DialogContent className="mt-[100px] px-0 gap-0 h-full  m-auto sm:max-h-[90%] sm:max-w-[90%]  bg-[#FBFAF8] ">
         <DialogHeader className="flex flex-col gap-3 items-start px-6">
           <DialogTitle className="text-2xl font-bold">Job detail</DialogTitle>
           <Separator className="bg-[#e4e4e4]" />
         </DialogHeader>
-        <div className="flex-1">
-          <div className="grid col-span-5 grid-cols-5">
+        <div className="flex-1 h-[75vh] overflow-scroll md:overflow-auto">
+          <div className="grid col-span-5 grid-cols-5 ">
             <div className="grid col-span-3 border-r border-[#e4e4e4] py-6 px-6">
               <div className="flex flex-col gap-[20px]">
                 <span className="font-bold uppercase">Requirements</span>

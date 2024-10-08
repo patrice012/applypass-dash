@@ -1,7 +1,6 @@
 const SettingsPage = () => {
   return (
-    <div>
-      <h1>Settings</h1>
+    <div className="px-[48px] py-[32px] gap-[36px] flex flex-col">
     </div>
   );
 };
