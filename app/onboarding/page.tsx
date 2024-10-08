@@ -60,6 +60,8 @@ export default function CardDemo({ className, ...props }: CardProps) {
       label: "",
     },
   ]);
+
+  const [selectCount, setSelectCount] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
@@ -73,6 +75,7 @@ export default function CardDemo({ className, ...props }: CardProps) {
           .includes(searchTerm.toLowerCase().trim())
       );
 
+      setSelectCount(matchesList.length);
       setItemsList(matchesList);
     }
   }, [searchTerm]);
@@ -91,16 +94,27 @@ export default function CardDemo({ className, ...props }: CardProps) {
           You’re minutes away from more matches and more interviews
         </CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-4 rounded-[15px] bg-[#FFFFFF] pt-[1rem] mb-8">
+      <CardContent className="grid gap-4 rounded-[15px] bg-[#FFFFFF] pt-[1.3rem] mb-8">
         <div className="space-y-5">
           <SearchInputWithLabel setSearchTerm={setSearchTerm} />
           <div>
-            <CheckboxFormMultiple items={itemsList} />
+            <CheckboxFormMultiple
+              items={itemsList}
+              setSelectCount={setSelectCount}
+            />
           </div>
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full">Mark all as read</Button>
+        {selectCount < 2 ? (
+          <Button disabled className="w-full py-6 text-[1rem] rounded-full">
+            Select two domains to continue
+          </Button>
+        ) : (
+          <Button className="w-full py-6 text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all">
+            Continue
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

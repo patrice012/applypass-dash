@@ -6,10 +6,11 @@ import { useState } from "react";
 
 export function CheckboxFormMultiple({
   items,
+  setSelectCount,
 }: {
   items: { id: string; label: string }[];
+  setSelectCount: (value: number) => void;
 }) {
-  // Initialize a Set in useState for managing the selected items.
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
 
   // Handler to toggle checkbox state
@@ -21,9 +22,16 @@ export function CheckboxFormMultiple({
       } else {
         updatedSet.delete(itemId);
       }
+
+      // Filter items based on selected items
+      const filteredItems = items.filter((item) => updatedSet.has(item.id));
+      setSelectCount(filteredItems.length);
+
       return updatedSet;
     });
   };
+
+  console.log(selectedItems, "selectedItems", items);
 
   return (
     <div>

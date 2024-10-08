@@ -46,6 +46,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
     --base: #6805da;
+    --base-hover: rgba(104, 5, 218, 0.6);
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -73,6 +74,7 @@ body {
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
     --base: #6805da;
+    --base-hover: rgba(104, 5, 218, 0.6);
   }
 }
 
