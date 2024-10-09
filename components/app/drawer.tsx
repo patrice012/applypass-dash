@@ -3,13 +3,13 @@ import {
   BookOpen,
   FileUser,
   Home,
-  LayoutDashboard,
   LayoutGrid,
   Settings,
   UsersRound,
 } from "lucide-react";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import NavItem from "../ui/nav-item";
+import Link from "next/link";
 
 export function CustomDrawer({
   children,
@@ -20,30 +20,31 @@ export function CustomDrawer({
       <Drawer direction="left" open={isOpened} modal={false}>
         <DrawerTrigger asChild>{children}</DrawerTrigger>
         <DrawerContent className="bg-[#231232] px-4 max-w-[250px] h-full rounded-none py-4">
-          <SideContent />
+          <SideContent isOpened={isOpened} />
         </DrawerContent>
       </Drawer>
     </div>
   );
 }
 
-export const SideContent = () => {
+export const SideContent = ({ isOpened }: { isOpened: boolean }) => {
   return (
     <>
       <nav className="flex text-sm font-medium text-white flex-col items-start gap-2">
-        <img src="/logowhite.svg" alt="" className="h-8 mb-[22px]" />
-        <NavItem path="/" isActive icon={<Home />} title="Dashboard" />
-        <NavItem icon={<UsersRound strokeWidth={1.5} />} title="Community" />
+        <Link href="/dashboard">
+          <img src="/logowhite.svg" alt="" className="h-8 mb-[22px]" />
+        </Link>
+        <NavItem path="" icon={<Home />} title="Dashboard" />
         <NavItem
-          extras={
-            <div className="text-xs px-2 py-1 bg-[#DF4425] rounded-2xl">
-              38/100
-            </div>
-          }
-          icon={<FileUser strokeWidth={1.5} />}
-          title="Resume Score"
+          path="/courses"
+          icon={<BookOpen strokeWidth={1.5} />}
+          title="Courses"
         />
-        <NavItem icon={<BookOpen strokeWidth={1.5} />} title="Courses" />
+        <NavItem
+          path="/community"
+          icon={<UsersRound strokeWidth={1.5} />}
+          title="Community"
+        />
         <NavItem
           path="/tools"
           icon={<LayoutGrid strokeWidth={1.5} />}

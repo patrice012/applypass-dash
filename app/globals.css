@@ -4,11 +4,16 @@
 
 body {
   font-family: "Space Grotesk", sans-serif;
+  color: #001e52;
 }
 
 @layer utilities {
   .bg-gradient-custom {
     background: linear-gradient(to right, #1d4ed8 50%, #1f45bf 50%);
+  }
+
+  .bg-gradient-custom-b {
+    background: linear-gradient(to bottom, #1d4ed8 50%, #1f45bf 50%);
   }
 }
 
