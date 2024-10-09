@@ -88,7 +88,7 @@ export default function SelectDomainsCheckList({
   return (
     <Card
       className={cn(
-        "w-[630px] border-none shadow-none bg-[#E5E7EB]",
+        "sm:w-[630px] border-none shadow-none bg-[#E5E7EB]",
         className
       )}
       {...props}

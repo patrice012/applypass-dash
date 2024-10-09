@@ -2,7 +2,7 @@ import { Dot } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer>
+    <footer className="w-full bg-red-700">
       <div className="border w-full gap-3 py-3 flex flex-col md:flex-row items-center justify-self-end self-end justify-between bg-white px-8">
         <div className="text-center">
           Copyright © ApplyPass 2024. All rights reserved.

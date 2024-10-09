@@ -71,7 +71,7 @@ export default function SelectTechnologyCheckList({
   return (
     <Card
       className={cn(
-        "w-[630px] border-none shadow-none bg-[#E5E7EB]",
+        "sm:w-[630px] border-none shadow-none bg-[#E5E7EB]",
         className
       )}
       {...props}
@@ -106,7 +106,7 @@ export default function SelectTechnologyCheckList({
         </div>
       </CardContent>
       <CardFooter>
-        <div className="flex items-center gap-4 w-full">
+        <div className="flex items-center sm:flex-row  flex-col gap-4 w-full">
           <Link
             href={"/onboarding/seniority"}
             className="w-full py-3 text-center text-[1rem] rounded-full text-[var(--base-hover)] bg-white hover:bg-white/60 border border-[var(--base-hover)] hover:border-[var(--base-hover)] transition-all"
