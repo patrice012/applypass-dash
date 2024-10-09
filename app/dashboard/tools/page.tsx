@@ -18,7 +18,7 @@ const ToolsPage = () => {
   }, []);
 
   return (
-    <div className="px-[10px] py-4 lg:py-8 lg:px-8">
+    <div className="main-content">
       <div
         title=""
         className="w-full grid grid-cols-1 md:grid-cols-2 px-6 py-5 rounded-xl text-white bg-gradient-custom-b lg:bg-gradient-custom relative border"

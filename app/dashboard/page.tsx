@@ -46,7 +46,7 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <main className="flex-grow flex flex-col w-full px-4 py-[24px] md:p-[32px] gap-[24px] overflow-y-scroll scrollbar scrollbar-thumb-[#d4d4d4] scrollbar-w-[7px] scrollbar-thumb-rounded-full">
+    <main className="main-content">
       <div className="flex w-full items-center">
         <div className="bg-[#EDE9FE] rounded-[12px]  md:items-center p-4 w-full flex flex-col gap-[24px] md:flex-row justify-between">
           <div className="flex sm:flex-row flex-col w-full gap-[12px] items-start sm:items-center">
