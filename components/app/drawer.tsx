@@ -56,7 +56,7 @@ export const SideContent = ({ isOpened }: { isOpened: boolean }) => {
           title="Settings"
         />
       </nav>
-      <div className="mt-auto flex flex-col items-start gap-3 px-3 sm:py-4 bg-[#FFFCE7] text-[#231232] rounded-xl">
+      <div className="mt-auto flex flex-col items-start gap-3 px-3 py-4 bg-[#FFFCE7] text-[#231232] rounded-xl">
         <img src="/gold.svg" alt="Gold" className="-ml-1 size-[64px]" />
         <h1 className="text-base font-bold">
           Want to apply to more of your matches ?
