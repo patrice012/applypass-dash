@@ -55,7 +55,9 @@ export default function SelectSponsorshipAndSalaryCheckList() {
                   <div className="flex items-center  gap-3">
                     <File size={22} className="text-[#414141]" />
                     <div className="">
-                      <h5 className="truncate">{files[0]?.name}</h5>
+                      <h5 className="truncate max-w-[400px]">
+                        {files[0]?.name}
+                      </h5>
                       <span className="text-sm text-[#414141]">
                         {files[0]?.size
                           ? `${(files[0].size / 1024 / 1024).toFixed(
@@ -79,40 +81,40 @@ export default function SelectSponsorshipAndSalaryCheckList() {
                   <h5 className="text-[clamp(.8rem,3cqw,1.0125rem)]">
                     Your Current resume Score:
                   </h5>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between sm:flex-row flex-col sm:gap-3 gap-6 w-full">
                     <div className="flex-1">
                       <ScoreMeter svgScore={66} />
                     </div>
-                    <div className="space-y-1 flex-1">
-                      <div className="flex items-center justify-between">
+                    <div className="space-y-1 flex-1 ">
+                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
                         <div className="flex items-center justify-center gap-1">
                           <div className="h-3 w-3 rounded-sm bg-[#FEED35]"></div>
                           <span>Length</span>
                         </div>
                         <span>43%</span>
                       </div>
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
                         <div className="flex items-center justify-center gap-1">
                           <div className="h-3 w-3 rounded-sm bg-[#EF462C]"></div>
                           <span>Key Optimization</span>
                         </div>
                         <span>0%</span>
                       </div>
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
                         <div className="flex items-center justify-center gap-1">
                           <div className="h-3 w-3 rounded-sm bg-[#EF462C]"></div>
                           <span>Content</span>
                         </div>
                         <span>14%</span>
                       </div>
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
                         <div className="flex items-center justify-center gap-1">
                           <div className="h-3 w-3 rounded-sm bg-[#FAB031]"></div>
                           <span>Organization</span>
                         </div>
                         <span>25%</span>
                       </div>
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
                         <div className="flex items-center justify-center gap-1">
                           <div className="h-3 w-3 rounded-sm bg-[#FAB031]"></div>
                           <span>Misc</span>
