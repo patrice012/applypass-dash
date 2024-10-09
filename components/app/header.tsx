@@ -134,21 +134,19 @@ const Header = ({
           </DropdownMenu>
         </div>
       </header>
-      <div>
-        {isSidebarOpen && (
-          <div className="bg-[#5150509c] fixed right-0 top-0 w-full h-full z-[1000] lg:hidden">
-            <div className="flex max-w-[320px] flex-col  right-0  top-0 bg-[#231232] overflow-auto  h-full p-4 relative">
-              <SideContent isOpened={true} />
-              <div
-                className="absolute top-0 right-0 z-20 p-2"
-                onClick={toggleSidebar}
-              >
-                <CircleX strokeWidth={1.5} size={28} color="#fff" />
-              </div>
+      {isSidebarOpen && (
+        <div className="bg-[#5150509c] fixed right-0 top-0 w-full h-full z-[1000] lg:hidden">
+          <div className="flex max-w-[320px] flex-col  right-0  top-0 bg-[#231232] overflow-auto  h-full p-4 relative">
+            <SideContent isOpened={true} />
+            <div
+              className="absolute top-0 right-0 z-20 p-2"
+              onClick={toggleSidebar}
+            >
+              <CircleX strokeWidth={1.5} size={28} color="#fff" />
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };

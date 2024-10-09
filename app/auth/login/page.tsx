@@ -15,7 +15,6 @@ const LoginPage = () => {
   const [error, setError] = useState("");
   const router = useRouter();
   const { data: session } = useSession();
-  console.log(error, "error");
 
   if (session) {
     return router.push("/");
@@ -33,6 +32,7 @@ const LoginPage = () => {
     console.log(res);
     if (res?.error) {
       setError(res.error as string);
+      console.log(error);
       alert(res.error);
     }
     if (res?.ok) {
@@ -41,21 +41,22 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="h-screen w-full flex flex-col">
-      <div className="w-full px-5 py-6  border-b">
+    <div className="min-h-screen w-full flex flex-col">
+      <div className="w-full px-5 py-6 border-b">
         <Link href="/">
           {/* <h1 className="font-bold text-2xl">applypass</h1> */}
           <img src="/logo.svg" alt="" />
         </Link>
       </div>
-      <div className="p-5 mx-auto w-full md:p-7 md:w-[600px] border my-6 shadow-md rounded-xl">
+
+      <div className="p-5 mx-auto w-full md:p-7 md:w-[600px] border my-6 shadow-md rounded-xl flex-grow">
         <h1 className="text-center text-[25px] font-semibold">Sign in</h1>
 
         <div className="flex flex-col mt-8">
           <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
             <div className="flex flex-col items-start gap-1">
               <label
-                htmlFor="username"
+                htmlFor="email"
                 className="text-start text-sm font-semibold"
               >
                 Email address
@@ -71,7 +72,7 @@ const LoginPage = () => {
 
             <div className="flex flex-col items-start gap-1">
               <label
-                htmlFor="username"
+                htmlFor="password"
                 className="text-start text-sm font-semibold"
               >
                 Password
@@ -87,11 +88,8 @@ const LoginPage = () => {
 
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <Checkbox id="terms" className="" />
-                <label
-                  htmlFor="terms"
-                  className=" peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-semibold"
-                >
+                <Checkbox id="terms" />
+                <label htmlFor="terms" className="text-sm font-semibold">
                   Remember me
                 </label>
               </div>
@@ -109,6 +107,7 @@ const LoginPage = () => {
               Sign in now
             </Button>
           </form>
+
           <div className="flex flex-col gap-3">
             <Separator className="my-3" />
             <Button
@@ -126,12 +125,14 @@ const LoginPage = () => {
               </Button>
             </Link>
           </div>
+
           <Link href="/auth/register" className="text-center mt-4">
             Don’t have an account?
             <span className="text-[#1165ef] cursor-pointer">Sign up</span>
           </Link>
         </div>
       </div>
+
       <div className="border w-full gap-3 py-3 flex flex-col md:flex-row items-center justify-self-end self-end justify-between bg-white px-8">
         <div className="text-center">
           Copyright © ApplyPass 2024. All rights reserved.
