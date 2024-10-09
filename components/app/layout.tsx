@@ -18,7 +18,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
       <div
         className={`${
           isOpened ? "lg:ml-[250px]" : ""
-        } flex grow flex-col h-screen w-full`}
+        } h-screen w-full`}
       >
         <Header
           handleOpenDrawer={() => setIsOpened(!isOpened)}
