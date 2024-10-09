@@ -135,7 +135,10 @@ const Header = ({
         </div>
       </header>
       {isSidebarOpen && (
-        <div className="bg-[#5150509c] backdrop-blur-sm fixed right-0 top-0 w-full h-full z-[1000] lg:hidden">
+        <div
+          className="bg-[#5150509c] backdrop-blur-sm fixed right-0 top-0 w-full h-full z-[1000] lg:hidden"
+          onClick={toggleSidebar}
+        >
           <div className="flex max-w-[320px] flex-col  right-0  top-0 bg-[#231232] overflow-auto  h-full p-4 relative">
             <SideContent isOpened={true} />
             <div
