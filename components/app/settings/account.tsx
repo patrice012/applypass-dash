@@ -1,25 +1,26 @@
 "use client";
 import { Separator } from "@/components/ui/separator";
 import { Link, Pencil } from "lucide-react";
-import { useState, useRef, ChangeEvent } from "react";
+import { useState, useRef } from "react";
+import { SettingEditModal } from "@/components/dialogs/setting-edit";
 
 export default function Account() {
-  const [imagePreview, setImagePreview] = useState<string | null>(null); 
-  
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleDivClick = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.click(); 
+      fileInputRef.current.click();
     }
   };
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]; 
+    const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setImagePreview(reader.result as string); 
+        setImagePreview(reader.result as string);
       };
       reader.readAsDataURL(file);
     }
@@ -72,9 +73,10 @@ export default function Account() {
           className="hidden"
           accept="image/*"
           ref={fileInputRef}
-          onChange={(e) => {handleImageUpload(e)}}
-          />
-          
+          onChange={(e) => {
+            handleImageUpload(e);
+          }}
+        />
       </div>
       <div className="flex flex-col gap-[15px] py-[15px]">
         <div className="grid col-span-3 grid-cols-3 ">
@@ -86,7 +88,9 @@ export default function Account() {
           <div className="col-span-2">
             <div className="flex w-full text-[#0E1E2F] justify-between">
               <span>Dan Cloe</span>
-              <Pencil size={18} />
+              <SettingEditModal title="Full Name">
+                <Pencil size={18} className="cursor-pointer" />
+              </SettingEditModal>
             </div>
           </div>
         </div>
@@ -100,7 +104,9 @@ export default function Account() {
           <div className="col-span-2">
             <div className="flex w-full text-[#0E1E2F] justify-between">
               <span>dancloe@email.com</span>
-              <Pencil size={18} />
+              <SettingEditModal title="Email">
+                <Pencil size={18} className="cursor-pointer" />
+              </SettingEditModal>
             </div>
           </div>
         </div>
@@ -117,7 +123,9 @@ export default function Account() {
                 seek. Would owl emporium minerva potter no frogs sunshine sir
                 full-moon. Banquet train seeker stunning bertie.
               </span>
-              <Pencil size={18} className="shrink-0" />
+              <SettingEditModal title="Bio" isTexterea>
+                <Pencil size={18} className="shrink-0 cursor-pointer" />
+              </SettingEditModal>
             </div>
           </div>
         </div>

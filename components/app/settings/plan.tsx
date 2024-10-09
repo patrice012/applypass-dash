@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import {  MoreVertical } from "lucide-react";
+import { MoreVertical } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -16,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { Unsubscribe } from "@/components/dialogs/unsubscribe";
 
 const invoices = [
   {
@@ -48,9 +49,11 @@ export default function Plan() {
             View and edit your payment settings
           </span>
         </div>
-        <button className=" border font-semibold border-[#EBEEF1] px-[15px] py-[10px] rounded-[5px]">
-          Unsubscribe
-        </button>
+        <Unsubscribe>
+          <button className=" border font-semibold border-[#EBEEF1] px-[15px] py-[10px] rounded-[5px]">
+            Unsubscribe
+          </button>
+        </Unsubscribe>
       </div>
 
       <div className="bg-[#EFF5FE] w-full flex flex-col p-[32px] gap-[20px] rounded-[10px]">
@@ -107,8 +110,8 @@ export default function Plan() {
               <TableCell className="text-right pl-0">
                 {invoice.totalAmount}
               </TableCell>
-              <TableCell className="pr-0" >
-                <DropdownMenu >
+              <TableCell className="pr-0">
+                <DropdownMenu>
                   <DropdownMenuTrigger className="px-0" asChild>
                     <Button aria-haspopup="true" size="icon" variant="ghost">
                       <MoreVertical className="h-4 w-4" />
