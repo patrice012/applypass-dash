@@ -11,15 +11,19 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Info } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { FileDrop } from "@/components/onboarding/fileDrop";
 import { ContinueWithoutResumeModal } from "@/components/onboarding/ContinueWithoutResumeModal";
+import { useStepSlider } from "@/components/hooks/useStepSlider";
+import { useToast } from "@/components/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function SelectSponsorshipAndSalaryCheckList() {
+  const { setSliderRange } = useStepSlider();
+  setSliderRange(86);
   const [requireSponsorship, setRequireSponsorship] = useState(false);
   const [notRequireSponsorship, setNotRequireSponsorship] = useState(false);
   const [currentSalary, setCurrentSalaryRange] = useState(0);
@@ -30,6 +34,16 @@ export default function SelectSponsorshipAndSalaryCheckList() {
   const [isValidForm, setIsValidForm] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
   console.log(files, "selected files");
+
+  const { toast } = useToast();
+  const router = useRouter();
+
+  function goToNext() {
+    router.push("/dashboard/jobs");
+    toast({
+      title: "Your data have been recorded",
+    });
+  }
 
   useEffect(() => {
     if (currentSalary > 0 && (requireSponsorship || notRequireSponsorship)) {
@@ -143,20 +157,22 @@ export default function SelectSponsorshipAndSalaryCheckList() {
       </CardContent>
       <CardFooter>
         <div className="flex items-center sm:flex-row  flex-col gap-4 w-full">
-          <Link
-            href={"/onboarding/technology"}
-            className="w-full py-3 text-center text-[1rem] rounded-full text-[var(--base-hover)] bg-white hover:bg-white/60 border border-[var(--base-hover)] hover:border-[var(--base-hover)] transition-all"
+          <Button
+            onClick={() => {
+              router.back();
+            }}
+            className="w-full py-6 text-center text-[1rem] rounded-full text-[var(--base-hover)] bg-white hover:bg-white/60 border border-[var(--base-hover)] hover:border-[var(--base-hover)] transition-all"
           >
             Go back
-          </Link>
+          </Button>
           {isValidForm ? (
             files.length > 0 ? (
-              <Link
-                href={"/dashboard/jobs"}
-                className="w-full py-3 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
+              <Button
+                onClick={goToNext}
+                className="w-full py-6 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
               >
                 Continue
-              </Link>
+              </Button>
             ) : (
               <ContinueWithoutResumeModal>
                 <Button className="w-full py-6 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all">

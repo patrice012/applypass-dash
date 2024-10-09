@@ -11,19 +11,32 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { FileDrop } from "@/components/onboarding/fileDrop";
-import { ContinueWithoutResumeModal } from "@/components/onboarding/ContinueWithoutResumeModal";
 import { X, File } from "lucide-react";
 import { ScoreMeter } from "@/components/onboarding/scoreMeter";
+import { useStepSlider } from "@/components/hooks/useStepSlider";
+import { useToast } from "@/components/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 export default function SelectSponsorshipAndSalaryCheckList() {
+  const { setSliderRange } = useStepSlider();
+  setSliderRange(100);
   const [emotion, setEmotion] = useState("");
   const [isValidForm, setIsValidForm] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
   console.log(files, "selected files");
+
+  const { toast } = useToast();
+  const router = useRouter();
+
+  function goToNext() {
+    router.push("/dashboard");
+    toast({
+      title: "Your data have been recorded",
+    });
+  }
 
   useEffect(() => {
     if (files.length) {
@@ -50,77 +63,73 @@ export default function SelectSponsorshipAndSalaryCheckList() {
         <div className="space-y-6">
           {files.length ? (
             <div className="space-y-5">
-              <div>
-                <div className="flex items-start justify-between border-b pb-3">
-                  <div className="flex items-center  gap-3">
-                    <File size={22} className="text-[#414141]" />
-                    <div className="">
-                      <h5 className="truncate max-w-[400px]">
-                        {files[0]?.name}
-                      </h5>
-                      <span className="text-sm text-[#414141]">
-                        {files[0]?.size
-                          ? `${(files[0].size / 1024 / 1024).toFixed(
-                              2
-                            )} MB. Complete`
-                          : "Size unavailable"}
-                      </span>
-                    </div>
+              <div className="flex items-start justify-between border-b pb-3">
+                <div className="flex items-center  gap-3">
+                  <File size={22} className="text-[#414141]" />
+                  <div className="">
+                    <h5 className="truncate max-w-[400px]">{files[0]?.name}</h5>
+                    <span className="text-sm text-[#414141]">
+                      {files[0]?.size
+                        ? `${(files[0].size / 1024 / 1024).toFixed(
+                            2
+                          )} MB. Complete`
+                        : "Size unavailable"}
+                    </span>
                   </div>
-                  <Button
-                    variant={"link"}
-                    onClick={() => {
-                      setFiles([]);
-                    }}
-                  >
-                    <X size={20} className="text-[#414141]" />
-                  </Button>
                 </div>
+                <Button
+                  variant={"link"}
+                  onClick={() => {
+                    setFiles([]);
+                  }}
+                >
+                  <X size={20} className="text-[#414141]" />
+                </Button>
+              </div>
 
-                <div className="py-6">
-                  <h5 className="text-[clamp(.8rem,3cqw,1.0125rem)]">
-                    Your Current resume Score:
-                  </h5>
-                  <div className="flex items-center justify-between sm:flex-row flex-col sm:gap-3 gap-6 w-full">
-                    <div className="flex-1">
-                      <ScoreMeter svgScore={66} />
+              <div className="py-6">
+                <h5 className="text-[clamp(.8rem,3cqw,1.0125rem)]">
+                  Your Current resume Score:
+                </h5>
+                <div className="flex items-center justify-between sm:flex-row flex-col sm:gap-3 gap-6 w-full">
+                  <div className="flex-1">
+                    <ScoreMeter svgScore={66} />
+                  </div>
+                  <div className="space-y-1 flex-1 ">
+                    <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
+                      <div className="flex items-center justify-center gap-1">
+                        <div className="h-3 w-3 rounded-sm bg-[#FEED35]"></div>
+                        <span>Length</span>
+                      </div>
+                      <span>43%</span>
                     </div>
-                    <div className="space-y-1 flex-1 ">
-                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
-                        <div className="flex items-center justify-center gap-1">
-                          <div className="h-3 w-3 rounded-sm bg-[#FEED35]"></div>
-                          <span>Length</span>
-                        </div>
-                        <span>43%</span>
+                    <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
+                      <div className="flex items-center justify-center gap-1">
+                        <div className="h-3 w-3 rounded-sm bg-[#EF462C]"></div>
+                        <span>Key Optimization</span>
                       </div>
-                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
-                        <div className="flex items-center justify-center gap-1">
-                          <div className="h-3 w-3 rounded-sm bg-[#EF462C]"></div>
-                          <span>Key Optimization</span>
-                        </div>
-                        <span>0%</span>
+                      <span>0%</span>
+                    </div>
+                    <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
+                      <div className="flex items-center justify-center gap-1">
+                        <div className="h-3 w-3 rounded-sm bg-[#EF462C]"></div>
+                        <span>Content</span>
                       </div>
-                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
-                        <div className="flex items-center justify-center gap-1">
-                          <div className="h-3 w-3 rounded-sm bg-[#EF462C]"></div>
-                          <span>Content</span>
-                        </div>
-                        <span>14%</span>
+                      <span>14%</span>
+                    </div>
+                    <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
+                      <div className="flex items-center justify-center gap-1">
+                        <div className="h-3 w-3 rounded-sm bg-[#FAB031]"></div>
+                        <span>Organization</span>
                       </div>
-                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
-                        <div className="flex items-center justify-center gap-1">
-                          <div className="h-3 w-3 rounded-sm bg-[#FAB031]"></div>
-                          <span>Organization</span>
-                        </div>
-                        <span>25%</span>
+                      <span>25%</span>
+                    </div>
+                    <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
+                      <div className="flex items-center justify-center gap-1">
+                        <div className="h-3 w-3 rounded-sm bg-[#FAB031]"></div>
+                        <span>Misc</span>
                       </div>
-                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
-                        <div className="flex items-center justify-center gap-1">
-                          <div className="h-3 w-3 rounded-sm bg-[#FAB031]"></div>
-                          <span>Misc</span>
-                        </div>
-                        <span>33%</span>
-                      </div>
+                      <span>33%</span>
                     </div>
                   </div>
                 </div>
@@ -250,27 +259,21 @@ export default function SelectSponsorshipAndSalaryCheckList() {
       </CardContent>
       <CardFooter>
         <div className="flex items-center sm:flex-row  flex-col gap-4 w-full">
-          <Link
-            href={"/dashboard/jobs"}
-            className="w-full py-3 text-center text-[1rem] rounded-full text-[var(--base-hover)] bg-white hover:bg-white/60 border border-[var(--base-hover)] hover:border-[var(--base-hover)] transition-all"
+          <Button
+            onClick={() => {
+              router.back();
+            }}
+            className="w-full py-6 text-center text-[1rem] rounded-full text-[var(--base-hover)] bg-white hover:bg-white/60 border border-[var(--base-hover)] hover:border-[var(--base-hover)] transition-all"
           >
             Go back
-          </Link>
+          </Button>
           {isValidForm ? (
-            files.length > 0 ? (
-              <Link
-                href={"/dashboard"}
-                className="w-full py-3 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
-              >
-                Continue
-              </Link>
-            ) : (
-              <ContinueWithoutResumeModal>
-                <Button className="w-full py-6 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all">
-                  Continue
-                </Button>
-              </ContinueWithoutResumeModal>
-            )
+            <Button
+              onClick={goToNext}
+              className="w-full py-6 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
+            >
+              Continue
+            </Button>
           ) : (
             <Button disabled className="w-full py-6 text-[1rem] rounded-full">
               Continue

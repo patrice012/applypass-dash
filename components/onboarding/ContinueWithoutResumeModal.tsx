@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Dialog,
   DialogClose,
@@ -6,16 +8,27 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { ReactNode } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
+import { useToast } from "../hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 export function ContinueWithoutResumeModal({
   children,
 }: {
   children: ReactNode;
 }) {
+  const { toast } = useToast();
+  const router = useRouter();
+
+  function goToNext() {
+    router.push("/dashboard/jobs");
+    toast({
+      title: "Your data have been recorded",
+    });
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -47,12 +60,12 @@ export function ContinueWithoutResumeModal({
                 Go back
               </Button>
             </DialogClose>
-            <Link
-              href={"/dashboard/jobs"}
-              className="w-full p-3 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
+            <Button
+              onClick={goToNext}
+              className="w-full p-6 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
             >
               Continue
-            </Link>
+            </Button>
           </div>
         </div>
       </DialogContent>
