@@ -31,18 +31,18 @@ export default function Account() {
         <span className="font-bold text-2xl">Profile</span>
         <span className="text-[#757F87]">Update your information below</span>
       </div>
-      <div className="bg-[#DCFBE7] justify-between items-center flex p-[13px] gap-[16px] rounded-[10px]">
+      <div className="bg-[#DCFBE7] justify-between xl:items-center flex flex-col xl:flex-row p-[13px] gap-[16px] rounded-[10px]">
         <div className="flex gap-[20px] items-center">
           <div className="bg-[#fff] rounded-full p-[16px] ">
             <Link color="#409348" size={40} />
           </div>
           <div className="flex flex-col ">
-            <span className="text-[#1B1B1B] font-semibold text-xl">
+            <span className="text-[#1B1B1B] font-semibold text-base lg:text-lg xl:text-xl">
               Profile setup 70% complete
             </span>
-            <span className="font-semibold text-[#1B1B1B] text-xl">
+            <span className="font-semibold text-[#1B1B1B] text-base lg:text-lg xl:text-xl">
               Next Step:{" "}
-              <span className="text-[#1B1B1B] font-normal text-xl">
+              <span className="text-[#1B1B1B] font-normal text-base lg:text-lg xl:text-xl">
                 Add a profile picture
               </span>
             </span>

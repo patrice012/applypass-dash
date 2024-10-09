@@ -42,7 +42,7 @@ const invoices = [
 export default function Plan() {
   return (
     <div className="w-full flex flex-col gap-[20px] mb-[100px]">
-      <div className="flex w-full justify-between items-center">
+      <div className="flex flex-col xl:flex-row w-full gap-[20px] justify-between xl:items-center">
         <div className="flex flex-col gap-[6px]">
           <span className="font-bold text-2xl">Your Plan</span>
           <span className="text-[#757F87]">
@@ -67,15 +67,15 @@ export default function Plan() {
         </span>
       </div>
 
-      <div className=" justify-between border items-end flex p-[20px] gap-[16px] rounded-[10px]">
+      <div className=" justify-between border  2xl:items-end flex flex-col 2xl:flex-row p-[20px] gap-[16px] rounded-[10px]">
         <div className="flex gap-[20px] items-center">
           <div className="flex flex-col ">
             <span className="text-[#1B1B1B] font-semibold text-[15px]">
               Saved Card
             </span>
-            <div className="flex gap-[20px] h-5 items-center">
-              <span>Mastercard **** 2147</span>
-              <Separator orientation="vertical" />
+            <div className="flex xl:gap-[20px] xl:flex-row flex-col xl:h-5 xl:items-center">
+              <span >Mastercard **** 2147</span>
+              <Separator orientation="vertical" className=""/>
               <span>Next billing on 03 Jan, 2025</span>
             </div>
           </div>

@@ -28,7 +28,7 @@ export function SettingEditModal({
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="mt-[100px] h-full md:h-auto m-auto sm:max-w-[700px] max-w-[90%] bg-[#FBFAF8] overflow-scroll md:overflow-auto">
+      <DialogContent className="mt-[100px]  md:h-auto m-auto sm:max-w-[700px] max-w-[90%] bg-[#FBFAF8] overflow-scroll md:overflow-auto">
         <DialogHeader className="flex flex-col gap-3 items-start">
           <DialogTitle className="text-2xl font-bold">Edit {title}</DialogTitle>
           <Separator />
