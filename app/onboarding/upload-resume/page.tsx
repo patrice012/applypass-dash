@@ -16,6 +16,8 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { FileDrop } from "@/components/onboarding/fileDrop";
 import { ContinueWithoutResumeModal } from "@/components/onboarding/ContinueWithoutResumeModal";
+import { X, File } from "lucide-react";
+import { ScoreMeter } from "@/components/onboarding/scoreMeter";
 
 export default function SelectSponsorshipAndSalaryCheckList() {
   const [emotion, setEmotion] = useState("");
@@ -46,16 +48,96 @@ export default function SelectSponsorshipAndSalaryCheckList() {
       </CardHeader>
       <CardContent className="grid gap-4 rounded-[15px] bg-[#FFFFFF] pt-[1.3rem] mb-8">
         <div className="space-y-6">
-          <div className="space-y-5">
-            <Label className="text-[1rem] flex items-center justify-start gap-3">
-              <span>Upload Your Resume</span>
-            </Label>
-            <FileDrop setFiles={setFiles} />
-            <div className="flex items-center justify-between sm:flex-row flex-col gap-3 text-neutral-600 text-[.95rem]">
-              <span>Supported formats: PDF only</span>
-              <span>Maximum file size: 10MB</span>
+          {files.length ? (
+            <div className="space-y-5">
+              <div>
+                <div className="flex items-start justify-between border-b pb-3">
+                  <div className="flex items-center  gap-3">
+                    <File size={22} className="text-[#414141]" />
+                    <div className="">
+                      <h5 className="truncate max-w-[400px]">
+                        {files[0]?.name}
+                      </h5>
+                      <span className="text-sm text-[#414141]">
+                        {files[0]?.size
+                          ? `${(files[0].size / 1024 / 1024).toFixed(
+                              2
+                            )} MB. Complete`
+                          : "Size unavailable"}
+                      </span>
+                    </div>
+                  </div>
+                  <Button
+                    variant={"link"}
+                    onClick={() => {
+                      setFiles([]);
+                    }}
+                  >
+                    <X size={20} className="text-[#414141]" />
+                  </Button>
+                </div>
+
+                <div className="py-6">
+                  <h5 className="text-[clamp(.8rem,3cqw,1.0125rem)]">
+                    Your Current resume Score:
+                  </h5>
+                  <div className="flex items-center justify-between sm:flex-row flex-col sm:gap-3 gap-6 w-full">
+                    <div className="flex-1">
+                      <ScoreMeter svgScore={66} />
+                    </div>
+                    <div className="space-y-1 flex-1 ">
+                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
+                        <div className="flex items-center justify-center gap-1">
+                          <div className="h-3 w-3 rounded-sm bg-[#FEED35]"></div>
+                          <span>Length</span>
+                        </div>
+                        <span>43%</span>
+                      </div>
+                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
+                        <div className="flex items-center justify-center gap-1">
+                          <div className="h-3 w-3 rounded-sm bg-[#EF462C]"></div>
+                          <span>Key Optimization</span>
+                        </div>
+                        <span>0%</span>
+                      </div>
+                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
+                        <div className="flex items-center justify-center gap-1">
+                          <div className="h-3 w-3 rounded-sm bg-[#EF462C]"></div>
+                          <span>Content</span>
+                        </div>
+                        <span>14%</span>
+                      </div>
+                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
+                        <div className="flex items-center justify-center gap-1">
+                          <div className="h-3 w-3 rounded-sm bg-[#FAB031]"></div>
+                          <span>Organization</span>
+                        </div>
+                        <span>25%</span>
+                      </div>
+                      <div className="flex items-center justify-between sm:gap-3 gap-6 w-ful">
+                        <div className="flex items-center justify-center gap-1">
+                          <div className="h-3 w-3 rounded-sm bg-[#FAB031]"></div>
+                          <span>Misc</span>
+                        </div>
+                        <span>33%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="space-y-5">
+              <Label className="text-[1rem] flex items-center justify-start gap-3">
+                <span>Upload Your Resume</span>
+              </Label>
+              <FileDrop setFiles={setFiles} />
+              <div className="flex items-center justify-between sm:flex-row flex-col gap-3 text-neutral-600 text-[.95rem]">
+                <span>Supported formats: PDF only</span>
+                <span>Maximum file size: 10MB</span>
+              </div>
+            </div>
+          )}
           <div className="space-y-4">
             <Label className="text-[1rem] flex items-center justify-start gap-3">
               <span>
@@ -64,140 +146,92 @@ export default function SelectSponsorshipAndSalaryCheckList() {
             </Label>
             <div>
               <div className="flex items-center sm:flex-row flex-col sm:gap-1 gap-4 justify-between">
-                <div
-                  className={` ${
+                <Button
+                  variant={"outline"}
+                  onClick={() => {
+                    setEmotion("veryConfident");
+                  }}
+                  className={`${
                     emotion === "veryConfident"
                       ? "border-[var(--base)]"
                       : "border"
-                  } flex items-center gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md sm:w-auto w-full`}
+                  } flex items-center justify-start gap-2 border bg-[#FBFAF8] py-6 px-2 rounded-md sm:w-auto w-full`}
                 >
-                  <Checkbox
-                    className="hidden"
-                    id="veryConfident"
-                    checked={emotion === "veryConfident"}
-                    onCheckedChange={() => {
-                      setEmotion("veryConfident");
-                    }}
-                  />
-                  <span
-                    className="cursor-default"
-                    onClick={() => {
-                      setEmotion("veryConfident");
-                    }}
-                  >
-                    😃
-                  </span>
+                  <span>😃</span>
                   <Label
-                    htmlFor="veryConfident"
                     className={`${
                       emotion === "veryConfident"
                         ? "text-[var(--base)]"
                         : "text-black"
-                    } text-md font-normal`}
+                    } text-[.95rem] font-normal`}
                   >
                     Very confident
                   </Label>
-                </div>
-                <div
-                  className={` ${
+                </Button>
+                <Button
+                  variant={"outline"}
+                  onClick={() => {
+                    setEmotion("confident");
+                  }}
+                  className={`${
                     emotion === "confident" ? "border-[var(--base)]" : "border"
-                  } flex items-center gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md sm:w-auto w-full`}
+                  } flex items-center justify-start gap-2 border bg-[#FBFAF8] py-6 px-2 rounded-md sm:w-auto w-full`}
                 >
-                  <Checkbox
-                    className="hidden"
-                    id="confident"
-                    checked={emotion === "confident"}
-                    onCheckedChange={() => {
-                      setEmotion("confident");
-                    }}
-                  />
-                  <span
-                    className="cursor-default"
-                    onClick={() => {
-                      setEmotion("confident");
-                    }}
-                  >
-                    🙂
-                  </span>
+                  <span>🙂</span>
                   <Label
-                    htmlFor="confident"
                     className={`${
                       emotion === "confident"
                         ? "text-[var(--base)]"
                         : "text-black"
-                    } text-md font-normal`}
+                    } text-[.95rem] font-normal`}
                   >
                     Confident
                   </Label>
-                </div>
-                <div
-                  className={` ${
+                </Button>
+                <Button
+                  variant={"outline"}
+                  onClick={() => {
+                    setEmotion("lessConfident");
+                  }}
+                  className={`${
                     emotion === "lessConfident"
                       ? "border-[var(--base)]"
                       : "border"
-                  } flex items-center gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md sm:w-auto w-full`}
+                  } flex items-center justify-start gap-2 border bg-[#FBFAF8] py-6 px-2 rounded-md sm:w-auto w-full`}
                 >
-                  <Checkbox
-                    className="hidden"
-                    id="lessConfident"
-                    checked={emotion === "lessConfident"}
-                    onCheckedChange={() => {
-                      setEmotion("lessConfident");
-                    }}
-                  />
-                  <span
-                    className="cursor-default"
-                    onClick={() => {
-                      setEmotion("lessConfident");
-                    }}
-                  >
-                    😔
-                  </span>
+                  <span>😔</span>
                   <Label
-                    htmlFor="lessConfident"
                     className={`${
                       emotion === "lessConfident"
                         ? "text-[var(--base)]"
                         : "text-black"
-                    } text-md font-normal`}
+                    } text-[.95rem] font-normal`}
                   >
                     Less confident
                   </Label>
-                </div>
-                <div
-                  className={` ${
+                </Button>
+                <Button
+                  variant={"outline"}
+                  onClick={() => {
+                    setEmotion("notConfident");
+                  }}
+                  className={`${
                     emotion === "notConfident"
                       ? "border-[var(--base)]"
                       : "border"
-                  } flex items-center gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md sm:w-auto w-full`}
+                  } flex items-center justify-start gap-2 border bg-[#FBFAF8] py-6 px-2 rounded-md sm:w-auto w-full`}
                 >
-                  <Checkbox
-                    className="hidden"
-                    id="notConfident"
-                    checked={emotion === "notConfident"}
-                    onCheckedChange={() => {
-                      setEmotion("notConfident");
-                    }}
-                  />
-                  <span
-                    className="cursor-default"
-                    onClick={() => {
-                      setEmotion("notConfident");
-                    }}
-                  >
-                    🥺
-                  </span>
+                  <span>🥺</span>
                   <Label
-                    htmlFor="notConfident"
                     className={`${
                       emotion === "notConfident"
                         ? "text-[var(--base)]"
                         : "text-black"
-                    } text-md font-normal`}
+                    } text-[.95rem] font-normal`}
                   >
                     Not confident
                   </Label>
-                </div>
+                </Button>
               </div>
             </div>
           </div>
