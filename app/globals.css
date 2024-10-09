@@ -8,6 +8,38 @@ body {
 }
 
 @layer utilities {
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 24px;
+    padding-bottom: 24px;
+
+    @media (min-width: 768px) {
+      padding: 32px;
+    }
+
+    gap: 24px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #d4d4d4 transparent;
+  }
+
+  /* Custom scrollbar styling for WebKit-based browsers */
+  .main-content::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  .main-content::-webkit-scrollbar-thumb {
+    background-color: #d4d4d4;
+    border-radius: 9999px;
+  }
+}
+
+@layer utilities {
   .bg-gradient-custom {
     background: linear-gradient(to right, #1d4ed8 50%, #1f45bf 50%);
   }

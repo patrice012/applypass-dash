@@ -14,7 +14,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
   }, [width]);
 
   return (
-    <div className="flex h-screen w-full  bg-muted/40">
+    <div className="flex h-screen w-full bg-muted/40">
       <div
         className={`${
           isOpened ? "lg:ml-[250px]" : ""
