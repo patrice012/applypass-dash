@@ -14,11 +14,11 @@ const AppLayout = ({ children }: PropsWithChildren) => {
   }, [width]);
 
   return (
-    <div className="flex h-screen w-full  bg-muted/40">
+    <div className="flex w-full  bg-muted/40">
       <div
         className={`${
           isOpened ? "lg:ml-[250px]" : ""
-        } flex grow flex-col h-screen w-full `}
+        } flex grow flex-col h-screen w-full`}
       >
         <Header
           handleOpenDrawer={() => setIsOpened(!isOpened)}

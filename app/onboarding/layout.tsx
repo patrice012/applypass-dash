@@ -13,7 +13,7 @@ export default function OnboardingLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className=" mx-auto min-h-screen flex flex-col justify-between">
+    <main className="mx-auto min-h-screen flex flex-col justify-between">
       <Header />
       <main className="flex-1 grid place-items-center bg-[#E5E7EB]">
         <section>{children}</section>
