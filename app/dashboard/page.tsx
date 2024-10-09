@@ -28,11 +28,7 @@ import {
 import { JobDetail } from "@/components/dialogs/job-detail";
 import { useState } from "react";
 
-import { useRouter } from "next/navigation";
-
 const Dashboard = () => {
-  const router = useRouter();
-
   const checkIsTouchDevice = (): boolean => {
     return (
       typeof window !== "undefined" &&
@@ -186,7 +182,7 @@ const Dashboard = () => {
           <div className="flex flex-col gap-[15px] mt-6">
             {Array.from({ length: 3 }).map((_e, idx: number) => {
               return (
-                <JobDetail>
+                <JobDetail key={idx}>
                   <div key={idx} className="flex w-full items-center ">
                     <div className="w-full flex flex-col md:flex-row gap-4  md:items-center py-4 px-[10px] md:p-4 rounded-xl bg-[#F6F5F4] border border-[#E5E7EB] justify-between">
                       <div className="flex w-full gap-[12px] items-start">
@@ -239,7 +235,7 @@ const Dashboard = () => {
             })}
             {Array.from({ length: 3 }).map((_e, idx: number) => {
               return (
-                <JobDetail>
+                <JobDetail key={idx}>
                   <div key={idx} className="flex w-full items-center  ">
                     <div className="w-full flex flex-col md:flex-row gap-4  md:items-center py-4 px-[10px] md:p-4 rounded-xl bg-[#F6F5F4] border border-[#E5E7EB] justify-between">
                       <div className="flex w-full gap-[12px] items-start">
@@ -302,7 +298,7 @@ const Dashboard = () => {
           <div className="flex flex-col gap-[15px] mt-6">
             {Array.from({ length: 3 }).map((_e, idx: number) => {
               return (
-                <JobDetail>
+                <JobDetail key={idx}>
                   <div key={idx} className="flex w-full items-center ">
                     <div className="w-full flex flex-col md:flex-row gap-4  md:items-center py-4 px-[10px] md:p-4 rounded-xl bg-[#F6F5F4] border border-[#E5E7EB] justify-between">
                       <div className="flex w-full gap-[12px] items-start">
@@ -354,7 +350,7 @@ const Dashboard = () => {
             })}
             {Array.from({ length: 3 }).map((_e, idx: number) => {
               return (
-                <JobDetail>
+                <JobDetail key={idx}>
                   <div key={idx} className="flex w-full items-center  ">
                     <div className="w-full flex flex-col md:flex-row gap-4  md:items-center py-4 px-[10px] md:p-4 rounded-xl bg-[#F6F5F4] border border-[#E5E7EB] justify-between">
                       <div className="flex w-full gap-[12px] items-start">

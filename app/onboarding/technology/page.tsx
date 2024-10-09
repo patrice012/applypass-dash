@@ -16,8 +16,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
 
-type CardProps = React.ComponentProps<typeof Card>;
-
 // Define the items as a readonly array to ensure immutability.
 const items = [
   { id: "dart", label: "Dart" },
@@ -38,10 +36,7 @@ const items = [
   { id: "typescript", label: "TypeScript" },
 ];
 
-export default function SelectTechnologyCheckList({
-  className,
-  ...props
-}: CardProps) {
+export default function SelectTechnologyCheckList() {
   const [itemsList, setItemsList] = useState([
     {
       id: "",
@@ -69,14 +64,8 @@ export default function SelectTechnologyCheckList({
   }, [searchTerm]);
 
   return (
-    <Card
-      className={cn(
-        "sm:w-[630px] border-none shadow-none bg-[#E5E7EB]",
-        className
-      )}
-      {...props}
-    >
-      <CardHeader className="flex flex-col gap-[1rem]">
+    <Card className={cn("sm:w-[680px] border-none shadow-none bg-[#E5E7EB]")}>
+      <CardHeader className="sm:w-[90%] flex flex-col gap-[1rem]">
         <CardTitle className="text-center leading-8 tracking-normal">
           Select your Technology
         </CardTitle>

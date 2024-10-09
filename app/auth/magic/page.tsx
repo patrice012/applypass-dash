@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const MagicPage = () => {
   const [email, setEmail] = useState("");
+  console.log(email, 'email')
 
   const handleLogin = async (e: { preventDefault: () => void }) => {
     e.preventDefault();

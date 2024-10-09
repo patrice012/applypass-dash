@@ -44,8 +44,8 @@ const ToolsPage = () => {
           />
         </div>
         <div className="flex transition-all ease-in-out p-3 gap-[6px] items-center justify-center absolute bottom-0 w-full">
-          {Array.from({ length: 4 }).map((e, idx) => (
-            <SlideDot isActive={currentSlide == idx} />
+          {Array.from({ length: 4 }).map((_, idx) => (
+            <SlideDot isActive={currentSlide == idx} key={idx} />
           ))}
         </div>
       </div>

@@ -3,14 +3,12 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { PropsWithChildren, ReactNode } from "react";
+import { ReactNode } from "react";
 import { Textarea } from "../ui/textarea";
 import { Separator } from "../ui/separator";
 

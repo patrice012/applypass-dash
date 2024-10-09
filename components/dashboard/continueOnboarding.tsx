@@ -14,7 +14,7 @@ export function ContinueOnboarding() {
           </p>
 
           <Link
-            href={"/onboarding//upload-resume"}
+            href={"/onboarding/upload-resume"}
             className="p-[.5rem_1.2rem] text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
           >
             Continue

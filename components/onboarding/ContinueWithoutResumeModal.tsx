@@ -48,7 +48,7 @@ export function ContinueWithoutResumeModal({
               </Button>
             </DialogClose>
             <Link
-              href={"/dashboard"}
+              href={"/dashboard/jobs"}
               className="w-full p-3 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
             >
               Continue

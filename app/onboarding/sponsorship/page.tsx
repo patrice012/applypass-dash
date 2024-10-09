@@ -19,12 +19,7 @@ import { Slider } from "@/components/ui/slider";
 import { FileDrop } from "@/components/onboarding/fileDrop";
 import { ContinueWithoutResumeModal } from "@/components/onboarding/ContinueWithoutResumeModal";
 
-type CardProps = React.ComponentProps<typeof Card>;
-
-export default function SelectSponsorshipAndSalaryCheckList({
-  className,
-  ...props
-}: CardProps) {
+export default function SelectSponsorshipAndSalaryCheckList() {
   const [requireSponsorship, setRequireSponsorship] = useState(false);
   const [notRequireSponsorship, setNotRequireSponsorship] = useState(false);
   const [currentSalary, setCurrentSalaryRange] = useState(0);
@@ -46,14 +41,8 @@ export default function SelectSponsorshipAndSalaryCheckList({
 
   console.log(currentSalary, files, requireSponsorship, notRequireSponsorship);
   return (
-    <Card
-      className={cn(
-        "sm:w-[630px] border-none shadow-none bg-[#E5E7EB]",
-        className
-      )}
-      {...props}
-    >
-      <CardHeader className="flex flex-col gap-[1rem]">
+    <Card className={cn("sm:w-[680px] border-none shadow-none bg-[#E5E7EB]")}>
+      <CardHeader className="sm:w-[90%] flex flex-col gap-[1rem]">
         <CardTitle className="text-center leading-8 tracking-normal">
           Sponsorship & Salary
         </CardTitle>
@@ -163,7 +152,7 @@ export default function SelectSponsorshipAndSalaryCheckList({
           {isValidForm ? (
             files.length > 0 ? (
               <Link
-                href={"/dashboard"}
+                href={"/dashboard/jobs"}
                 className="w-full py-3 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
               >
                 Continue

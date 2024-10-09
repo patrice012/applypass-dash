@@ -18,8 +18,6 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Info } from "lucide-react";
 
-type CardProps = React.ComponentProps<typeof Card>;
-
 // Define the items as a readonly array to ensure immutability.
 const items = [
   { id: "outside-us-canada", label: "Outside of US - Canada" },
@@ -82,10 +80,7 @@ const items = [
   { id: "us-virgin-islands", label: "U.S. Virgin Islands" },
 ];
 
-export default function SelectLocationCheckList({
-  className,
-  ...props
-}: CardProps) {
+export default function SelectLocationCheckList() {
   const [itemsList, setItemsList] = useState([
     {
       id: "",
@@ -114,14 +109,8 @@ export default function SelectLocationCheckList({
   }, [searchTerm]);
 
   return (
-    <Card
-      className={cn(
-        "sm:w-[630px] border-none shadow-none bg-[#E5E7EB]",
-        className
-      )}
-      {...props}
-    >
-      <CardHeader className="flex flex-col gap-[1rem]">
+    <Card className={cn("sm:w-[680px] border-none shadow-none bg-[#E5E7EB]")}>
+      <CardHeader className="sm:w-[90%] flex flex-col gap-[1rem]">
         <CardTitle className="text-center leading-8 tracking-normal">
           Select your Location
         </CardTitle>

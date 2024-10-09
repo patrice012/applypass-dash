@@ -17,12 +17,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { FileDrop } from "@/components/onboarding/fileDrop";
 import { ContinueWithoutResumeModal } from "@/components/onboarding/ContinueWithoutResumeModal";
 
-type CardProps = React.ComponentProps<typeof Card>;
-
-export default function SelectSponsorshipAndSalaryCheckList({
-  className,
-  ...props
-}: CardProps) {
+export default function SelectSponsorshipAndSalaryCheckList() {
   const [emotion, setEmotion] = useState("");
   const [isValidForm, setIsValidForm] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
@@ -38,14 +33,8 @@ export default function SelectSponsorshipAndSalaryCheckList({
 
   console.log(files);
   return (
-    <Card
-      className={cn(
-        "sm:w-[680px] border-none shadow-none bg-[#E5E7EB]",
-        className
-      )}
-      {...props}
-    >
-      <CardHeader className="flex flex-col gap-[1rem]">
+    <Card className={cn("sm:w-[680px] border-none shadow-none bg-[#E5E7EB]")}>
+      <CardHeader className="sm:w-[90%] flex flex-col gap-[1rem]">
         <CardTitle className="text-center leading-8 tracking-normal">
           Upload Your Resume
         </CardTitle>
@@ -228,7 +217,7 @@ export default function SelectSponsorshipAndSalaryCheckList({
       <CardFooter>
         <div className="flex items-center sm:flex-row  flex-col gap-4 w-full">
           <Link
-            href={"/onboarding/technology"}
+            href={"/dashboard/jobs"}
             className="w-full py-3 text-center text-[1rem] rounded-full text-[var(--base-hover)] bg-white hover:bg-white/60 border border-[var(--base-hover)] hover:border-[var(--base-hover)] transition-all"
           >
             Go back
