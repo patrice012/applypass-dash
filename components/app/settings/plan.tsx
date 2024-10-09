@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import { MoreVertical } from "lucide-react";
+import { MoreVertical, MoveLeft } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -39,13 +39,21 @@ const invoices = [
   },
 ];
 
-export default function Plan() {
+export default function Plan({setClick, click} : {setClick: any, click:boolean}) {
   return (
     <div className="w-full flex flex-col gap-[20px] mb-[100px]">
-      <div className="flex flex-col xl:flex-row w-full gap-[20px] justify-between xl:items-center">
+      <div className="flex flex-col xl:flex-row w-full gap-[20px] items-start justify-between xl:items-center">
         <div className="flex flex-col gap-[6px]">
-          <span className="font-bold text-2xl">Your Plan</span>
-          <span className="text-[#757F87]">
+        <div className="flex gap-[10px] items-center">
+          {" "}
+          {click ? (
+            <MoveLeft className="flex md:hidden" onClick={(e) => setClick(false)} size={18} />
+          ) : (
+            ""
+          )}{" "}
+          <span className="font-bold text-lg md:text-2xl">Plan</span>
+        </div>
+          <span className="text-[#757F87] text-sm md:text-base">
             View and edit your payment settings
           </span>
         </div>
@@ -56,9 +64,9 @@ export default function Plan() {
         </Unsubscribe>
       </div>
 
-      <div className="bg-[#EFF5FE] w-full flex flex-col p-[32px] gap-[20px] rounded-[10px]">
+      <div className="bg-[#EFF5FE] w-full flex flex-col p-[16px] md:p-[32px] gap-[10px] md:gap-[20px] rounded-[10px]">
         <span className="text-[#0E1E2F] font-bold">Premium</span>
-        <span className="text-[#42484D]">
+        <span className="text-[#42484D] text-sm md:text-base">
           Your card will be charged $100/month after your 30-day free trial.
         </span>
         <span className="text-[#0E1E2F] font-bold text-[48px]">
@@ -74,8 +82,8 @@ export default function Plan() {
               Saved Card
             </span>
             <div className="flex xl:gap-[20px] xl:flex-row flex-col xl:h-5 xl:items-center">
-              <span >Mastercard **** 2147</span>
-              <Separator orientation="vertical" className=""/>
+              <span>Mastercard **** 2147</span>
+              <Separator orientation="vertical" className="" />
               <span>Next billing on 03 Jan, 2025</span>
             </div>
           </div>
@@ -95,18 +103,35 @@ export default function Plan() {
       <Table className="px-0">
         <TableHeader>
           <TableRow>
-            <TableHead className=" pl-0">Date</TableHead>
-            <TableHead className="pl-0">Description</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className=" pl-0 table-display  text-[#0E1E2F] font-medium">
+              Date
+            </TableHead>
+            <TableHead  className="pl-0 table-display text-[#0E1E2F] font-medium">
+              Description
+            </TableHead>
+            <TableHead className=" pl-0 md:hidden text-[#0E1E2F] font-medium">
+              Date & Description
+            </TableHead>
+            <TableHead className="text-right text-[#0E1E2F] font-medium">
+              Amount
+            </TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {invoices.map((invoice) => (
             <TableRow key={invoice.invoice}>
-              <TableCell className="font-medium  pl-0">
+              <TableCell className="font-medium  pl-0 table-display ">
                 {invoice.invoice}
               </TableCell>
-              <TableCell className="pl-0">{invoice.paymentStatus}</TableCell>
+              <TableCell className="pl-0 table-display">
+                {invoice.paymentStatus}
+              </TableCell>
+              <TableCell className="pl-0 md:hidden">
+                <div className="flex flex-col">
+                  <span>{invoice.invoice}</span>
+                  <span> {invoice.paymentStatus}</span>
+                </div>
+              </TableCell>
               <TableCell className="text-right pl-0">
                 {invoice.totalAmount}
               </TableCell>

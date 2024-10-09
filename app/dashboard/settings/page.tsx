@@ -10,27 +10,28 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const SettingsPage = () => {
   const [activeSection, setActiveSection] = useState("account");
+  const [click, setClick] = useState(false);
 
   const renderSection = () => {
     switch (activeSection) {
       case "account":
-        return <Account />;
+        return <Account setClick={setClick} click={click} />;
       case "security":
-        return <Security />;
+        return <Security setClick={setClick} click={click} />;
       case "plan":
-        return <Plan />;
+        return <Plan setClick={setClick} click={click} />;
       case "notifications":
-        return <Notif />;
+        return <Notif setClick={setClick} click={click} />;
       default:
-        return <Account />;
+        return <Account setClick={setClick} click={click} />;
     }
   };
 
   return (
-    <div className="main-content">
+    <div className="main-content bg-[#fff]">
       <div className="flex flex-col gap-[16px]">
         <span className="font-bold text-2xl">Settings</span>
-        <Tabs defaultValue={activeSection} className="flex md:hidden">
+        {/*  <Tabs defaultValue={activeSection} className="flex md:hidden">
           <TabsList className="sm:justify-between gap-[24px] justify-start w-full md:gap-[20px] md:justify-start overflow-x-auto scrollbar-hide ">
             <TabsTrigger
               value="account"
@@ -51,19 +52,25 @@ const SettingsPage = () => {
               Notifications
             </TabsTrigger>
           </TabsList>
-        </Tabs>
+        </Tabs> */}
       </div>
 
       <Separator />
       <div className="flex gap-[20px] xl:gap-[60px] lg:gap-[40px] items-start">
-        <div className="bg-[#fff] sticky top-[0px] p-[30px] text-[#757F87] hidden md:flex flex-col  rounded-[10px] w-full max-w-[300px] gap-[10px] border shadow-md">
+        <div
+          className={`bg-[#fff] sticky top-[0px] p-[30px] text-[#757F87] md:flex flex-col  rounded-[10px] w-full md:max-w-[300px] gap-[10px] border shadow-md ${
+            click ? "hidden" : "flex"
+          } `}>
           <div
             className={`rounded-[5px] flex gap-[12px] p-[20px] items-center cursor-pointer ${
               activeSection === "account"
                 ? "bg-[#EDF3FC] text-[#1165EF] font-semibold"
                 : " hover:text-[#1165EF] hover:font-semibold"
             }`}
-            onClick={() => setActiveSection("account")}>
+            onClick={() => {
+              setActiveSection("account");
+              setClick(true);
+            }}>
             <User size={18} className="text-inherit" />
             <span>Profile</span>
           </div>
@@ -73,7 +80,10 @@ const SettingsPage = () => {
                 ? "bg-[#EDF3FC] text-[#1165EF] font-semibold"
                 : " hover:text-[#1165EF] hover:font-semibold"
             }`}
-            onClick={() => setActiveSection("security")}>
+            onClick={() => {
+              setActiveSection("security");
+              setClick(true);
+            }}>
             <Key size={18} className="text-inherit" />
             <span>Login and Security</span>
           </div>
@@ -83,7 +93,10 @@ const SettingsPage = () => {
                 ? "bg-[#EDF3FC] text-[#1165EF] font-semibold"
                 : " hover:text-[#1165EF] hover:font-semibold"
             }`}
-            onClick={() => setActiveSection("plan")}>
+            onClick={() => {
+              setActiveSection("plan");
+              setClick(true);
+            }}>
             <CreditCard size={18} className="text-inherit" />
             <span>Plan</span>
           </div>
@@ -93,12 +106,17 @@ const SettingsPage = () => {
                 ? "bg-[#EDF3FC] text-[#1165EF] font-semibold"
                 : " hover:text-[#1165EF] hover:font-semibold"
             }`}
-            onClick={() => setActiveSection("notifications")}>
+            onClick={() => {
+              setActiveSection("notifications");
+              setClick(true);
+            }}>
             <Bell size={18} className="text-inherit" />
             <span>Notifications</span>
           </div>
         </div>
-        <div className="w-full">{renderSection()}</div>
+        <div className={`" w-full md:flex " ${click ? "flex" : "hidden"}`}>
+          {renderSection()}
+        </div>
       </div>
     </div>
   );

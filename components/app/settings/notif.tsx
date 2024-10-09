@@ -1,12 +1,21 @@
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
+import { MoveLeft } from "lucide-react";
 
-export default function Notif() {
+export default function Notif({setClick, click} : {setClick: any, click:boolean}) {
   return (
     <div className="w-full flex flex-col gap-[20px]">
       <div className="flex flex-col gap-[6px]">
-        <span className="font-bold text-2xl">Notifications</span>
-        <span className="text-[#757F87]">
+      <div className="flex gap-[10px] items-center">
+          {" "}
+          {click ? (
+            <MoveLeft className="flex md:hidden" onClick={(e) => setClick(false)} size={18} />
+          ) : (
+            ""
+          )}{" "}
+          <span className="font-bold text-lg md:text-2xl">Notifications</span>
+        </div>
+        <span className="text-[#757F87] text-sm md:text-base">
           Edit your notification settings below
         </span>
       </div>
