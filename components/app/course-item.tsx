@@ -1,5 +1,5 @@
 import { LayoutValue } from "@/helpers/constants";
-import { NotepadText, Star, UsersRound } from "lucide-react";
+import { NotepadText, UsersRound } from "lucide-react";
 
 interface CourseItemProps {
   title?: string;

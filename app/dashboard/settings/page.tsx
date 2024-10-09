@@ -6,7 +6,7 @@ import Account from "@/components/app/settings/account";
 import Security from "@/components/app/settings/security";
 import Plan from "@/components/app/settings/plan";
 import Notif from "@/components/app/settings/notif";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const SettingsPage = () => {
   const [activeSection, setActiveSection] = useState("account");
