@@ -30,7 +30,7 @@ const SettingsPage = () => {
       <span className="font-bold text-2xl">Settings</span>
       <Separator />
       <div className="flex gap-[60px] items-start">
-        <div className="bg-[#fff] p-[30px] text-[#757F87] rounded-[10px] w-full max-w-[300px] gap-[10px] shadow-md">
+        <div className="bg-[#fff] sticky top-[50px] p-[30px] text-[#757F87] rounded-[10px] w-full max-w-[300px] gap-[10px] shadow-md">
           <div
             className={`rounded-[5px] flex gap-[12px] p-[20px] items-center cursor-pointer ${activeSection === "account" ? "bg-[#EDF3FC] text-[#1165EF] font-semibold" : " hover:text-[#1165EF] hover:font-semibold"}`}
             onClick={() => setActiveSection("account")}

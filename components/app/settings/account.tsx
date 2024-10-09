@@ -1,7 +1,29 @@
+"use client";
 import { Separator } from "@/components/ui/separator";
-import {  Link, Pencil } from "lucide-react";
+import { Link, Pencil } from "lucide-react";
+import { useState, useRef, ChangeEvent } from "react";
 
 export default function Account() {
+  const [imagePreview, setImagePreview] = useState<string | null>(null); 
+  
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleDivClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click(); 
+    }
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]; 
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImagePreview(reader.result as string); 
+      };
+      reader.readAsDataURL(file);
+    }
+  };
   return (
     <div className="w-full flex flex-col gap-[20px] mb-[100px]">
       <div className="flex flex-col gap-[6px]">
@@ -30,10 +52,29 @@ export default function Account() {
         </button>
       </div>
 
-      <div className="h-[120px] w-[120px] cursor-pointer rounded-full border border-[#e4e4e4] text-center items-center flex flex-col justify-center text-wrap">
-        <span>Upload </span>
-        <span> image</span>
-        <input   type="file" className="hidden" />
+      <div
+        className="h-[120px] w-[120px] cursor-pointer rounded-full border border-[#e4e4e4] text-center items-center flex flex-col justify-center"
+        onClick={handleDivClick}>
+        {imagePreview ? (
+          <img
+            src={imagePreview}
+            alt="Uploaded preview"
+            className="h-full w-full rounded-full object-cover"
+          />
+        ) : (
+          <>
+            <span>Upload</span>
+            <span>image</span>
+          </>
+        )}
+        <input
+          type="file"
+          className="hidden"
+          accept="image/*"
+          ref={fileInputRef}
+          onChange={(e) => {handleImageUpload(e)}}
+          />
+          
       </div>
       <div className="flex flex-col gap-[15px] py-[15px]">
         <div className="grid col-span-3 grid-cols-3 ">
