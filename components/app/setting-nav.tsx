@@ -1,19 +1,9 @@
 "use client";
 
-import { useWindowSize } from "@/components/hooks/useWindowSize";
-import Header from "./header";
-import { PropsWithChildren, useEffect, useState } from "react";
+import { PropsWithChildren } from "react";
 import { Separator } from "@radix-ui/react-separator";
 
 const SettingsLayout = ({ children }: PropsWithChildren) => {
-  //
-  const [width] = useWindowSize();
-  const [isOpened, setIsOpened] = useState(width > 1024);
-
-  useEffect(() => {
-    setIsOpened(width > 1024);
-  }, [width]);
-
   return (
     <div className="px-[48px] py-[32px] gap-[36px] flex flex-col w-full">
       <span className="font-bold">Settings</span>

@@ -5,7 +5,6 @@ import Header from "./header";
 import { PropsWithChildren, useEffect, useState } from "react";
 
 const AppLayout = ({ children }: PropsWithChildren) => {
-  //
   const [width] = useWindowSize();
   const [isOpened, setIsOpened] = useState(width > 1024);
 
@@ -18,7 +17,7 @@ const AppLayout = ({ children }: PropsWithChildren) => {
       <div
         className={`${
           isOpened ? "lg:ml-[250px]" : ""
-        } flex grow flex-col h-screen w-full `}
+        } flex grow flex-col h-screen w-full`}
       >
         <Header
           handleOpenDrawer={() => setIsOpened(!isOpened)}

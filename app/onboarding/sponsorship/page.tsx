@@ -10,118 +10,39 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { SearchInputWithLabel } from "@/components/onboarding/search";
-import { CheckboxFormMultiple } from "@/components/onboarding/checkboxesList";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Info } from "lucide-react";
+import { Slider } from "@/components/ui/slider";
+import { FileDrop } from "@/components/onboarding/fileDrop";
+import { ContinueWithoutResumeModal } from "@/components/onboarding/ContinueWithoutResumeModal";
 
-type CardProps = React.ComponentProps<typeof Card>;
-
-// Define the items as a readonly array to ensure immutability.
-const items = [
-  { id: "outside-us-canada", label: "Outside of US - Canada" },
-  { id: "outside-us-other", label: "Outside of US - Other" },
-  { id: "alabama", label: "Alabama" },
-  { id: "alaska", label: "Alaska" },
-  { id: "arizona", label: "Arizona" },
-  { id: "arkansas", label: "Arkansas" },
-  { id: "california", label: "California" },
-  { id: "colorado", label: "Colorado" },
-  { id: "connecticut", label: "Connecticut" },
-  { id: "delaware", label: "Delaware" },
-  { id: "district-of-columbia", label: "District of Columbia" },
-  { id: "florida", label: "Florida" },
-  { id: "georgia", label: "Georgia" },
-  { id: "hawaii", label: "Hawaii" },
-  { id: "idaho", label: "Idaho" },
-  { id: "illinois", label: "Illinois" },
-  { id: "indiana", label: "Indiana" },
-  { id: "iowa", label: "Iowa" },
-  { id: "kansas", label: "Kansas" },
-  { id: "kentucky", label: "Kentucky" },
-  { id: "louisiana", label: "Louisiana" },
-  { id: "maine", label: "Maine" },
-  { id: "maryland", label: "Maryland" },
-  { id: "massachusetts", label: "Massachusetts" },
-  { id: "michigan", label: "Michigan" },
-  { id: "minnesota", label: "Minnesota" },
-  { id: "mississippi", label: "Mississippi" },
-  { id: "missouri", label: "Missouri" },
-  { id: "montana", label: "Montana" },
-  { id: "nebraska", label: "Nebraska" },
-  { id: "nevada", label: "Nevada" },
-  { id: "new-hampshire", label: "New Hampshire" },
-  { id: "new-jersey", label: "New Jersey" },
-  { id: "new-mexico", label: "New Mexico" },
-  { id: "new-york", label: "New York" },
-  { id: "north-carolina", label: "North Carolina" },
-  { id: "north-dakota", label: "North Dakota" },
-  { id: "ohio", label: "Ohio" },
-  { id: "oklahoma", label: "Oklahoma" },
-  { id: "oregon", label: "Oregon" },
-  { id: "pennsylvania", label: "Pennsylvania" },
-  { id: "puerto-rico", label: "Puerto Rico" },
-  { id: "rhode-island", label: "Rhode Island" },
-  { id: "south-carolina", label: "South Carolina" },
-  { id: "south-dakota", label: "South Dakota" },
-  { id: "tennessee", label: "Tennessee" },
-  { id: "texas", label: "Texas" },
-  { id: "utah", label: "Utah" },
-  { id: "vermont", label: "Vermont" },
-  { id: "virginia", label: "Virginia" },
-  { id: "washington", label: "Washington" },
-  { id: "west-virginia", label: "West Virginia" },
-  { id: "wisconsin", label: "Wisconsin" },
-  { id: "wyoming", label: "Wyoming" },
-  { id: "american-samoa", label: "American Samoa" },
-  { id: "guam", label: "Guam" },
-  { id: "northern-mariana-islands", label: "Northern Mariana Islands" },
-  { id: "us-virgin-islands", label: "U.S. Virgin Islands" },
-];
-
-export default function SelectSponsorshipAndSalaryCheckList({
-  className,
-  ...props
-}: CardProps) {
-  const [itemsList, setItemsList] = useState([
-    {
-      id: "",
-      label: "",
-    },
-  ]);
-
-  const [selectCount, setSelectCount] = useState(0);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isRelocation, setIsRelocation] = useState(false);
+export default function SelectSponsorshipAndSalaryCheckList() {
+  const [requireSponsorship, setRequireSponsorship] = useState(false);
+  const [notRequireSponsorship, setNotRequireSponsorship] = useState(false);
+  const [currentSalary, setCurrentSalaryRange] = useState(0);
+  const SALARY_RANGE = {
+    min: 0,
+    max: 300,
+  };
+  const [isValidForm, setIsValidForm] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
+  console.log(files, "selected files");
 
   useEffect(() => {
-    if (!searchTerm) {
-      setItemsList(items);
+    if (currentSalary > 0 && (requireSponsorship || notRequireSponsorship)) {
+      setIsValidForm(true);
     } else {
-      const matchesList = items.filter((item) =>
-        item.label
-          .toLowerCase()
-          .trim()
-          .includes(searchTerm.toLowerCase().trim())
-      );
-
-      setSelectCount(matchesList.length);
-      setItemsList(matchesList);
+      setIsValidForm(false);
     }
-  }, [searchTerm]);
+  }, [requireSponsorship, notRequireSponsorship, currentSalary]);
 
+  console.log(currentSalary, files, requireSponsorship, notRequireSponsorship);
   return (
-    <Card
-      className={cn(
-        "w-[630px] border-none shadow-none bg-[#E5E7EB]",
-        className
-      )}
-      {...props}
-    >
-      <CardHeader className="flex flex-col gap-[1rem]">
+    <Card className={cn("sm:w-[680px] border-none shadow-none bg-[#E5E7EB]")}>
+      <CardHeader className="sm:w-[90%] flex flex-col gap-[1rem]">
         <CardTitle className="text-center leading-8 tracking-normal">
           Sponsorship & Salary
         </CardTitle>
@@ -130,72 +51,123 @@ export default function SelectSponsorshipAndSalaryCheckList({
         </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4 rounded-[15px] bg-[#FFFFFF] pt-[1.3rem] mb-8">
-        <div className="space-y-5">
-          <SearchInputWithLabel
-            setSearchTerm={setSearchTerm}
-            placeholderText={"Search location"}
-          >
-            <Label htmlFor="domain" className="text-[1rem]">
-              Where do you want to work?
+        <div className="space-y-6">
+          <div className="space-y-4">
+            <Label className="text-[1rem]">
+              Do you require visa sponsorship to work in the US?
             </Label>
-          </SearchInputWithLabel>
-          <div>
-            <CheckboxFormMultiple
-              items={itemsList}
-              setSelectCount={setSelectCount}
-            >
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <Checkbox
-                    className=""
-                    id="relocation"
-                    checked={isRelocation}
-                    onCheckedChange={(isChecked: boolean) =>
-                      setIsRelocation(isChecked)
-                    }
-                  />
-                  <Label
-                    htmlFor="relocation"
-                    className={`${
-                      isRelocation ? "text-[var(--base)]" : "text-black"
-                    } text-md font-normal`}
-                  >
-                    I&apos;m willing to relocate anywhere
-                  </Label>
-                </div>
-                <p>Select all that apply</p>
+            <div className="flex items-center justify-between sm:flex-row flex-col gap-3">
+              <div
+                className={` ${
+                  requireSponsorship ? "border-[var(--base)]" : "border"
+                } flex items-center gap-2 border bg-[#FBFAF8] p-3 rounded-md sm:w-auto w-full`}
+              >
+                <Checkbox
+                  className=""
+                  id="requireSponsorship"
+                  checked={requireSponsorship}
+                  onCheckedChange={() => {
+                    setRequireSponsorship(true);
+                    setNotRequireSponsorship(false);
+                  }}
+                />
+                <Label
+                  htmlFor="requireSponsorship"
+                  className={`${
+                    requireSponsorship ? "text-[var(--base)]" : "text-black"
+                  } text-md font-normal`}
+                >
+                  Yes, I require sponsorship
+                </Label>
               </div>
-            </CheckboxFormMultiple>
-            <div className="mt-4 flex items-start gap-3">
-              <Info className="text-neutral-600" />
-              <p className="text-[0.85rem] font-light">
-                We’re adding job matching based on location soon. For now,
-                you’ll still receive job applications in locations you did not
-                select.
-              </p>
+              <div
+                className={` ${
+                  notRequireSponsorship ? "border-[var(--base)]" : "border"
+                } flex items-center gap-2 border bg-[#FBFAF8] p-3 rounded-md sm:w-auto w-full`}
+              >
+                <Checkbox
+                  className=""
+                  id="notRequireSponsorship"
+                  checked={notRequireSponsorship}
+                  onCheckedChange={() => {
+                    setNotRequireSponsorship(true);
+                    setRequireSponsorship(false);
+                  }}
+                />
+                <Label
+                  htmlFor="notRequireSponsorship"
+                  className={`${
+                    notRequireSponsorship ? "text-[var(--base)]" : "text-black"
+                  } text-md font-normal`}
+                >
+                  No, I do not require sponsorship
+                </Label>
+              </div>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <Label className="text-[1rem]">
+              What is your expected base salary?
+            </Label>
+            <div className="space-y-3.5">
+              <Slider
+                defaultValue={[0]}
+                max={SALARY_RANGE.max}
+                min={SALARY_RANGE.min}
+                step={1}
+                className="focus-visible::ring-offset-0"
+                onValueChange={(value) => {
+                  console.log(value, "value");
+                  setCurrentSalaryRange(value?.at(0) || 0);
+                }}
+              />
+              <div className="flex items-center justify-between text-[.83rem] text-[#646464]">
+                <span>${SALARY_RANGE.min}k</span>
+                <span>${currentSalary}k</span>
+                <span>${SALARY_RANGE.max}k</span>
+              </div>
+            </div>
+          </div>
+          <div className="space-y-4">
+            <Label className="text-[1rem] flex items-center justify-start gap-3">
+              <span>Upload Your Resume (Optional)</span>
+              <Info size={18} className="text-neutral-600" />
+            </Label>
+            <FileDrop setFiles={setFiles} />
+            <div className="flex items-center justify-between sm:flex-row flex-col gap-3 text-neutral-600 text-[.95rem]">
+              <span>Supported formats: PDF only</span>
+              <span>Maximum file size: 10MB</span>
             </div>
           </div>
         </div>
       </CardContent>
       <CardFooter>
-        <div className="flex items-center gap-4 w-full">
+        <div className="flex items-center sm:flex-row  flex-col gap-4 w-full">
           <Link
             href={"/onboarding/technology"}
             className="w-full py-3 text-center text-[1rem] rounded-full text-[var(--base-hover)] bg-white hover:bg-white/60 border border-[var(--base-hover)] hover:border-[var(--base-hover)] transition-all"
           >
             Go back
           </Link>
-          {selectCount < 1 ? (
+          {isValidForm ? (
+            files.length > 0 ? (
+              <Link
+                href={"/dashboard/jobs"}
+                className="w-full py-3 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
+              >
+                Continue
+              </Link>
+            ) : (
+              <ContinueWithoutResumeModal>
+                <Button className="w-full py-6 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all">
+                  Continue
+                </Button>
+              </ContinueWithoutResumeModal>
+            )
+          ) : (
             <Button disabled className="w-full py-6 text-[1rem] rounded-full">
               Continue
             </Button>
-          ) : (
-            <Link
-              href={"/onboarding/finish"}
-              className="w-full py-3 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
-            >
-              Continue
-            </Link>
           )}
         </div>
       </CardFooter>

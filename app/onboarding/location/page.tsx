@@ -18,9 +18,6 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Info } from "lucide-react";
 
-
-type CardProps = React.ComponentProps<typeof Card>;
-
 // Define the items as a readonly array to ensure immutability.
 const items = [
   { id: "outside-us-canada", label: "Outside of US - Canada" },
@@ -83,11 +80,7 @@ const items = [
   { id: "us-virgin-islands", label: "U.S. Virgin Islands" },
 ];
 
-
-export default function SelectLocationCheckList({
-  className,
-  ...props
-}: CardProps) {
+export default function SelectLocationCheckList() {
   const [itemsList, setItemsList] = useState([
     {
       id: "",
@@ -116,14 +109,8 @@ export default function SelectLocationCheckList({
   }, [searchTerm]);
 
   return (
-    <Card
-      className={cn(
-        "w-[630px] border-none shadow-none bg-[#E5E7EB]",
-        className
-      )}
-      {...props}
-    >
-      <CardHeader className="flex flex-col gap-[1rem]">
+    <Card className={cn("sm:w-[680px] border-none shadow-none bg-[#E5E7EB]")}>
+      <CardHeader className="sm:w-[90%] flex flex-col gap-[1rem]">
         <CardTitle className="text-center leading-8 tracking-normal">
           Select your Location
         </CardTitle>
@@ -169,8 +156,8 @@ export default function SelectLocationCheckList({
               </div>
             </CheckboxFormMultiple>
             <div className="mt-4 flex items-start gap-3">
-              <Info className="text-neutral-600"/>
-              <p className="text-[0.85rem] font-light">
+              <Info className="text-neutral-600 sm:block hidden" />
+              <p className="sm:text-[0.85rem] text-[.9rem]  font-light">
                 We’re adding job matching based on location soon. For now,
                 you’ll still receive job applications in locations you did not
                 select.
@@ -180,7 +167,7 @@ export default function SelectLocationCheckList({
         </div>
       </CardContent>
       <CardFooter>
-        <div className="flex items-center gap-4 w-full">
+        <div className="flex items-center sm:flex-row  flex-col gap-4 w-full">
           <Link
             href={"/onboarding/technology"}
             className="w-full py-3 text-center text-[1rem] rounded-full text-[var(--base-hover)] bg-white hover:bg-white/60 border border-[var(--base-hover)] hover:border-[var(--base-hover)] transition-all"

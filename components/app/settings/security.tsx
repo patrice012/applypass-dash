@@ -1,5 +1,7 @@
 import { Separator } from "@/components/ui/separator";
-import {  Pencil } from "lucide-react";
+import { Pencil } from "lucide-react";
+import { SettingEditModal } from "@/components/dialogs/setting-edit";
+import { DeleteAccount } from "@/components/dialogs/unsubscribe";
 
 export default function Security() {
   return (
@@ -19,7 +21,9 @@ export default function Security() {
           <div className="col-span-2">
             <div className="flex w-full text-[#0E1E2F] justify-between">
               <span>raj@email.com</span>
-              <Pencil size={18} />
+              <SettingEditModal title="Email">
+                <Pencil size={18} className="cursor-pointer" />
+              </SettingEditModal>
             </div>
           </div>
         </div>
@@ -33,7 +37,9 @@ export default function Security() {
           <div className="col-span-2">
             <div className="flex w-full text-[#0E1E2F] justify-between">
               <span>●●●●●●●●●●●●</span>
-              <Pencil size={18} />
+              <SettingEditModal title="Password">
+                <Pencil size={18} className="cursor-pointer" />
+              </SettingEditModal>
             </div>
           </div>
         </div>
@@ -47,7 +53,7 @@ export default function Security() {
           <div className="col-span-2">
             <div className="flex w-full text-[#0E1E2F] gap-2 justify-between">
               <span>Disabled</span>
-              <Pencil size={18} className="shrink-0" />
+              <Pencil size={18} className="shrink-0 cursor-pointer" />
             </div>
           </div>
         </div>
@@ -75,9 +81,11 @@ export default function Security() {
           </div>
           <div className="col-span-2">
             <div className="flex w-full text-[#0E1E2F] justify-end">
-              <button className="bg-[#F9E2E2] font-semibold text-[#F83E3E] border px-[15px] py-[10px] border-[#F83E3E] rounded-[5px]">
-                Delete Account
-              </button>
+              <DeleteAccount>
+                <button className="bg-[#F9E2E2] font-semibold transition ease-in-out duration-300 hover:bg-transparent text-[#F83E3E] border px-[15px] py-[10px] border-[#F83E3E] rounded-[5px]">
+                  Delete Account
+                </button>
+              </DeleteAccount>
             </div>
           </div>
         </div>

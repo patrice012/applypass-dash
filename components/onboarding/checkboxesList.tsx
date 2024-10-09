@@ -33,13 +33,11 @@ export function CheckboxFormMultiple({
     });
   };
 
-  console.log(selectedItems, "selectedItems", items);
-
   return (
     <div>
       <div className="mb-4">{children}</div>
       <div
-        className="grid grid-cols-2 gap-4 max-h-[22rem]
+        className="grid sm:grid-cols-2 gap-4 sm:max-h-[22rem] max-h-[35rem]
       overflow-y-auto"
       >
         {items?.map((item) => (
