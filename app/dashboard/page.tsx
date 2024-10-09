@@ -26,9 +26,8 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { JobDetail } from "@/components/dialogs/job-detail";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
@@ -89,7 +88,8 @@ const Dashboard = () => {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="text-sm rounded-full h-[38px] py-[12px] px-[20px] gap-[20px]">
+                  className="text-sm rounded-full h-[38px] py-[12px] px-[20px] gap-[20px]"
+                >
                   <div className="flex gap-2 items-center">
                     <ListFilter className="h-3.5 w-3.5" />
                     <span className="text-nowrap text-[14px]">Filter by:</span>
@@ -136,11 +136,13 @@ const Dashboard = () => {
                   }
                 : undefined)}
               className="w-full sm:max-w-max"
-              asChild>
+              asChild
+            >
               <Button
                 variant="outline"
                 size="sm"
-                className="text-sm flex justify-between rounded-full h-[48px] sm:h-[38px] py-[12px] px-[20px] gap-[20px]">
+                className="text-sm flex justify-between rounded-full h-[48px] sm:h-[38px] py-[12px] px-[20px] gap-[20px]"
+              >
                 <div className="flex gap-2 items-center">
                   <ListFilter className="h-3.5 w-3.5" />
                   <span className=" text-[14px]">Filter by:</span>
@@ -150,7 +152,8 @@ const Dashboard = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="bg-[#F3F4F6]  w-full sm:max-w-max p-[8px]">
+              className="bg-[#F3F4F6]  w-full sm:max-w-max p-[8px]"
+            >
               <DropdownMenuItem className="gap-[12px] p-[12px] cursor-pointer bg-[#fff] hover:rounded-[4px]">
                 <span className="text-[#231232] text-[14px]">Match Score:</span>
                 <span className="text-[#231232] text-[14px] font-bold">
@@ -220,7 +223,8 @@ const Dashboard = () => {
                         onClick={(e) => {
                           e.preventDefault();
                         }}
-                        className="flex gap-[8px]">
+                        className="flex gap-[8px]"
+                      >
                         <button className="bg-[#34D399] hover:bg-[#fff] hover:text-[#34D399] transition ease-in-out duration-500  w-full justify-center md:items-center flex gap-[8px] items-center rounded-full border border-[#059669]  px-[16px] md:w-[180px] py-[10px] text-[14px] font-medium  text-[#fff] text-nowrap">
                           <User size={20} color="#FDE68A" /> Added to Queue
                         </button>
@@ -272,7 +276,8 @@ const Dashboard = () => {
                         onClick={(e) => {
                           e.preventDefault();
                         }}
-                        className="flex gap-[8px]">
+                        className="flex gap-[8px]"
+                      >
                         <Tooltip>
                           <TooltipContent className="bg-[#231232]">
                             <p className="text-[#fff]">Added by ApplyPass</p>
@@ -334,7 +339,8 @@ const Dashboard = () => {
                         onClick={(e) => {
                           e.preventDefault();
                         }}
-                        className="flex gap-[8px]">
+                        className="flex gap-[8px]"
+                      >
                         <LogInterViewModal>
                           <button className="bg-[#fff] w-full justify-center md:items-center flex gap-[8px] items-center  rounded-full border border-[#6805DA] hover:bg-[#6805DA]/10 transition ease-in-out duration-500 px-[16px] md:w-[180px] py-[10px] text-[14px] font-medium  text-[#231232] text-nowrap">
                             <Star size={20} color="#231232" /> Log Interview
@@ -385,7 +391,8 @@ const Dashboard = () => {
                         onClick={(e) => {
                           e.preventDefault();
                         }}
-                        className="flex gap-[8px]">
+                        className="flex gap-[8px]"
+                      >
                         <button className="bg-[#3B82F6] hover:bg-[#fff] hover:text-[#3B82F6] transition ease-in-out duration-500 w-full justify-center md:items-center flex gap-[8px] items-center rounded-full md:w-[180px] border border-[#2563EB] px-[16px] py-[10px] text-[14px] font-medium  text-[#fff] text-nowrap">
                           <Star
                             size={20}
