@@ -1,11 +1,5 @@
 import * as React from "react";
-import {
-  BookOpen,
-  Home,
-  LayoutGrid,
-  Settings,
-  UsersRound,
-} from "lucide-react";
+import { BookOpen, FileText, Home, LayoutGrid, Settings } from "lucide-react";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import NavItem from "../ui/nav-item";
 import Link from "next/link";
@@ -41,9 +35,9 @@ export const SideContent = ({ isOpened }: { isOpened: boolean }) => {
           title="Courses"
         />
         <NavItem
-          path="/community"
-          icon={<UsersRound strokeWidth={1.5} />}
-          title="Community"
+          path="/blogs"
+          icon={<FileText strokeWidth={1.5} />}
+          title="Blogs"
         />
         <NavItem
           path="/tools"
