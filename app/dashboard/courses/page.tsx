@@ -7,7 +7,7 @@ import { courseItemImages } from "@/helpers/mock";
 import { ChevronDown, LayoutGrid, TableOfContents } from "lucide-react";
 import { PropsWithChildren, useState } from "react";
 
-const CoursessPage = () => {
+const CoursesPage = () => {
   const [layout, setLayout] = useState<LayoutValue>(LayoutValue.Grid);
 
   return (
@@ -82,7 +82,7 @@ const CoursessPage = () => {
   );
 };
 
-export default CoursessPage;
+export default CoursesPage;
 
 const SelectLayout = ({
   children,

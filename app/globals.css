@@ -47,6 +47,18 @@ body {
   .bg-gradient-custom-b {
     background: linear-gradient(to bottom, #1d4ed8 50%, #1f45bf 50%);
   }
+
+  .bg-green-custom {
+    background-color: #5ed1b1;
+  }
+
+  .bg-orange-custom {
+    background-color: #fca069;
+  }
+
+  .bg-pink-custom {
+    background-color: #e54c71;
+  }
 }
 
 @layer utilities {
