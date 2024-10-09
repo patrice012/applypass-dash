@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/toaster";
+
 
 import { Provider } from "@/provider";
 
@@ -26,6 +28,7 @@ export default function RootLayout({
         <Provider>
           <TooltipProvider>{children}</TooltipProvider>
         </Provider>
+        <Toaster />
       </body>
     </html>
   );
