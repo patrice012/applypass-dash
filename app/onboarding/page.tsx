@@ -16,8 +16,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
 
-type CardProps = React.ComponentProps<typeof Card>;
-
 // Define the items as a readonly array to ensure immutability.
 const items = [
   { id: "android", label: "Android Software Engineer" },

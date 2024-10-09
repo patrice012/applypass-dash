@@ -26,7 +26,7 @@ const ToolItem = ({
         <p className="text-[15px] font-light text-[#4B5563]">{description}</p>
         <UploadResumeModal>
           <Button
-            className={`mt-2 rounded-[100px] border border-[#6805DA] py-2 px-5 ${
+            className={`w-full md:max-w-max mt-2 rounded-[100px] border border-[#6805DA] py-2 px-5 ${
               bg
                 ? "bg-[#6805DA] hover:bg-[#6805DA]/60"
                 : "bg-transparent hover:bg-transparent"
