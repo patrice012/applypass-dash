@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -57,7 +58,8 @@ export function LogInterViewModal({ children }: PropsWithChildren) {
           </div>
           <div className="flex flex-col items-start gap-2">
             <label htmlFor="username" className="text-start">
-              What excites and/or doesn&apos;t excites you about this interview ?
+              What excites and/or doesn&apos;t excites you about this interview
+              ?
             </label>
             <Textarea
               placeholder="Enter your message here"
@@ -76,12 +78,14 @@ export function LogInterViewModal({ children }: PropsWithChildren) {
           </div>
         </div>
         <DialogFooter className="flex flex-co md:grid md:grid-cols-2 gap-3">
-          <Button
-            className="bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-transparent py-6 w-full rounded-[100px]"
-            type="submit"
-          >
-            Maybe later
-          </Button>
+          <DialogClose>
+            <Button
+              className="bg-transparent text-[#6805DA] border border-[#6805DA] hover:bg-transparent py-6 w-full rounded-[100px]"
+              type="submit"
+            >
+              Maybe later
+            </Button>
+          </DialogClose>
           <Button
             className="py-6 w-full rounded-[100px] border border-[#6805DA] bg-[#6805DA] hover:bg-[#6805DA]/60"
             type="submit"

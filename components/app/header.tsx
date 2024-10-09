@@ -7,27 +7,20 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   Bell,
-  BookOpen,
   CircleDashed,
   CircleHelp,
   CircleUser,
   CircleX,
-  FileUser,
-  LayoutDashboard,
   LogOut,
   Menu,
   NotepadText,
-  Package2,
   Settings,
   ShieldCheck,
-  UsersRound,
 } from "lucide-react";
 import { Button } from "../ui/button";
 import { ReactNode, useState } from "react";
-import { CustomDrawer } from "./drawer";
-import NavItem from "../ui/nav-item";
+import { CustomDrawer, SideContent } from "./drawer";
 import { signOut } from "next-auth/react";
-import Link from "next/link";
 
 const Header = ({
   isDrawerOpen,
@@ -145,49 +138,7 @@ const Header = ({
         {isSidebarOpen && (
           <div className="bg-[#5150509c] fixed right-0 top-0 w-full h-full z-[1000] lg:hidden">
             <div className="flex max-w-[320px] flex-col  right-0  top-0 bg-[#231232] overflow-auto  h-full p-4 relative">
-              <nav className="flex text-sm font-medium text-white flex-col items-start gap-2">
-                <Link
-                  href="#"
-                  className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
-                >
-                  <Package2 className="h-4 w-4 transition-all group-hover:scale-110" />
-                  <span className="sr-only">Acme Inc</span>
-                </Link>
-                <NavItem
-                  isActive
-                  icon={<LayoutDashboard />}
-                  title="Dashboard"
-                />
-                <NavItem
-                  icon={<UsersRound strokeWidth={1.5} />}
-                  title="Community"
-                />
-                <NavItem
-                  extras={
-                    <div className="text-xs px-2 py-1 bg-[#DF4425] rounded-2xl">
-                      38/100
-                    </div>
-                  }
-                  icon={<FileUser strokeWidth={1.5} />}
-                  title="Resume Score"
-                />
-                <NavItem
-                  icon={<BookOpen strokeWidth={1.5} />}
-                  title="Courses"
-                />
-              </nav>
-              <div className="mt-auto flex flex-col items-start gap-4 p-4 bg-[#FFFCE7] text-[#231232] rounded-xl">
-                <h1 className="text-base font-bold">
-                  Want to apply to more of your matches ?
-                </h1>
-                <p className="text-xs font-normal">
-                  You are in free plan. You can get more of your matches by
-                  upgrading your plan.
-                </p>
-                <button className="w-full bg-[#6805DA] py-2 rounded-[100px] text-white">
-                  Upgrade Now
-                </button>
-              </div>
+              <SideContent isOpened={true} />
               <div
                 className="absolute top-0 right-0 z-20 p-2"
                 onClick={toggleSidebar}
