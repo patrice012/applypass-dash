@@ -8,7 +8,7 @@ export default function Account({
   setClick,
   click,
 }: {
-  setClick: any;
+  setClick: (value: boolean) => void;
   click: boolean;
 }) {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -37,7 +37,11 @@ export default function Account({
         <div className="flex gap-[10px] items-center">
           {" "}
           {click ? (
-            <MoveLeft className="flex md:hidden" onClick={(e) => setClick(false)} size={18} />
+            <MoveLeft
+              className="flex md:hidden"
+              onClick={() => setClick(false)}
+              size={18}
+            />
           ) : (
             ""
           )}{" "}
@@ -72,7 +76,8 @@ export default function Account({
 
       <div
         className="h-[120px] w-[120px] cursor-pointer rounded-full border border-[#e4e4e4] text-center items-center flex flex-col justify-center"
-        onClick={handleDivClick}>
+        onClick={handleDivClick}
+      >
         {imagePreview ? (
           <img
             src={imagePreview}

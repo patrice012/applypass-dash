@@ -2,14 +2,24 @@ import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { MoveLeft } from "lucide-react";
 
-export default function Notif({setClick, click} : {setClick: any, click:boolean}) {
+export default function Notif({
+  setClick,
+  click,
+}: {
+  setClick: (value: boolean) => void;
+  click: boolean;
+}) {
   return (
     <div className="w-full flex flex-col gap-[20px]">
       <div className="flex flex-col gap-[6px]">
-      <div className="flex gap-[10px] items-center">
+        <div className="flex gap-[10px] items-center">
           {" "}
           {click ? (
-            <MoveLeft className="flex md:hidden" onClick={(e) => setClick(false)} size={18} />
+            <MoveLeft
+              className="flex md:hidden"
+              onClick={() => setClick(false)}
+              size={18}
+            />
           ) : (
             ""
           )}{" "}
@@ -30,7 +40,9 @@ export default function Notif({setClick, click} : {setClick: any, click:boolean}
           </div>
           <div className="col-span-2">
             <div className="flex w-full text-[#757F87] items-center justify-between">
-              <span className="text-[13px] md:text-[15px]">Allow Sample app to send emails to your inbox</span>
+              <span className="text-[13px] md:text-[15px]">
+                Allow Sample app to send emails to your inbox
+              </span>
               <Switch />
             </div>
           </div>
@@ -44,7 +56,9 @@ export default function Notif({setClick, click} : {setClick: any, click:boolean}
           </div>
           <div className="col-span-2">
             <div className="flex w-full text-[#757F87] items-center justify-between">
-              <span className="text-[13px] md:text-[15px]">Show notifications on mobile phone lock screen</span>
+              <span className="text-[13px] md:text-[15px]">
+                Show notifications on mobile phone lock screen
+              </span>
               <Switch />
             </div>
           </div>
@@ -58,7 +72,9 @@ export default function Notif({setClick, click} : {setClick: any, click:boolean}
           </div>
           <div className="col-span-2">
             <div className="flex w-full text-[#757F87] items-center gap-2 justify-between">
-              <span className="text-[13px] md:text-[15px]">Show badge app icon on mobile home screen</span>
+              <span className="text-[13px] md:text-[15px]">
+                Show badge app icon on mobile home screen
+              </span>
               <Switch />
             </div>
           </div>
