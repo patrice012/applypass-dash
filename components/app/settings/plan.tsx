@@ -95,7 +95,7 @@ export default function Plan() {
       <Table className="px-0">
         <TableHeader>
           <TableRow>
-            <TableHead className="w-[200px] pl-0">Date</TableHead>
+            <TableHead className=" pl-0">Date</TableHead>
             <TableHead className="pl-0">Description</TableHead>
             <TableHead className="text-right">Amount</TableHead>
           </TableRow>
@@ -103,7 +103,7 @@ export default function Plan() {
         <TableBody>
           {invoices.map((invoice) => (
             <TableRow key={invoice.invoice}>
-              <TableCell className="font-medium pl-0">
+              <TableCell className="font-medium  pl-0">
                 {invoice.invoice}
               </TableCell>
               <TableCell className="pl-0">{invoice.paymentStatus}</TableCell>
