@@ -91,8 +91,9 @@ export default function SelectLocationCheckList() {
       label: "",
     },
   ]);
-
-  const [selectCount, setSelectCount] = useState(0);
+  const [selectList, setSelectList] = useState<{ id: string; label: string }[]>(
+    []
+  );
   const [searchTerm, setSearchTerm] = useState("");
   const [isRelocation, setIsRelocation] = useState(false);
 
@@ -116,7 +117,7 @@ export default function SelectLocationCheckList() {
           .includes(searchTerm.toLowerCase().trim())
       );
 
-      setSelectCount(matchesList.length);
+      setSelectList(matchesList);
       setItemsList(matchesList);
     }
   }, [searchTerm]);
@@ -144,7 +145,7 @@ export default function SelectLocationCheckList() {
           <div>
             <CheckboxFormMultiple
               items={itemsList}
-              setSelectCount={setSelectCount}
+              setSelectList={setSelectList}
             >
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
@@ -189,15 +190,15 @@ export default function SelectLocationCheckList() {
           >
             Go back
           </Button>
-          {selectCount < 1 ? (
-            <Button disabled className="w-full py-6 text-[1rem] rounded-full">
-              Continue
-            </Button>
-          ) : (
+          {selectList?.length ? (
             <Button
               onClick={goToNext}
               className="w-full py-6 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
             >
+              Continue
+            </Button>
+          ) : (
+            <Button disabled className="w-full py-6 text-[1rem] rounded-full">
               Continue
             </Button>
           )}
