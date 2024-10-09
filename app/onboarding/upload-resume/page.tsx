@@ -63,13 +63,13 @@ export default function SelectSponsorshipAndSalaryCheckList() {
               </span>
             </Label>
             <div>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center sm:flex-row flex-col sm:gap-1 gap-4 justify-between">
                 <div
                   className={` ${
                     emotion === "veryConfident"
                       ? "border-[var(--base)]"
                       : "border"
-                  } flex items-center gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md w-auto`}
+                  } flex items-center gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md sm:w-auto w-full`}
                 >
                   <Checkbox
                     className="hidden"
@@ -101,7 +101,7 @@ export default function SelectSponsorshipAndSalaryCheckList() {
                 <div
                   className={` ${
                     emotion === "confident" ? "border-[var(--base)]" : "border"
-                  } flex items-center gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md w-auto`}
+                  } flex items-center gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md sm:w-auto w-full`}
                 >
                   <Checkbox
                     className="hidden"
@@ -135,7 +135,7 @@ export default function SelectSponsorshipAndSalaryCheckList() {
                     emotion === "lessConfident"
                       ? "border-[var(--base)]"
                       : "border"
-                  } flex items-center gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md w-auto`}
+                  } flex items-center gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md sm:w-auto w-full`}
                 >
                   <Checkbox
                     className="hidden"
@@ -169,7 +169,7 @@ export default function SelectSponsorshipAndSalaryCheckList() {
                     emotion === "notConfident"
                       ? "border-[var(--base)]"
                       : "border"
-                  } flex items-center gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md w-auto`}
+                  } flex items-center gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md sm:w-auto w-full`}
                 >
                   <Checkbox
                     className="hidden"
