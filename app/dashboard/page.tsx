@@ -34,7 +34,6 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
-  const { status } = useSession();
   const router = useRouter();
   //
   const [width] = useWindowSize();
@@ -44,12 +43,6 @@ const Dashboard = () => {
     setIsOpened(width > 1024);
   }, [width]);
 
-  const checkSession = () => {
-    if (status === "unauthenticated") {
-      return router.replace("/auth/login");
-    }
-  };
-
   const checkIsTouchDevice = (): boolean => {
     return (
       typeof window !== "undefined" &&
@@ -57,17 +50,10 @@ const Dashboard = () => {
     );
   };
 
-  useEffect(() => {
-    checkSession();
-  }, [status]);
-
   // const isTouchDevice = "ontouchstart" in window;
   const isTouchDevice = checkIsTouchDevice();
 
   const [open, setOpen] = useState(false);
-  if (status === "loading") {
-    return <span className="text-[#888] text-sm mt-7">Loading...</span>;
-  }
 
   return (
     <main className="flex-grow flex flex-col w-full px-4 py-[24px] md:p-[32px] gap-[24px] overflow-y-scroll scrollbar scrollbar-thumb-[#d4d4d4] scrollbar-w-[7px] scrollbar-thumb-rounded-full">
