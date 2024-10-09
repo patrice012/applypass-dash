@@ -26,11 +26,11 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="px-[15px] md:px-[32px] lg:px-[48px] bg-[#fff] h-full py-[32px] gap-[36px] flex flex-col w-full ">
+    <div className="main-content">
       <span className="font-bold text-2xl">Settings</span>
       <Separator />
       <div className="flex gap-[20px] xl:gap-[60px] lg:gap-[40px] items-start">
-        <div className="bg-[#fff] sticky top-[20px] p-[30px] text-[#757F87] hidden md:flex flex-col  rounded-[10px] w-full max-w-[300px] gap-[10px] border shadow-md">
+        <div className="bg-[#fff] sticky top-[0px] p-[30px] text-[#757F87] hidden md:flex flex-col  rounded-[10px] w-full max-w-[300px] gap-[10px] border shadow-md">
           <div
             className={`rounded-[5px] flex gap-[12px] p-[20px] items-center cursor-pointer ${
               activeSection === "account"
