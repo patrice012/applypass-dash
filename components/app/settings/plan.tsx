@@ -39,20 +39,30 @@ const invoices = [
   },
 ];
 
-export default function Plan({setClick, click} : {setClick: any, click:boolean}) {
+export default function Plan({
+  setClick,
+  click,
+}: {
+  setClick: (value: boolean) => void;
+  click: boolean;
+}) {
   return (
     <div className="w-full flex flex-col gap-[20px] mb-[100px]">
       <div className="flex flex-col xl:flex-row w-full gap-[20px] items-start justify-between xl:items-center">
         <div className="flex flex-col gap-[6px]">
-        <div className="flex gap-[10px] items-center">
-          {" "}
-          {click ? (
-            <MoveLeft className="flex md:hidden" onClick={(e) => setClick(false)} size={18} />
-          ) : (
-            ""
-          )}{" "}
-          <span className="font-bold text-lg md:text-2xl">Plan</span>
-        </div>
+          <div className="flex gap-[10px] items-center">
+            {" "}
+            {click ? (
+              <MoveLeft
+                className="flex md:hidden"
+                onClick={(e) => setClick(false)}
+                size={18}
+              />
+            ) : (
+              ""
+            )}{" "}
+            <span className="font-bold text-lg md:text-2xl">Plan</span>
+          </div>
           <span className="text-[#757F87] text-sm md:text-base">
             View and edit your payment settings
           </span>
@@ -106,7 +116,7 @@ export default function Plan({setClick, click} : {setClick: any, click:boolean})
             <TableHead className=" pl-0 table-display  text-[#0E1E2F] font-medium">
               Date
             </TableHead>
-            <TableHead  className="pl-0 table-display text-[#0E1E2F] font-medium">
+            <TableHead className="pl-0 table-display text-[#0E1E2F] font-medium">
               Description
             </TableHead>
             <TableHead className=" pl-0 md:hidden text-[#0E1E2F] font-medium">

@@ -7,18 +7,17 @@ export default function Security({
   setClick,
   click,
 }: {
-  setClick: any;
+  setClick: (value: boolean) => void;
   click: boolean;
 }) {
   return (
     <div className="w-full flex flex-col gap-[20px] mb-[100px]">
       <div className="flex flex-col gap-[6px]">
         <div className="flex gap-[10px] items-center">
-          {" "}
           {click ? (
             <MoveLeft
               className="flex md:hidden"
-              onClick={(e) => setClick(false)}
+              onClick={() => setClick(false)}
               size={18}
             />
           ) : (
