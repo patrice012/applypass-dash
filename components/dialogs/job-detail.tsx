@@ -8,17 +8,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { PropsWithChildren } from "react";
-import { Textarea } from "../ui/textarea";
 import { Separator } from "../ui/separator";
-import { Checkbox } from "../ui/checkbox";
+
 
 export function JobDetail({ children }: PropsWithChildren) {
   return (
     <Dialog>
-      <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="mt-[100px] px-0 gap-0 h-full  m-auto sm:max-h-[90%] sm:max-w-[90%]  bg-[#FBFAF8] ">
+      <DialogTrigger className="cursor-pointer" asChild>{children}</DialogTrigger>
+      <DialogContent  className="mt-[100px] px-0 gap-0 h-full  m-auto sm:max-h-[90%] sm:max-w-[90%]  bg-[#FBFAF8] ">
         <DialogHeader className="flex flex-col gap-3 items-start px-6">
           <DialogTitle className="text-2xl font-bold">Job detail</DialogTitle>
           <Separator className="bg-[#e4e4e4]" />
