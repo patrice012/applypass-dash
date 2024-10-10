@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // player.tsx
 "use client";
 
@@ -33,6 +35,7 @@ export default function CustomPlayer(props: PlayerProps) {
     setMuted(!muted);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleProgress = (state: any) => {
     setPlayedSeconds(state.playedSeconds);
   };
@@ -69,34 +72,26 @@ export default function CustomPlayer(props: PlayerProps) {
           className="flex items-center justify-center size-14 rounded-full shadow-2xl border border-gray-200 bg-white self-center my-auto"
           onClick={togglePlayPause}
         >
-          {playing ? (
-            <Pause variant="Bold" size={28} />
-          ) : (
-            <Play variant="Bold" size={28} />
-          )}
+          {playing ? <Pause variant="Bold" /> : <Play variant="Bold" />}
         </button>
-        <div className="text-white px-5 py-4 bg-[#5150509c]/45 backdrop-blur absolute bottom-0 right-0 left-0 self-end w-full flex justify-between mt-auto">
-          <div className="flex cursor-pointer gap-4 items-center">
-            <Previous variant="Bold" size={28} />
+        <div className="text-white px-3 lg:px-5 py-2 lg:py-4 bg-[#5150509c]/45 backdrop-blur absolute bottom-0 right-0 left-0 self-end w-full flex justify-between mt-auto">
+          <div className="flex cursor-pointer gap-2 md:gap-4 items-center">
+            <Previous variant="Bold" />
             <button onClick={togglePlayPause}>
-              {playing ? (
-                <Pause variant="Bold" size={28} />
-              ) : (
-                <Play variant="Bold" size={28} />
-              )}
+              {playing ? <Pause variant="Bold" /> : <Play variant="Bold" />}
             </button>
-            <Next variant="Bold" size={28} />
-            <div className="flex items-center gap-2">
+            <Next variant="Bold" />
+            <div className="flex items-center gap-1">
               <span>{formatPlayerTime(playedSeconds)}</span>
               <span> / </span>
               <span>{formatPlayerTime(duration)}</span>
             </div>
           </div>
 
-          <div className="flex cursor-pointer gap-4 items-center">
+          <div className="flex cursor-pointer gap-2 md:gap-4 items-center">
             <div className="flex items-center">
               <button onClick={toggleMute}>
-                {muted ? <VolumeOff size={28} /> : <Volume2 size={28} />}
+                {muted ? <VolumeOff /> : <Volume2 />}
               </button>
               <input
                 type="range"
@@ -105,10 +100,10 @@ export default function CustomPlayer(props: PlayerProps) {
                 step="0.01"
                 value={volume}
                 onChange={handleVolumeChange}
-                className="h-[6px] cursor-pointer w-[100px] mx-2"
+                className="h-[6px] cursor-pointer w-14 md:w-[100px] mx-2"
               />
             </div>
-            <Settings size={28} />
+            <Settings />
           </div>
         </div>
       </div>

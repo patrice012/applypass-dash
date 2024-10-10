@@ -110,7 +110,7 @@ export const CourseItemSmall = ({ title, image }: CourseItemProps) => {
                 <h4 className="font-normal text-sm">Jeffrey Connor</h4>
               </div>
             </div>
-            <div className="flex border items-center gap-1">
+            <div className="flex items-center gap-1">
               <img className="size-4" src="/star.svg" alt="" />
               <span className="font-semibold leading-0 text-sm">4.9</span>
             </div>
