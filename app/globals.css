@@ -27,7 +27,7 @@ body {
       padding: 32px;
     }
 
-    gap: 24px;
+    /* gap: 24px; */
     overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: #d4d4d4 transparent;
