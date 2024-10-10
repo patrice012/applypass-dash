@@ -55,7 +55,7 @@ export default function Plan({
             {click ? (
               <MoveLeft
                 className="flex md:hidden"
-                onClick={(e) => setClick(false)}
+                onClick={() => setClick(false)}
                 size={18}
               />
             ) : (

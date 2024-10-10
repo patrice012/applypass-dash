@@ -178,26 +178,31 @@ export default function SelectLocationCheckList() {
   const [isValidForm, setIsValidForm] = useState(false);
 
   useEffect(() => {
+    // Check if the user has selected job motivation
     const selectJobsMotivation = !!targetJobsMotivation?.length;
+
+    // Check if the user has filled out salary details (allow 0 as valid)
     const selectSalaryDetails =
-      targetSalaryDetails.recentSalary && targetSalaryDetails.desiredNextSalary;
-    let selectEmploymentStatus = null;
+      targetSalaryDetails.recentSalary !== 0 &&
+      targetSalaryDetails.desiredNextSalary !== 0;
 
-    if (targetEmploymentStatus.option === '"employed-yes"') {
+    let selectEmploymentStatus = false;
+
+    // Corrected comparison for employment status
+    if (targetEmploymentStatus.option === "employed-yes") {
       selectEmploymentStatus =
-        targetEmploymentStatus.yesFields.company &&
-        targetEmploymentStatus.yesFields.roleInTargetJobSearch &&
-        targetEmploymentStatus.yesFields.roleInTargetJobSearchOption;
+        !!targetEmploymentStatus.yesFields.company &&
+        !!targetEmploymentStatus.yesFields.roleInTargetJobSearch &&
+        !!targetEmploymentStatus.yesFields.roleInTargetJobSearchOption;
+    } else if (targetEmploymentStatus.option === "employed-no") {
+      selectEmploymentStatus =
+        targetEmploymentStatus.noFields.unemploymentDuration > 0 &&
+        targetEmploymentStatus.noFields.unemploymentReason.length > 0;
     }
 
-    if (targetEmploymentStatus.option === '"employed-no"') {
-      selectEmploymentStatus =
-        targetEmploymentStatus.noFields.unemploymentDuration &&
-        targetEmploymentStatus.noFields.unemploymentReason.length;
-    }
-
+    // Set the form's validity
     setIsValidForm(
-      selectJobsMotivation && !!selectSalaryDetails && !!selectEmploymentStatus
+      selectJobsMotivation && selectSalaryDetails && selectEmploymentStatus
     );
   }, [targetJobsMotivation, targetEmploymentStatus, targetSalaryDetails]);
 
@@ -212,10 +217,16 @@ export default function SelectLocationCheckList() {
   const router = useRouter();
 
   function goToNext() {
-    router.push("/onboarding/sponsorship");
-    toast({
-      title: "Your data have been recorded",
-    });
+    if (isValidForm) {
+      router.push("/onboarding/sponsorship");
+      toast({
+        title: "Your data have been recorded",
+      });
+    } else {
+      toast({
+        title: "Please complete the form",
+      });
+    }
   }
 
   return (
@@ -616,7 +627,6 @@ export default function SelectLocationCheckList() {
           </div>
         </CardContent>
 
-    
         <CardFooter>
           <div className="flex items-center sm:flex-row  flex-col gap-4 w-full">
             <Button
