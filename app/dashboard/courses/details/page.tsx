@@ -1,21 +1,30 @@
 "use client";
 
 import { CourseItemSmall } from "@/components/app/course-item";
+import CustomPlayer from "@/components/app/player/player";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LayoutValue } from "@/helpers/constants";
 import { courseItemImages } from "@/helpers/mock";
 import { NotepadText, UsersRound } from "lucide-react";
+import Video from "next-video";
 
 const CourseDetailsPage = () => {
   return (
     <main className="main-content relative">
-      <div className="flex gap-6">
+      <div className="flex gap-3">
         <span className="text-[#1165EF] font-semibold">Courses</span>
+        <span className="font-normal text-base text-gray-400">|</span>
         <span className="font-semibold">Salary Negotiation Part-01</span>
       </div>
       <div className="grid grid-cols-3 gap-4">
         <div className="flex flex-col gap-3 col-span-2">
-          <div className="w-full border h-[480px]"></div>
+          <div className="w-full h-[480px]">
+            <Video
+              className="w-full h-full"
+              as={CustomPlayer}
+              src="https://res.cloudinary.com/demo/video/upload/fl_splice,l_video:cld_opener_preroll_sd,so_0/what_is_cloudinary_sd.mp4"
+            />
+          </div>
           <h1 className="font-semibold text-xl">Salary Negotiation Part-01</h1>
           <div className="flex items-center justify-between">
             <div className="flex gap-2 items-center">
@@ -47,7 +56,7 @@ const CourseDetailsPage = () => {
               </div>
             </div>
           </div>
-          <Tabs defaultValue="overview" className="border">
+          <Tabs defaultValue="overview">
             <TabsList className="gap-7 text-[19px]">
               <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="transcript">Transcript</TabsTrigger>
@@ -72,7 +81,7 @@ const CourseDetailsPage = () => {
             </TabsContent>
           </Tabs>
         </div>
-        <div className="sticky top-0 flex flex-col gap-4 bg-[#F9FAFB] rounded-[16px] p-5">
+        <div className="sticky top-0 flex flex-col gap-4 bg-[#F9FAFB] rounded-md p-5">
           <h1 className="font-bold text-[23px]">Recommended Courses</h1>
           <div className="flex flex-col gap-4">
             {Array.from({ length: 6 }).map((e, idx) => (
