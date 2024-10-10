@@ -272,8 +272,7 @@ export default function SelectLocationCheckList() {
               ) : null}
               <div className="flex items-center justify-between sm:flex-row flex-col sm:gap-10 gap-3">
                 {employmentStatus.options.fields.map((field, idx) => (
-                  <Button
-                    variant={"outline"}
+                  <div
                     key={idx}
                     onClick={() => {
                       setTargetEmploymentStatus(
@@ -287,7 +286,7 @@ export default function SelectLocationCheckList() {
                       targetEmploymentStatus.option === field.id
                         ? "border-[var(--base)]"
                         : "border"
-                    } flex flex-1 items-center  justify-start gap-2 border bg-[#FBFAF8] py-6 px-2 rounded-md sm:w-auto w-full`}
+                    } flex flex-1 items-center  justify-start gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md sm:w-auto w-full`}
                   >
                     <Checkbox
                       className=""
@@ -304,7 +303,7 @@ export default function SelectLocationCheckList() {
                     >
                       {field.label}
                     </Label>
-                  </Button>
+                  </div>
                 ))}
               </div>
             </div>
@@ -371,8 +370,7 @@ export default function SelectLocationCheckList() {
                   <div className="flex items-center justify-between sm:flex-row flex-col sm:gap-10 gap-3">
                     {employmentStatus.yesFields.roleInTargetJobSearch.options.fields.map(
                       (field, idx) => (
-                        <Button
-                          variant={"outline"}
+                        <div
                           key={idx}
                           onClick={() => {
                             setTargetEmploymentStatus(
@@ -390,7 +388,7 @@ export default function SelectLocationCheckList() {
                               ?.roleInTargetJobSearch === field.id
                               ? "border-[var(--base)]"
                               : "border"
-                          } flex flex-1 items-center  justify-start gap-2 border bg-[#FBFAF8] py-6 px-2 rounded-md sm:w-auto w-full`}
+                          } flex flex-1 items-center  justify-start gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md sm:w-auto w-full`}
                         >
                           <Checkbox
                             className=""
@@ -411,7 +409,7 @@ export default function SelectLocationCheckList() {
                           >
                             {field.label}
                           </Label>
-                        </Button>
+                        </div>
                       )
                     )}
                   </div>
@@ -440,8 +438,7 @@ export default function SelectLocationCheckList() {
                       <div className="flex items-center justify-between sm:flex-row flex-col sm:gap-10 gap-3 ">
                         {employmentStatus.yesFields.roleInTargetJobSearch.yesFields.options.fields.map(
                           (field, idx) => (
-                            <Button
-                              variant={"outline"}
+                            <div
                               key={idx}
                               onClick={() => {
                                 setTargetEmploymentStatus(
@@ -459,7 +456,7 @@ export default function SelectLocationCheckList() {
                                   ?.roleInTargetJobSearchOption === field.id
                                   ? "border-[var(--base)]"
                                   : "border"
-                              } flex flex-1 items-center  justify-start gap-2 border bg-[#FBFAF8] py-6 px-2 rounded-md sm:w-auto w-full`}
+                              } flex flex-1 items-center  justify-start gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md sm:w-auto w-full`}
                             >
                               <Checkbox
                                 className=""
@@ -480,7 +477,7 @@ export default function SelectLocationCheckList() {
                               >
                                 {field.label}
                               </Label>
-                            </Button>
+                            </div>
                           )
                         )}
                       </div>
