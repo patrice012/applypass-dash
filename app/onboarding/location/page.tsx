@@ -13,10 +13,12 @@ import {
 import { SearchInputWithLabel } from "@/components/onboarding/search";
 import { CheckboxFormMultiple } from "@/components/onboarding/checkboxesList";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Info } from "lucide-react";
+import { useStepSlider } from "@/components/hooks/useStepSlider";
+import { useToast } from "@/components/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 // Define the items as a readonly array to ensure immutability.
 const items = [
@@ -81,6 +83,8 @@ const items = [
 ];
 
 export default function SelectLocationCheckList() {
+  const { setSliderRange } = useStepSlider();
+  setSliderRange(60);
   const [itemsList, setItemsList] = useState([
     {
       id: "",
@@ -92,6 +96,15 @@ export default function SelectLocationCheckList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isRelocation, setIsRelocation] = useState(false);
 
+  const { toast } = useToast();
+  const router = useRouter();
+
+  function goToNext() {
+    router.push("/onboarding/sponsorship");
+    toast({
+      title: "Your data have been recorded",
+    });
+  }
   useEffect(() => {
     if (!searchTerm) {
       setItemsList(items);
@@ -168,23 +181,25 @@ export default function SelectLocationCheckList() {
       </CardContent>
       <CardFooter>
         <div className="flex items-center sm:flex-row  flex-col gap-4 w-full">
-          <Link
-            href={"/onboarding/technology"}
-            className="w-full py-3 text-center text-[1rem] rounded-full text-[var(--base-hover)] bg-white hover:bg-white/60 border border-[var(--base-hover)] hover:border-[var(--base-hover)] transition-all"
+          <Button
+            onClick={() => {
+              router.back();
+            }}
+            className="w-full py-6 text-center text-[1rem] rounded-full text-[var(--base-hover)] bg-white hover:bg-white/60 border border-[var(--base-hover)] hover:border-[var(--base-hover)] transition-all"
           >
             Go back
-          </Link>
+          </Button>
           {selectCount < 1 ? (
             <Button disabled className="w-full py-6 text-[1rem] rounded-full">
               Continue
             </Button>
           ) : (
-            <Link
-              href={"/onboarding/sponsorship"}
-              className="w-full py-3 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
+            <Button
+              onClick={goToNext}
+              className="w-full py-6 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
             >
               Continue
-            </Link>
+            </Button>
           )}
         </div>
       </CardFooter>

@@ -13,8 +13,10 @@ import {
 import { SearchInputWithLabel } from "@/components/onboarding/search";
 import { CheckboxFormMultiple } from "@/components/onboarding/checkboxesList";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { Label } from "@/components/ui/label";
+import { useStepSlider } from "@/components/hooks/useStepSlider";
+import { useToast } from "@/components/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 // Define the items as a readonly array to ensure immutability.
 const items = [
@@ -54,15 +56,27 @@ const items = [
 ];
 
 export default function SelectDomainsCheckList() {
+  const { setSliderRange } = useStepSlider();
+  setSliderRange(16);
   const [itemsList, setItemsList] = useState([
     {
       id: "",
       label: "",
     },
   ]);
-
+  
   const [selectCount, setSelectCount] = useState(0);
   const [searchTerm, setSearchTerm] = useState("");
+  
+  const { toast } = useToast();
+  const router = useRouter();
+
+  function goToNext() {
+    router.push("/onboarding/seniority");
+    toast({
+      title: "Your data have been recorded",
+    });
+  }
 
   useEffect(() => {
     if (!searchTerm) {
@@ -117,12 +131,12 @@ export default function SelectDomainsCheckList() {
             Select two domains to continue
           </Button>
         ) : (
-          <Link
-            href={"/onboarding/seniority"}
-            className="w-full py-3 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
+          <Button
+            onClick={goToNext}
+            className="w-full py-6 text-center text-white text-[1rem] rounded-full bg-[var(--base)] hover:bg-[var(--base-hover)] transition-all"
           >
             Continue
-          </Link>
+          </Button>
         )}
       </CardFooter>
     </Card>
