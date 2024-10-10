@@ -11,11 +11,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { CheckboxFormMultiple } from "@/components/onboarding/checkboxesList";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useStepSlider } from "@/components/hooks/useStepSlider";
 import { useToast } from "@/components/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { Label } from "@/components/ui/label";
 import { SelectItemsList } from "@/components/onboarding/selectItemsList";
 import { Input } from "@/components/ui/input";
 
@@ -103,8 +102,8 @@ export default function SelectSeniorityCheckList() {
           <div className="space-y-5">
             <div className="space-y-2">
               <p>
-                Of the experience level you've selected, which one best
-                represents the types of roles you're targeting in your job
+                Of the experience level you&apos;ve selected, which one best
+                represents the types of roles you&apos;re targeting in your job
                 search?
               </p>
             </div>
@@ -149,7 +148,7 @@ export default function SelectSeniorityCheckList() {
             <div className="space-y-2">
               <p>
                 How many years of work experience do you in the primary role
-                you're targeting, as a Frontend Software Engineer in this job
+                you&apos;re targeting, as a Frontend Software Engineer in this job
                 search?
               </p>
             </div>
