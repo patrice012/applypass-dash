@@ -63,11 +63,11 @@ export default function SelectSponsorshipAndSalaryCheckList() {
         <div className="space-y-6">
           {files.length ? (
             <div className="space-y-5">
-              <div className="flex items-start justify-between border-b pb-3">
-                <div className="flex items-center  gap-3">
+              <div className="flex items-start justify-between border-b pb-3 relative">
+                <div className="flex items-center  gap-3 ">
                   <File size={22} className="text-[#414141]" />
-                  <div className="">
-                    <h5 className="truncate max-w-[400px]">{files[0]?.name}</h5>
+                  <div className="sm:w-auto w-[80%]">
+                    <h5 className="truncate max-w-[400px] text-wrap">{files[0]?.name}</h5>
                     <span className="text-sm text-[#414141]">
                       {files[0]?.size
                         ? `${(files[0].size / 1024 / 1024).toFixed(
@@ -82,13 +82,14 @@ export default function SelectSponsorshipAndSalaryCheckList() {
                   onClick={() => {
                     setFiles([]);
                   }}
+                  className="absolute -top-2 -right-3"
                 >
                   <X size={20} className="text-[#414141]" />
                 </Button>
               </div>
 
               <div className="py-6">
-                <h5 className="text-[clamp(.8rem,3cqw,1.0125rem)]">
+                <h5 className="text-[clamp(.85rem,3cqw,1.0125rem)] sm:text-start text-center">
                   Your Current resume Score:
                 </h5>
                 <div className="flex items-center justify-between sm:flex-row flex-col sm:gap-3 gap-6 w-full">
