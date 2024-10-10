@@ -10,7 +10,7 @@ const BlogPage = () => {
   const [layout, setLayout] = useState<LayoutValue>(LayoutValue.Grid);
 
   return (
-    <main className="main-content">
+    <main className="main-content gap-5">
       <div className="flex flex-col gap-3 items-start md:flex-row w-full justify-between md:items-center">
         <h4 className="font-bold text-2xl">Recent Blogs</h4>
         <div className="flex gap-4 items-center">

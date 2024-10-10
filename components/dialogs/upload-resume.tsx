@@ -38,8 +38,8 @@ const UploadResumeModal = ({ children }: PropsWithChildren) => {
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="p-0 mt-[100px] h-full md:h-auto m-auto sm:max-w-[640px] max-w-[90%] bg-[#FBFAF8] overflow-scroll md:overflow-auto">
-        <DialogHeader className="py-4 px-5 flex flex-col items-start border-b">
-          <DialogTitle className="text-2xl font-bold">
+        <DialogHeader className="py-4 px-3 md:px-5 flex flex-col items-start border-b">
+          <DialogTitle className="text-start text-wrap text-2xl font-bold truncate ...">
             Check Your Linkedin Score
           </DialogTitle>
         </DialogHeader>

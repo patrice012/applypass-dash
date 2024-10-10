@@ -44,7 +44,7 @@ const Dashboard = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <main className="main-content">
+    <main className="main-content gap-5">
       <div className="flex w-full items-center">
         <div className="bg-[#EDE9FE] rounded-[12px]  md:items-center p-4 w-full flex flex-col gap-[24px] md:flex-row justify-between">
           <div className="flex sm:flex-row flex-col w-full gap-[12px] items-start sm:items-center">

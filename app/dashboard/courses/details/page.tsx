@@ -11,17 +11,17 @@ import Video from "next-video";
 
 const CourseDetailsPage = () => {
   return (
-    <main className="main-content relative">
+    <main className="main-content gap-3 md:gap-5 relative">
       <div className="flex gap-2 md:gap-3">
         <span className="text-[#1165EF] font-semibold">Courses</span>
         <span className="font-normal text-base text-gray-400">|</span>
         <span className="font-semibold">Salary Negotiation Part-01</span>
       </div>
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-3 md:gap-4">
-        <div className="flex flex-col gap-3 xl:col-span-2">
-          <div className="w-full h-[280px] md:h-[480px]">
+        <div className="flex gap-3 flex-col xl:col-span-2">
+          <div className="w-full">
             <Video
-              className="w-full h-full"
+              className="object-cover"
               as={CustomPlayer}
               src="https://res.cloudinary.com/demo/video/upload/fl_splice,l_video:cld_opener_preroll_sd,so_0/what_is_cloudinary_sd.mp4"
             />
