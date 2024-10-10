@@ -102,14 +102,14 @@ export const SideContentSmall = ({
   console.log(isOpened, "isOpened");
   return (
     <>
-      <nav className="flex text-sm font-medium text-white flex-col items-start gap-2">
+      <nav className="flex text-sm font-medium text-white flex-col items-center gap-2">
         <div
           onClick={DrawerClose}
           className="absolute cursor-pointer rounded-full flex justify-center items-center bg-[#fff] border shadow-md left-[80px] z-50 size-[40px] top-[35px]">
           <ChevronRight size={30} color="#6805DA" />
         </div>
         <Link href="/dashboard">
-          <img src="/logowhite.svg" alt="" className="h-8 mb-[22px]" />
+          <img src="/logoMin.svg" alt="" className="h-8 mb-[22px]" />
         </Link>
         <NavItemSmall path="" icon={<Home />} title="Dashboard" />
         <NavItemSmall
