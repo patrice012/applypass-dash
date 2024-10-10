@@ -1,27 +1,52 @@
 import * as React from "react";
-import { BookOpen, FileText, Home, LayoutGrid, Settings } from "lucide-react";
+import {
+  BookOpen,
+  ChevronRight,
+  FileText,
+  Home,
+  LayoutGrid,
+  Settings,
+} from "lucide-react";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import NavItem from "../ui/nav-item";
+import NavItemSmall from "../ui/nav-item-small";
 import Link from "next/link";
 
 export function CustomDrawer({
   children,
   isOpened,
-}: { isOpened: boolean } & React.PropsWithChildren) {
+  showDrawer,
+  DrawerOpen,
+}: {
+  isOpened: boolean;
+  showDrawer: boolean;
+  DrawerOpen: () => void;
+} & React.PropsWithChildren) {
   return (
     <div className="hidden lg:flex">
-      <Drawer direction="left" open={isOpened} modal={false}>
-        <DrawerTrigger asChild>{children}</DrawerTrigger>
-        <DrawerContent className="bg-[#231232] px-4 max-w-[250px] h-full rounded-none py-4">
-          <SideContent isOpened={isOpened} />
-        </DrawerContent>
-      </Drawer>
+      {isOpened ? (
+        <Drawer direction="left" open={showDrawer} modal={false}>
+          <DrawerTrigger asChild>{children}</DrawerTrigger>
+          <DrawerContent className="bg-[#231232] px-4 max-w-[250px] h-full rounded-none py-4">
+            <SideContent isOpened={isOpened} />
+          </DrawerContent>
+        </Drawer>
+      ) : (
+        <div className="hidden lg:flex">
+          <Drawer direction="left" open={showDrawer} modal={false}>
+            <DrawerTrigger asChild>{children}</DrawerTrigger>
+            <DrawerContent className="bg-[#231232] px-4 max-w-[100px] h-full rounded-none py-4">
+              <SideContentSmall DrawerClose={DrawerOpen} isOpened={isOpened} />
+            </DrawerContent>
+          </Drawer>
+        </div>
+      )}
     </div>
   );
 }
 
 export const SideContent = ({ isOpened }: { isOpened: boolean }) => {
-  console.log(isOpened, 'isOpened')
+  console.log(isOpened, "isOpened");
   return (
     <>
       <nav className="flex text-sm font-medium text-white flex-col items-start gap-2">
@@ -63,6 +88,55 @@ export const SideContent = ({ isOpened }: { isOpened: boolean }) => {
           Upgrade Now
         </button>
       </div>
+    </>
+  );
+};
+
+export const SideContentSmall = ({
+  isOpened,
+  DrawerClose,
+}: {
+  isOpened: boolean;
+  DrawerClose: () => void;
+}) => {
+  console.log(isOpened, "isOpened");
+  return (
+    <>
+      <nav className="flex text-sm font-medium text-white flex-col items-start gap-2">
+        <div
+          onClick={DrawerClose}
+          className="absolute cursor-pointer rounded-full flex justify-center items-center bg-[#fff] border shadow-md left-[80px] z-50 size-[40px] top-[35px]">
+          <ChevronRight size={30} color="#6805DA" />
+        </div>
+        <Link href="/dashboard">
+          <img src="/logowhite.svg" alt="" className="h-8 mb-[22px]" />
+        </Link>
+        <NavItemSmall path="" icon={<Home />} title="Dashboard" />
+        <NavItemSmall
+          path="/courses"
+          icon={<BookOpen strokeWidth={1.5} />}
+          title="Courses"
+          isOpen={isOpened}
+        />
+        <NavItemSmall
+          path="/blogs"
+          icon={<FileText strokeWidth={1.5} />}
+          title="Blogs"
+          isOpen={isOpened}
+        />
+        <NavItemSmall
+          path="/tools"
+          icon={<LayoutGrid strokeWidth={1.5} />}
+          title="Tools"
+          isOpen={isOpened}
+        />
+        <NavItemSmall
+          path="/settings"
+          icon={<Settings strokeWidth={1.5} />}
+          title="Settings"
+          isOpen={isOpened}
+        />
+      </nav>
     </>
   );
 };
