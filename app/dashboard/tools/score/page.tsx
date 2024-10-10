@@ -11,7 +11,7 @@ const ProfileScore = () => {
 
   return (
     <div className="px-[10px] py-4 lg:py-8 lg:px-8 border">
-      <div className="flex gap-20 items-start">
+      <div className="flex flex-col lg:flex-row gap-4 md:gap-5 lg:gap-6 xl:gap-20 items-start">
         <button onClick={() => router.back()} className="cursor-pointer">
           <ArrowLeft color="#001E52" size={32} />
         </button>
@@ -21,7 +21,7 @@ const ProfileScore = () => {
             <div className="p-4 border-b-2 border-[#DDE3E7]">
               <h1 className="text-[20px] font-semibold">Overview</h1>
             </div>
-            <div className="p-4 gap-10 flex">
+            <div className="flex flex-col p-4 gap-10">
               <ScoreMeter svgScore={45} />
               <div className="flex flex-col flex-1 gap-3">
                 <ScoreDetailItem
@@ -53,14 +53,16 @@ const ProfileScore = () => {
             </div>
           </div>
           <h4 className="font-bold text-[24px] my-5">Breakdown</h4>
-          <div className="flex w-full items-center justify-between">
+          <div className="flex flex-col md:flex-row items-start w-full md:items-center justify-between">
             <h4 className="text-[18px]">Headline</h4>
-            <div className="flex gap-4 items-center">
+            <div className="flex w-full md:max-w-max justify-between gap-4 items-center">
               <Progress value={80} className="w-[180px] h-[10px]" />
-              <Badge className="bg-[#6805DA]/30 border text-[#6805DA] font-bold px-5 py-[6px]">
-                8/10
-              </Badge>
-              <ChevronDown />
+              <div className="flex items-center gap-2 md:gap-4">
+                <Badge className="bg-[#6805DA]/30 border text-[#6805DA] font-bold px-5 py-[6px]">
+                  8/10
+                </Badge>
+                <ChevronDown />
+              </div>
             </div>
           </div>
           <div className="bg-[#6805DA]/20 p-4 rounded-lg border border-[#6805DA]/30">
@@ -95,18 +97,20 @@ export default ProfileScore;
 
 const IndicatorContainer = ({ title }: { title: string }) => {
   return (
-    <div className="flex py-5 w-full items-center justify-between border-t">
+    <div className="flex flex-col items-start md:flex-row py-5 w-full md:items-center justify-between border-t">
       <h4 className="text-[18px]">{title}</h4>
-      <div className="flex gap-4 items-center">
+      <div className="flex md:max-w-max w-full justify-between gap-4 items-center">
         <Progress
           indicatorColor="bg-[#FCA069]"
           value={80}
-          className="w-[180px] h-[10px]"
+          className="w-[120px] md:w-[180px] h-[10px]"
         />
-        <Badge className="bg-[#FEDFCD]/30 border border-[#FEDFCD] text-[#064E3B] font-bold px-5 py-[6px]">
-          8/10
-        </Badge>
-        <ChevronDown className="cursor-pointer" />
+        <div className="flex items-center gap-2 md:gap-4">
+          <Badge className="bg-[#FEDFCD]/30 border border-[#FEDFCD] text-[#064E3B] font-bold px-5 py-[6px]">
+            8/10
+          </Badge>
+          <ChevronDown className="cursor-pointer" />
+        </div>
       </div>
     </div>
   );
@@ -122,9 +126,9 @@ const ScoreDetailItem = ({
   bg?: string;
 }) => {
   return (
-    <div className="flex w-full items-center justify-between">
-      <div className="flex items-center gap-2">
-        <div className={`${bg} size-4 rounded-md`}></div>
+    <div className="flex gap-4 w-full items-center justify-between">
+      <div className="flex w-[120px] md:max-w-max flex-1 items-center gap-2 line-clamp-1 truncate ... ">
+        <div className={`flex-shrink-0 ${bg} size-4 rounded-md`}></div>
         <h6>{title}</h6>
       </div>
       <span>{value}%</span>

@@ -11,7 +11,7 @@ const CoursesPage = () => {
   const [layout, setLayout] = useState<LayoutValue>(LayoutValue.Grid);
 
   return (
-    <main className="main-content">
+    <main className="main-content gap-5">
       <h1 className="text-2xl font-bold">Good Evening, Dan!</h1>
       <div className="flex flex-col gap-3 md:flex-row items-start md:items-center justify-between bg-[#EDE9FE] p-4 rounded-lg">
         <div className="flex flex-row w-full gap-[12px] items-center sm:items-center">

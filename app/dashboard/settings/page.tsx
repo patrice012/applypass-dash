@@ -27,7 +27,7 @@ const SettingsPage = () => {
   };
 
   return (
-    <div className="main-content bg-[#fff]">
+    <div className="main-content gap-5 bg-[#fff]">
       <div className="flex flex-col gap-[16px]">
         <span className="font-bold text-2xl">Settings</span>
         {/*  <Tabs defaultValue={activeSection} className="flex md:hidden">
@@ -59,7 +59,8 @@ const SettingsPage = () => {
         <div
           className={`bg-[#fff] sticky top-[0px] p-[30px] text-[#757F87] md:flex flex-col  rounded-[10px] w-full md:max-w-[300px] gap-[10px] border shadow-md ${
             click ? "hidden" : "flex"
-          } `}>
+          } `}
+        >
           <div
             className={`rounded-[5px] flex gap-[12px] p-[20px] items-center cursor-pointer ${
               activeSection === "account"
@@ -69,7 +70,8 @@ const SettingsPage = () => {
             onClick={() => {
               setActiveSection("account");
               setClick(true);
-            }}>
+            }}
+          >
             <User size={18} className="text-inherit" />
             <span>Profile</span>
           </div>
@@ -82,7 +84,8 @@ const SettingsPage = () => {
             onClick={() => {
               setActiveSection("security");
               setClick(true);
-            }}>
+            }}
+          >
             <Key size={18} className="text-inherit" />
             <span>Login and Security</span>
           </div>
@@ -95,7 +98,8 @@ const SettingsPage = () => {
             onClick={() => {
               setActiveSection("plan");
               setClick(true);
-            }}>
+            }}
+          >
             <CreditCard size={18} className="text-inherit" />
             <span>Plan</span>
           </div>
@@ -108,7 +112,8 @@ const SettingsPage = () => {
             onClick={() => {
               setActiveSection("notifications");
               setClick(true);
-            }}>
+            }}
+          >
             <Bell size={18} className="text-inherit" />
             <span>Notifications</span>
           </div>
