@@ -19,6 +19,8 @@ import { useRouter } from "next/navigation";
 import { SelectItemsList } from "@/components/onboarding/selectItemsList";
 import { RadioGroupsMultipe } from "@/components/onboarding/radioGroups";
 import { DatePicker } from "@/components/onboarding/datePicker";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 // inputMappings
 const workStatus = {
@@ -43,6 +45,74 @@ const workStatus = {
         label: "I am both a United States citizen and a Canadian citizen.",
       },
     ],
+  },
+};
+
+const visaStatus = {
+  question:
+    "If you do not hold citizenship or permanent residency, what’s your current visa status?",
+  options: {
+    label: "",
+    fields: [
+      {
+        id: "select-visa-status",
+        label: "Select visa status",
+      },
+      {
+        id: "us-permanent-resident",
+        label: "US Permanent Resident (Green Card)",
+      },
+      {
+        id: "us-h1b",
+        label: "US H1B",
+      },
+      {
+        id: "us-h1b1",
+        label: "US H1B1",
+      },
+      {
+        id: "us-f1-opt",
+        label: "US F1 OPT",
+      },
+      {
+        id: "us-tn",
+        label: "US TN",
+      },
+      {
+        id: "canadian-permanent-resident",
+        label: "Canadian Permanent Resident",
+      },
+      {
+        id: "no-us-canadian-visa",
+        label: "Do not have a US or Canadian Work Visa",
+      },
+      {
+        id: "other-us-visa",
+        label: "Other US Work Visa",
+      },
+      {
+        id: "other-canadian-visa",
+        label: "Other Canadian Work Visa",
+      },
+    ],
+  },
+  expireDate: "When does your current work visa expire?",
+  jobSeeking: {
+    question:
+      "Are you currently job seeking in a country where you do not hold a valid work visa?",
+    options: {
+      label: "",
+      fields: [
+        {
+          id: "job-seeking-yes",
+          label: "Yes",
+        },
+        {
+          id: "job-seeking-no",
+          label: "No",
+        },
+      ],
+    },
   },
 };
 
@@ -92,28 +162,56 @@ export default function WorkStatus() {
   const { setSliderRange } = useStepSlider();
   setSliderRange(60);
 
-  const [targetCitizenshipStatus, setTargetCitizenshiptatus] =
+  const [targetCitizenshipStatus, setTargetCitizenshipStatus] =
     useState<TTargetStatusType>({
       option: "",
       choice: "",
     });
 
-  const [targetSecurityClearanceStatus, setTargetSecurityClearancetatus] =
+  const [targetSecurityClearanceStatus, setTargetSecurityClearanceStatus] =
     useState<TTargetStatusType>({
       option: "",
       choice: "",
     });
 
-  const [date, setDate] = useState<Date>();
+  type TVisaStatus = TTargetStatusType & {
+    expireDate: Date | undefined;
+    jobSeeking: { option: string; choice: string };
+  };
+  const [targetVisaStatus, setTargetVisaStatus] = useState<TVisaStatus>({
+    option: "",
+    choice: "",
+    expireDate: undefined,
+    jobSeeking: {
+      option: "",
+      choice: "",
+    },
+  });
 
   const [isValidForm, setIsValidForm] = useState(false);
 
   useEffect(() => {
     // Set the form's validity
-    setIsValidForm(
-      !!targetCitizenshipStatus.choice && !!targetSecurityClearanceStatus.choice
-    );
+    const selectInput =
+      !!targetCitizenshipStatus.choice &&
+      !!targetSecurityClearanceStatus.choice;
+
+    const checkVisa =
+      targetCitizenshipStatus.choice === "non-us-canadian-citizen"
+        ? !!targetVisaStatus.choice &&
+          !!(targetVisaStatus.choice != "no-us-canadian-visa"
+            ? targetVisaStatus.expireDate
+            : true) &&
+          !!targetVisaStatus.jobSeeking.choice
+        : true;
+    setIsValidForm(selectInput && checkVisa);
   }, [targetCitizenshipStatus, targetSecurityClearanceStatus]);
+
+  console.log(
+    targetCitizenshipStatus,
+    targetSecurityClearanceStatus,
+    targetVisaStatus
+  );
 
   const { toast } = useToast();
   const router = useRouter();
@@ -149,9 +247,10 @@ export default function WorkStatus() {
               <RadioGroupsMultipe
                 items={workStatus.options.fields}
                 setSelectList={(data) =>
-                  setTargetCitizenshiptatus((prev: TTargetStatusType) => ({
+                  setTargetCitizenshipStatus((prev: TTargetStatusType) => ({
                     ...prev,
                     choice: data?.at(0)?.id || "",
+                    option: workStatus.question,
                   }))
                 }
                 display={"flex flex-col gap-3"}
@@ -161,62 +260,115 @@ export default function WorkStatus() {
                   <h6 className="text-[.9rem]">{workStatus.options.label}</h6>
                 </div>
               </RadioGroupsMultipe>
-              <div className="space-y-4">
+              {targetCitizenshipStatus.choice === "non-us-canadian-citizen" ? (
                 <div className="space-y-4">
-                  <h5 className="font-semibold">
-                    If you do not hold citizenship or permanent residency,
-                    what’s your current visa status?
-                  </h5>
+                  <div className="space-y-4">
+                    <h5 className="font-semibold">{visaStatus.question}</h5>
 
-                  <div>
-                    <SelectItemsList
-                      selectList={[{ id: "text", label: "lorem" }]}
-                      setCurrentSelection={(data) => {
-                        console.log(data, "data");
-                        // setTargetEmploymentStatus(
-                        //   (prev: TTargetEmployementStatus) => ({
-                        //     ...prev,
-                        //     yesFields: {
-                        //       ...prev.yesFields,
-                        //       company: data || "",
-                        //     },
-                        //   })
-                        // );
-                      }}
-                      placeholder={"Select visa status"}
-                      // currentSelection={
-                      //   targetEmploymentStatus.yesFields?.company
-                      // }
-                    />
+                    <div>
+                      <SelectItemsList
+                        selectList={visaStatus.options.fields}
+                        setCurrentSelection={(data) => {
+                          setTargetVisaStatus((prev: TVisaStatus) => ({
+                            ...prev,
+                            choice: data || "",
+                            option: visaStatus.question,
+                          }));
+                        }}
+                        placeholder={"Select visa status"}
+                        currentSelection={targetVisaStatus.choice}
+                      />
+                    </div>
+                  </div>
+
+                  {targetVisaStatus.choice != "no-us-canadian-visa" ? (
+                    <div className="space-y-4">
+                      <h5 className="font-semibold">{visaStatus.expireDate}</h5>
+                      <DatePicker
+                        getDate={(date) => {
+                          setTargetVisaStatus((prev: TVisaStatus) => ({
+                            ...prev,
+                            expireDate: date,
+                          }));
+                        }}
+                      >
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "w-full justify-start text-left font-normal border bg-[#FBFAF8] py-6 px-2 rounded-md",
+                            !targetVisaStatus.expireDate &&
+                              "text-muted-foreground"
+                          )}
+                        >
+                          <CalendarDays className="mr-2 h-4 w-4" />
+                          {targetVisaStatus.expireDate ? (
+                            format(targetVisaStatus.expireDate, "PPP")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                        </Button>
+                      </DatePicker>
+                    </div>
+                  ) : null}
+
+                  <div className="space-y-4">
+                    <h5 className="font-semibold">{visaStatus.question}</h5>
+
+                    <div className="flex items-center justify-between sm:flex-row flex-col sm:gap-10 gap-3">
+                      {visaStatus.jobSeeking.options.fields.map(
+                        (field, idx) => (
+                          <div
+                            key={idx}
+                            onClick={() => {
+                              setTargetVisaStatus((prev: TVisaStatus) => ({
+                                ...prev,
+                                jobSeeking: {
+                                  ...prev.jobSeeking,
+                                  choice: field.id,
+                                  option: visaStatus.jobSeeking.question,
+                                },
+                              }));
+                            }}
+                            className={` ${
+                              targetVisaStatus.jobSeeking.choice === field.id
+                                ? "border-[var(--base)]"
+                                : "border"
+                            } flex flex-1 items-center  justify-start gap-2 border bg-[#FBFAF8] py-3 px-2 rounded-md sm:w-auto w-full`}
+                          >
+                            <Checkbox
+                              className=""
+                              id={field.id}
+                              checked={
+                                targetVisaStatus.jobSeeking.choice === field.id
+                              }
+                            />
+                            <Label
+                              htmlFor={field.id}
+                              className={`${
+                                targetVisaStatus.jobSeeking.choice === field.id
+                                  ? "text-[var(--base)]"
+                                  : "text-black"
+                              } text-[.95rem] font-normal`}
+                            >
+                              {field.label}
+                            </Label>
+                          </div>
+                        )
+                      )}
+                    </div>
                   </div>
                 </div>
-                <div className="space-y-4">
-                  <h5 className="font-semibold">
-                    When does your current work visa expire?
-                  </h5>
-                  <DatePicker getDate={setDate}>
-                    <Button
-                      variant={"outline"}
-                      className={cn(
-                        "w-full justify-start text-left font-normal border bg-[#FBFAF8] py-6 px-2 rounded-md",
-                        !date && "text-muted-foreground"
-                      )}
-                    >
-                      <CalendarDays className="mr-2 h-4 w-4" />
-                      {date ? format(date, "PPP") : <span>Pick a date</span>}
-                    </Button>
-                  </DatePicker>
-                </div>
-              </div>
+              ) : null}
             </div>
             <div>
               <RadioGroupsMultipe
                 items={securityClearance.options.fields}
                 setSelectList={(data) =>
-                  setTargetSecurityClearancetatus(
+                  setTargetSecurityClearanceStatus(
                     (prev: TTargetStatusType) => ({
                       ...prev,
                       choice: data?.at(0)?.id || "",
+                      option: securityClearance.question,
                     })
                   )
                 }
