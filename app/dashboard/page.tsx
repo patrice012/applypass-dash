@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/tooltip";
 import { JobDetail } from "@/components/dialogs/job-detail";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
   const checkIsTouchDevice = (): boolean => {
@@ -35,6 +36,7 @@ const Dashboard = () => {
       ("ontouchstart" in window || navigator.maxTouchPoints > 0)
     );
   };
+  const router = useRouter();
 
   // const isTouchDevice = "ontouchstart" in window;
   const isTouchDevice = checkIsTouchDevice();
@@ -58,7 +60,12 @@ const Dashboard = () => {
               </span>
             </div>
           </div>
-          <button className="bg-[#6805DA] hover:bg-[#6805daa9] border border-[#6805DA] transition ease-in-out duration-500 hover:border hover:border-[#6805DA] rounded-full px-[40px] py-[12px]  text-[#fff] text-nowrap">
+          <button
+            onClick={() => {
+              router.push("/onboarding");
+            }}
+            className="bg-[#6805DA] hover:bg-[#6805daa9] border border-[#6805DA] transition ease-in-out duration-500 hover:border hover:border-[#6805DA] rounded-full px-[40px] py-[12px]  text-[#fff] text-nowrap"
+          >
             Complete Profile
           </button>
         </div>

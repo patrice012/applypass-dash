@@ -32,7 +32,7 @@ export default function SelectSponsorshipAndSalaryCheckList() {
   const router = useRouter();
 
   function goToNext() {
-    router.push("/dashboard");
+    router.push("/onboarding/current-status ");
     toast({
       title: "Your data have been recorded",
     });

@@ -149,7 +149,7 @@ type TTargetEmployementStatus = {
   };
 };
 
-export default function SelectLocationCheckList() {
+export default function CurrentStatus() {
   const { setSliderRange } = useStepSlider();
   setSliderRange(60);
 
@@ -218,7 +218,7 @@ export default function SelectLocationCheckList() {
 
   function goToNext() {
     if (isValidForm) {
-      router.push("/onboarding/sponsorship");
+      router.push("/onboarding/work-status");
       toast({
         title: "Your data have been recorded",
       });

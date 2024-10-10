@@ -1,9 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { CourseItemSmall } from "@/components/app/course-item";
 import CustomPlayer from "@/components/app/player/player";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LayoutValue } from "@/helpers/constants";
+import { LayoutValue, loremValue } from "@/helpers/constants";
 import { courseItemImages } from "@/helpers/mock";
 import { NotepadText, UsersRound } from "lucide-react";
 import Video from "next-video";
@@ -11,14 +12,14 @@ import Video from "next-video";
 const CourseDetailsPage = () => {
   return (
     <main className="main-content relative">
-      <div className="flex gap-3">
+      <div className="flex gap-2 md:gap-3">
         <span className="text-[#1165EF] font-semibold">Courses</span>
         <span className="font-normal text-base text-gray-400">|</span>
         <span className="font-semibold">Salary Negotiation Part-01</span>
       </div>
-      <div className="grid grid-cols-3 gap-4">
-        <div className="flex flex-col gap-3 col-span-2">
-          <div className="w-full h-[480px]">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-3 md:gap-4">
+        <div className="flex flex-col gap-3 xl:col-span-2">
+          <div className="w-full h-[280px] md:h-[480px]">
             <Video
               className="w-full h-full"
               as={CustomPlayer}
@@ -26,10 +27,10 @@ const CourseDetailsPage = () => {
             />
           </div>
           <h1 className="font-semibold text-xl">Salary Negotiation Part-01</h1>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-2 md:flex-row items-start lg:items-center justify-between">
             <div className="flex gap-2 items-center">
               <img
-                className="object-cover size-10 rounded-full border"
+                className="object-cover size-10 rounded-full"
                 src={courseItemImages[0]}
                 alt="CourseItem image"
               />
@@ -63,25 +64,23 @@ const CourseDetailsPage = () => {
               <TabsTrigger value="ressources">Ressources</TabsTrigger>
             </TabsList>
             <TabsContent value="overview">
-              <p className="text-[#6B7280] text-base font-normal">
-                It doe gillywater snape back black charm them. Feint out sirius
-                bat together bean crossbow spider banana. Bezoar scabbers
-                blubber to potter. Clean which so mimbletonia creature you
-                leprechaun would full-moon. Palominos snitch which cabbage
-                bertie squashy glory turban. Soul blood servant nose doe. Duel
-                tart shunpike hippogriff scarlet fenrir. Sight knew brass die
-                yaxley forbidden marauder’s for padma hiya.
+              <p className="text-[#6B7280] text-base font-normal text-justify">
+                {loremValue}
               </p>
             </TabsContent>
             <TabsContent value="transcript">
-              Change your password here.
+              <p className="text-[#6B7280] text-base font-normal text-justify">
+                {loremValue}
+              </p>
             </TabsContent>
             <TabsContent value="ressources">
-              Change your password here.
+              <p className="text-[#6B7280] text-base font-normal text-justify">
+                {loremValue}
+              </p>
             </TabsContent>
           </Tabs>
         </div>
-        <div className="sticky top-0 flex flex-col gap-4 bg-[#F9FAFB] rounded-md p-5">
+        <div className="sticky top-0 flex flex-col gap-4 bg-[#F9FAFB] rounded-md p-2 lg:p-5">
           <h1 className="font-bold text-[23px]">Recommended Courses</h1>
           <div className="flex flex-col gap-4">
             {Array.from({ length: 6 }).map((_, idx) => (
