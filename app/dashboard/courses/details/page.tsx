@@ -83,7 +83,7 @@ const CourseDetailsPage = () => {
         <div className="sticky top-0 flex flex-col gap-4 bg-[#F9FAFB] rounded-md p-2 lg:p-5">
           <h1 className="font-bold text-[23px]">Recommended Courses</h1>
           <div className="flex flex-col gap-4">
-            {Array.from({ length: 6 }).map((e, idx) => (
+            {Array.from({ length: 6 }).map((_, idx) => (
               <CourseItemSmall
                 key={idx}
                 image={courseItemImages[0]}

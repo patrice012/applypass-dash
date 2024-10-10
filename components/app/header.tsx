@@ -24,12 +24,11 @@ import { signOut } from "next-auth/react";
 
 const Header = ({
   isDrawerOpen,
-  handleOpenDrawer,
   isSmall,
   setSmall,
 }: {
   isDrawerOpen: boolean;
-  handleOpenDrawer: () => void;
+  handleOpenDrawer?: () => void;
   isSmall: boolean;
   setSmall: () => void;
 }) => {
@@ -43,7 +42,11 @@ const Header = ({
     <>
       <header className=" bg-white py-4 z-30 border-b justify-between flex items-center px-[10px] lg:px-8 w-full">
         <div className="hidden lg:flex items-center gap-3">
-          <CustomDrawer showDrawer={isDrawerOpen} DrawerOpen={setSmall} isOpened={isSmall}>
+          <CustomDrawer
+            showDrawer={isDrawerOpen}
+            DrawerOpen={setSmall}
+            isOpened={isSmall}
+          >
             {isSmall ? (
               <button onClick={setSmall}>
                 <Menu size={32} className="cursor-pointer" />
@@ -70,7 +73,8 @@ const Header = ({
               <Button
                 variant="outline"
                 size="icon"
-                className="overflow-hidden rounded-full">
+                className="overflow-hidden rounded-full"
+              >
                 <img
                   src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Avatar"
@@ -80,12 +84,14 @@ const Header = ({
             </DropdownMenuTrigger>
             <DropdownMenuContent
               align="end"
-              className="flex flex-col gap-1 p-4">
+              className="flex flex-col gap-1 p-4"
+            >
               <div className="flex gap-3">
                 <Button
                   variant="outline"
                   size="icon"
-                  className="overflow-hidden rounded-full size-12 border border-[#6805DA]">
+                  className="overflow-hidden rounded-full size-12 border border-[#6805DA]"
+                >
                   <img
                     src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     width={48}
@@ -143,12 +149,14 @@ const Header = ({
       {isSidebarOpen && (
         <div
           className="bg-[#5150509c] backdrop-blur-sm fixed right-0 top-0 w-full h-full z-[1000] lg:hidden"
-          onClick={toggleSidebar}>
+          onClick={toggleSidebar}
+        >
           <div className="flex max-w-[320px] flex-col  right-0  top-0 bg-[#231232] overflow-auto  h-full p-4 relative">
             <SideContent isOpened={true} />
             <div
               className="absolute top-0 right-0 z-20 p-2"
-              onClick={toggleSidebar}>
+              onClick={toggleSidebar}
+            >
               <CircleX strokeWidth={1.5} size={28} color="#fff" />
             </div>
           </div>

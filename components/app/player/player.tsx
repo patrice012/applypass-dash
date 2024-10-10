@@ -1,21 +1,18 @@
-/* eslint-disable prefer-const */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// player.tsx
 "use client";
 
 import { Settings, Volume2, VolumeOff } from "lucide-react";
 import type { PlayerProps } from "next-video";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Next, Pause, Play, Previous } from "iconsax-react";
 import dynamic from "next/dynamic";
 import { formatPlayerTime } from "@/helpers/constants";
+import { OnProgressProps } from "react-player/base";
 
 const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 export default function CustomPlayer(props: PlayerProps) {
-  let { asset, src, poster, blurDataURL, thumbnailTime, ...rest } = props;
-  let config = { file: { attributes: { poster } } };
-  const playerRef = useRef<typeof ReactPlayer>(null);
+  const { src, poster, ...rest } = props;
+  const config = { file: { attributes: { poster } } };
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.8);
   const [muted, setMuted] = useState(false);
@@ -35,9 +32,8 @@ export default function CustomPlayer(props: PlayerProps) {
     setMuted(!muted);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleProgress = (state: any) => {
-    setPlayedSeconds(state.playedSeconds);
+  const handleProgress = (playedSeconds: number) => {
+    setPlayedSeconds(playedSeconds);
   };
 
   // const handleSeek = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +59,9 @@ export default function CustomPlayer(props: PlayerProps) {
         playing={playing}
         volume={volume}
         muted={muted}
-        onProgress={handleProgress}
+        onProgress={(state: OnProgressProps) =>
+          handleProgress(state.playedSeconds)
+        }
         onDuration={handleDuration}
         onEnded={() => setPlaying(false)}
       />
