@@ -24,12 +24,16 @@ import { signOut } from "next-auth/react";
 
 const Header = ({
   isDrawerOpen,
-  handleOpenDrawer,
+  isSmall,
+  setSmall,
 }: {
   isDrawerOpen: boolean;
-  handleOpenDrawer: () => void;
+  handleOpenDrawer?: () => void;
+  isSmall: boolean;
+  setSmall: () => void;
 }) => {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
@@ -38,10 +42,18 @@ const Header = ({
     <>
       <header className=" bg-white py-4 z-30 border-b justify-between flex items-center px-[10px] lg:px-8 w-full">
         <div className="hidden lg:flex items-center gap-3">
-          <CustomDrawer isOpened={isDrawerOpen}>
-            <button onClick={handleOpenDrawer}>
-              <Menu size={32} className="cursor-pointer" />
-            </button>
+          <CustomDrawer
+            showDrawer={isDrawerOpen}
+            DrawerOpen={setSmall}
+            isOpened={isSmall}
+          >
+            {isSmall ? (
+              <button onClick={setSmall}>
+                <Menu size={32} className="cursor-pointer" />
+              </button>
+            ) : (
+              ""
+            )}
           </CustomDrawer>
 
           <h3 className="hidden lg:block text-2xl text-[#231232] font-bold">
@@ -135,7 +147,10 @@ const Header = ({
         </div>
       </header>
       {isSidebarOpen && (
-        <div className="bg-[#5150509c] backdrop-blur-sm fixed right-0 top-0 w-full h-full z-[1000] lg:hidden">
+        <div
+          className="bg-[#5150509c] backdrop-blur-sm fixed right-0 top-0 w-full h-full z-[1000] lg:hidden"
+          onClick={toggleSidebar}
+        >
           <div className="flex max-w-[320px] flex-col  right-0  top-0 bg-[#231232] overflow-auto  h-full p-4 relative">
             <SideContent isOpened={true} />
             <div

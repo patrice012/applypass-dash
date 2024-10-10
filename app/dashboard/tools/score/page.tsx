@@ -1,5 +1,6 @@
 "use client";
 
+import { ScoreMeter } from "@/components/onboarding/scoreMeter";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, ChevronDown } from "lucide-react";
@@ -14,9 +15,44 @@ const ProfileScore = () => {
         <button onClick={() => router.back()} className="cursor-pointer">
           <ArrowLeft color="#001E52" size={32} />
         </button>
-        <div className="flex flex-1 flex-col gap-5">
+        <div className="flex flex-1 flex-col gap-4">
           <h2 className="font-bold text-[23px]">Your Linkedin Profile Score</h2>
-          <h4 className="font-bold text-[24px] my-5">Available Tools</h4>
+          <div className="bg-[#FBFAF8] rounded-md shadow border">
+            <div className="p-4 border-b-2 border-[#DDE3E7]">
+              <h1 className="text-[20px] font-semibold">Overview</h1>
+            </div>
+            <div className="p-4 gap-10 flex">
+              <ScoreMeter svgScore={45} />
+              <div className="flex flex-col flex-1 gap-3">
+                <ScoreDetailItem
+                  bg="bg-green-custom"
+                  title="Headline"
+                  value={36}
+                />
+                <ScoreDetailItem
+                  bg="bg-green-custom"
+                  title="Geographic location"
+                  value={36}
+                />
+                <ScoreDetailItem
+                  bg="bg-orange-custom"
+                  title="About"
+                  value={36}
+                />
+                <ScoreDetailItem
+                  bg="bg-pink-custom"
+                  title="Top skills"
+                  value={36}
+                />
+                <ScoreDetailItem
+                  bg="bg-orange-custom"
+                  title={`Bullet points in "Experience" section`}
+                  value={36}
+                />
+              </div>
+            </div>
+          </div>
+          <h4 className="font-bold text-[24px] my-5">Breakdown</h4>
           <div className="flex w-full items-center justify-between">
             <h4 className="text-[18px]">Headline</h4>
             <div className="flex gap-4 items-center">
@@ -72,6 +108,26 @@ const IndicatorContainer = ({ title }: { title: string }) => {
         </Badge>
         <ChevronDown className="cursor-pointer" />
       </div>
+    </div>
+  );
+};
+
+const ScoreDetailItem = ({
+  title,
+  value,
+  bg,
+}: {
+  title: string;
+  value: number;
+  bg?: string;
+}) => {
+  return (
+    <div className="flex w-full items-center justify-between">
+      <div className="flex items-center gap-2">
+        <div className={`${bg} size-4 rounded-md`}></div>
+        <h6>{title}</h6>
+      </div>
+      <span>{value}%</span>
     </div>
   );
 };

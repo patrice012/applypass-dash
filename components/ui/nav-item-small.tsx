@@ -11,7 +11,7 @@ interface NavItemProps {
   isOpen?: boolean;
 }
 
-const NavItem = (props: NavItemProps) => {
+const NavItemSmall = (props: NavItemProps) => {
   const pathname = usePathname();
   const isActive = pathname === `/dashboard${props.path}`;
   return (
@@ -20,11 +20,11 @@ const NavItem = (props: NavItemProps) => {
         <Link
           href={`/dashboard${props.path}`}
           className={`${
-            isActive ? "bg-[#6805DA] rounded-[100px]" : ""
-          } w-full pl-4 py-3 font-medium text-sm text-white flex gap-3 items-center justify-start rounded-[100px] text-muted-foreground transition-colors`}
+            isActive ? "bg-[#6805DA] rounded-[10px]" : ""
+          } w-full py-3 font-medium text-sm text-white flex flex-col gap-1 items-center justify-start rounded-[100px] text-muted-foreground transition-colors`}
         >
-          <div className="size-[22px]">{props.icon}</div>
-          <span className="text-sm leading-4 truncate ...">{props.title}</span>
+          <div className="size-[25px]">{props.icon}</div>
+          <span className="text-[10px] leading-4 truncate ...">{props.title}</span>
           {props.extras}
         </Link>
       </TooltipTrigger>
@@ -32,4 +32,4 @@ const NavItem = (props: NavItemProps) => {
   );
 };
 
-export default NavItem;
+export default NavItemSmall;

@@ -6,12 +6,19 @@ import { useState } from "react";
 
 export function CheckboxFormMultiple({
   items,
-  setSelectCount,
+  setSelectList,
   children,
+  display = "grid",
 }: {
   items: { id: string; label: string }[];
-  setSelectCount: (value: number) => void;
+  setSelectList: (
+    value: {
+      id: string;
+      label: string;
+    }[]
+  ) => void;
   children: React.ReactNode;
+  display?: string;
 }) {
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
 
@@ -27,7 +34,7 @@ export function CheckboxFormMultiple({
 
       // Filter items based on selected items
       const filteredItems = items.filter((item) => updatedSet.has(item.id));
-      setSelectCount(filteredItems.length);
+      setSelectList(filteredItems);
 
       return updatedSet;
     });
@@ -37,8 +44,8 @@ export function CheckboxFormMultiple({
     <div>
       <div className="mb-4">{children}</div>
       <div
-        className="grid sm:grid-cols-2 gap-4 sm:max-h-[22rem] max-h-[35rem]
-      overflow-y-auto"
+        className={`sm:grid-cols-2 gap-4 sm:max-h-[22rem] max-h-[35rem]
+      overflow-y-auto ${display}`}
       >
         {items?.map((item) => (
           <div key={item.id} className="flex items-center gap-2">
