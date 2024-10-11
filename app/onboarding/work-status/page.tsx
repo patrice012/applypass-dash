@@ -205,7 +205,11 @@ export default function WorkStatus() {
           !!targetVisaStatus.jobSeeking.choice
         : true;
     setIsValidForm(selectInput && checkVisa);
-  }, [targetCitizenshipStatus, targetSecurityClearanceStatus]);
+  }, [
+    targetCitizenshipStatus,
+    targetSecurityClearanceStatus,
+    targetVisaStatus,
+  ]);
 
   console.log(
     targetCitizenshipStatus,
@@ -218,7 +222,7 @@ export default function WorkStatus() {
 
   function goToNext() {
     if (isValidForm) {
-      router.push("/dashboard");
+      router.push("/onboarding/blacklist-companies");
       toast({
         title: "Your data have been recorded",
       });
