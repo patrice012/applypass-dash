@@ -8,7 +8,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 export function AutoCompleteInput({
   setInputValue,
@@ -16,23 +16,31 @@ export function AutoCompleteInput({
   items,
   className,
   placeholder,
+  setDefault = false,
 }: {
   setInputValue: (value: string) => void;
   setSearchTerm: (value: string) => void;
   items: { id: string; label: string }[];
   className?: string;
   placeholder: string;
+  setDefault?: boolean;
 }) {
   const filteredItems = useMemo(() => (items.length > 0 ? items : []), [items]);
   const [localSearch, setLocalSearch] = useState("");
   const [closeModal, setCloseModal] = useState(false);
 
-  // if not value, set searchTerm as the default value
-  useEffect(() => {
-    if (filteredItems.length === 0 && localSearch.length > 0) {
-      setInputValue(localSearch);
-    }
-  }, [filteredItems, localSearch]);
+  const handleInputChange = (value: string) => {
+    setSearchTerm(value);
+    if (setDefault) setInputValue(value);
+    setLocalSearch(value);
+    setCloseModal(false);
+  };
+
+  const handleItemSelect = (item: { id: string; label: string }) => {
+    setInputValue(item.id);
+    setLocalSearch(item.label);
+    setCloseModal(true);
+  };
 
   return (
     <Command
@@ -41,36 +49,23 @@ export function AutoCompleteInput({
       )}
     >
       <CommandInput
-        onValueChange={(value) => {
-          setSearchTerm(value);
-          setLocalSearch(value);
-          setCloseModal(false);
-        }}
+        onValueChange={handleInputChange}
         value={localSearch}
         placeholder={placeholder}
         className="text-[1rem] w-full outline-none"
       />
 
       <CommandList className={cn("w-full", className)}>
-        {
-          filteredItems.length > 0 && !closeModal
-            ? filteredItems.map((item) => (
-                <CommandItem
-                  key={item.id}
-                  onSelect={() => {
-                    setInputValue(item.id);
-                    setLocalSearch(item.label);
-                    setCloseModal(true);
-                  }}
-                >
-                  <span>{item.label}</span>
-                </CommandItem>
-              ))
-            : null
-          //     (
-          //     <CommandEmpty>No results found.</CommandEmpty>
-          // )
-        }
+        {filteredItems.length > 0 && !closeModal
+          ? filteredItems.map((item) => (
+              <CommandItem
+                key={item.id}
+                onSelect={() => handleItemSelect(item)}
+              >
+                <span>{item.label}</span>
+              </CommandItem>
+            ))
+          : null}
       </CommandList>
     </Command>
   );

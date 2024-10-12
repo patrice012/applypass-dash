@@ -365,6 +365,7 @@ export default function CurrentStatus() {
                       )}
                       placeholder={"Choose an option..."}
                       setSearchTerm={setSearchTerm}
+                      setDefault={true}
                       setInputValue={(value: string) =>
                         setTargetEmploymentStatus(
                           (prev: TTargetEmployementStatus) => ({

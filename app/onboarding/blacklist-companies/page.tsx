@@ -220,6 +220,7 @@ export default function BlackListCompanies() {
                 setSearchTerm={setSearchTerm}
                 setInputValue={(value: string) => addBlackListCompany(value)}
                 className={`${searchTerm.length > 0 ? "block" : "hidden"}`}
+                setDefault={false}
               />
             </div>
           </div>

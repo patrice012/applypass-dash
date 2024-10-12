@@ -17,7 +17,7 @@ import { PhoneNumberInput } from "@/components/onboarding/phoneNumberInput";
 import { Label } from "@/components/ui/label";
 import { AutoCompleteInput } from "@/components/onboarding/autocompleteInput";
 import { Input } from "@/components/ui/input";
-import { Github, Linkedin, Link as LinkSVG , Info} from "lucide-react";
+import { Github, Linkedin, Link as LinkSVG, Info } from "lucide-react";
 import { z } from "zod";
 
 const cities = [
@@ -138,13 +138,14 @@ export default function UpdateProfile() {
 
   function handleSubmit() {
     try {
-      const validatedData = validationSchema.parse(formData);
-      console.log(validatedData, "validateData");
-      goToNext();
-    } catch (err) {
-      if (err instanceof z.ZodError) {
-        setFormErrors(err.formErrors.fieldErrors);
+      const { success, error } = validationSchema.safeParse(formData);
+      if (!success) {
+        setFormErrors(error.formErrors.fieldErrors);
+      } else {
+        goToNext();
       }
+    } catch (err) {
+      console.log(err, "error handleSubmit");
     }
   }
 
@@ -155,6 +156,7 @@ export default function UpdateProfile() {
     });
   }
 
+  console.log(formData, "formdata");
   return (
     <div>
       <Card className={cn("sm:w-[680px] border-none shadow-none bg-[#E5E7EB]")}>
@@ -184,6 +186,7 @@ export default function UpdateProfile() {
                 items={Array.from(cities).filter((item) =>
                   item.id.includes(formData.address)
                 )}
+                setDefault={true}
                 placeholder={"Enter or search location..."}
                 setSearchTerm={(value) =>
                   setFormData((prev) => ({ ...prev, address: value }))
