@@ -23,11 +23,11 @@ export const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
 }) => {
   const [phone, setPhone] = useState<string>("");
   const [dialCode, setDialCode] = useState("");
-  const [isValidNumber, setIsValidNumber] = useState(true);
+  const [isValidNumber, setIsValidNumber] = useState(false);
 
   // by default phone can be (+dialCode) phone number or (dialCode) phone number
   useEffect(() => {
-    if (!!phone && phone.length > dialCode.length + 1) {
+    if (!!phone) {
       const isValid = isPhoneValid(phone);
       setIsValidNumber(isValid);
     }
@@ -36,8 +36,12 @@ export const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
   useEffect(() => {
     if (phone && isValidNumber) {
       getPhoneNumber(phone);
+    } else {
+      getPhoneNumber("");
     }
   }, [phone, isValidNumber]);
+
+  console.log(phone && isValidNumber, "phone && isValidNumber");
 
   return (
     <div>
@@ -61,7 +65,7 @@ export const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
         }}
       />
 
-      {!isValidNumber && (
+      {!isValidNumber && phone.length > dialCode.length + 1 && (
         <div style={{ color: "red", marginBlockStart: "4px" }}>
           Phone is not valid
         </div>
