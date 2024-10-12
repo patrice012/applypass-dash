@@ -33,9 +33,9 @@ export function SearchInputWithLabel({
           placeholder={placeholderText}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="text-[1rem] pl-12 w-full bg-[#FBFAF8] outline-none border border-solid border-neutral-300 focus:border-neutral-300 focus:border-transparent focus:outline-none focus:ring-0 focus-visible:border-neutral-300 focus-visible:border-transparent focus-visible:outline-none focus-visible:ring-0"
+          className="text-[1rem] pl-10 w-full bg-[#FBFAF8] outline-none border border-solid border-neutral-300 focus:border-neutral-300 focus:border-transparent focus:outline-none focus:ring-0 focus-visible:border-neutral-300 focus-visible:border-transparent focus-visible:outline-none focus-visible:ring-0"
         />
-        <Search className="absolute top-3 left-3" />
+        <Search size={17} className="absolute top-4 left-3 text-[#8f8f8f]" />
       </div>
     </div>
   );

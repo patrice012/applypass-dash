@@ -205,7 +205,11 @@ export default function WorkStatus() {
           !!targetVisaStatus.jobSeeking.choice
         : true;
     setIsValidForm(selectInput && checkVisa);
-  }, [targetCitizenshipStatus, targetSecurityClearanceStatus]);
+  }, [
+    targetCitizenshipStatus,
+    targetSecurityClearanceStatus,
+    targetVisaStatus,
+  ]);
 
   console.log(
     targetCitizenshipStatus,
@@ -218,7 +222,7 @@ export default function WorkStatus() {
 
   function goToNext() {
     if (isValidForm) {
-      router.push("/dashboard");
+      router.push("/onboarding/blacklist-companies");
       toast({
         title: "Your data have been recorded",
       });
@@ -295,7 +299,7 @@ export default function WorkStatus() {
                         <Button
                           variant={"outline"}
                           className={cn(
-                            "w-full justify-start text-left font-normal border bg-[#FBFAF8] py-6 px-2 rounded-md",
+                            "w-full flex justify-start items-center text-left font-normal border bg-[#FBFAF8] py-6 px-2 rounded-md",
                             !targetVisaStatus.expireDate &&
                               "text-muted-foreground"
                           )}

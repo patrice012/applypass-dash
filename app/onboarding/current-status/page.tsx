@@ -18,9 +18,9 @@ import { Info } from "lucide-react";
 import { useStepSlider } from "@/components/hooks/useStepSlider";
 import { useToast } from "@/components/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { SelectItemsList } from "@/components/onboarding/selectItemsList";
 import { Input } from "@/components/ui/input";
 import { RadioGroupsMultipe } from "@/components/onboarding/radioGroups";
+import { AutoCompleteInput } from "@/components/onboarding/autocompleteInput";
 
 // inputMappings
 const jobsMotivation = {
@@ -136,6 +136,49 @@ const salaryDetails = {
   desiredNextSalary: "What’s your desired next salary?",
 };
 
+const companies = [
+  {
+    id: "apple-inc",
+    label: "Apple Inc.",
+  },
+  {
+    id: "microsoft",
+    label: "Microsoft",
+  },
+  {
+    id: "google",
+    label: "Google",
+  },
+  {
+    id: "amazon",
+    label: "Amazon",
+  },
+  {
+    id: "meta",
+    label: "Meta (Facebook)",
+  },
+  {
+    id: "tesla",
+    label: "Tesla",
+  },
+  {
+    id: "ibm",
+    label: "IBM",
+  },
+  {
+    id: "intel",
+    label: "Intel",
+  },
+  {
+    id: "netflix",
+    label: "Netflix",
+  },
+  {
+    id: "salesforce",
+    label: "Salesforce",
+  },
+];
+
 type TTargetEmployementStatus = {
   option: string;
   yesFields: {
@@ -175,6 +218,7 @@ export default function CurrentStatus() {
     desiredNextSalary: 0,
   });
 
+  const [searchTerm, setSearchTerm] = useState("");
   const [isValidForm, setIsValidForm] = useState(false);
 
   useEffect(() => {
@@ -313,24 +357,26 @@ export default function CurrentStatus() {
                 <div className="space-y-4">
                   <p>{employmentStatus.yesFields.currentCompanyName}</p>
 
-                  <div>
-                    <SelectItemsList
-                      selectList={[{ id: "text", label: "lorem" }]}
-                      setCurrentSelection={(data) => {
+                  <div className="space-y-3 relative">
+                    <AutoCompleteInput
+                      items={Array.from(companies).filter(
+                        (item: { id: string; label: string }) =>
+                          item.id.includes(searchTerm)
+                      )}
+                      placeholder={"Choose an option..."}
+                      setSearchTerm={setSearchTerm}
+                      setInputValue={(value: string) =>
                         setTargetEmploymentStatus(
                           (prev: TTargetEmployementStatus) => ({
                             ...prev,
                             yesFields: {
                               ...prev.yesFields,
-                              company: data || "",
+                              company: value,
                             },
                           })
-                        );
-                      }}
-                      placeholder="Choose an option..."
-                      currentSelection={
-                        targetEmploymentStatus.yesFields?.company
+                        )
                       }
+                      className={`${!!searchTerm ? "block" : "hidden"}`}
                     />
                   </div>
                   <div>

@@ -9,6 +9,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+import { generateRandomFourDigit } from "@/helpers/utils";
+
 export function SelectItemsList({
   selectList,
   setCurrentSelection,
@@ -35,11 +37,14 @@ export function SelectItemsList({
       <SelectContent>
         <SelectGroup>
           <SelectLabel>{label || "Select"}</SelectLabel>
-          {selectList.map((item) => (
-            <SelectItem key={item.id} value={item.id}>
-              {item.label}
-            </SelectItem>
-          ))}
+          {selectList.map((item) => {
+            const num = generateRandomFourDigit();
+            return (
+              <SelectItem key={`${item.id}-${num}`} value={item.id}>
+                {item.label}
+              </SelectItem>
+            );
+          })}
         </SelectGroup>
       </SelectContent>
     </Select>
