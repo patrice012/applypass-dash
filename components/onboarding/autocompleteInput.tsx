@@ -3,12 +3,12 @@
 import { cn } from "@/lib/utils";
 import {
   Command,
-  CommandEmpty,
+  // CommandEmpty,
   CommandInput,
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 export function AutoCompleteInput({
   setInputValue,
@@ -24,6 +24,15 @@ export function AutoCompleteInput({
   placeholder: string;
 }) {
   const filteredItems = useMemo(() => (items.length > 0 ? items : []), [items]);
+  const [localSearch, setLocalSearch] = useState("");
+  const [closeModal, setCloseModal] = useState(false);
+
+  // if not value, set searchTerm as the default value
+  useEffect(() => {
+    if (filteredItems.length === 0 && localSearch.length > 0) {
+      setInputValue(localSearch);
+    }
+  }, [filteredItems, localSearch]);
 
   return (
     <Command
@@ -32,26 +41,36 @@ export function AutoCompleteInput({
       )}
     >
       <CommandInput
-        onValueChange={(value) => setSearchTerm(value)}
+        onValueChange={(value) => {
+          setSearchTerm(value);
+          setLocalSearch(value);
+          setCloseModal(false);
+        }}
+        value={localSearch}
         placeholder={placeholder}
         className="text-[1rem] w-full outline-none"
       />
 
       <CommandList className={cn("w-full", className)}>
-        {filteredItems.length > 0 ? (
-          filteredItems.map((item) => (
-            <CommandItem
-              key={item.id}
-              onSelect={() => {
-                setInputValue(item.id);
-              }}
-            >
-              <span>{item.label}</span>
-            </CommandItem>
-          ))
-        ) : (
-          <CommandEmpty>No results found.</CommandEmpty>
-        )}
+        {
+          filteredItems.length > 0 && !closeModal
+            ? filteredItems.map((item) => (
+                <CommandItem
+                  key={item.id}
+                  onSelect={() => {
+                    setInputValue(item.id);
+                    setLocalSearch(item.label);
+                    setCloseModal(true);
+                  }}
+                >
+                  <span>{item.label}</span>
+                </CommandItem>
+              ))
+            : null
+          //     (
+          //     <CommandEmpty>No results found.</CommandEmpty>
+          // )
+        }
       </CommandList>
     </Command>
   );

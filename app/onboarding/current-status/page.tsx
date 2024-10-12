@@ -357,29 +357,27 @@ export default function CurrentStatus() {
                 <div className="space-y-4">
                   <p>{employmentStatus.yesFields.currentCompanyName}</p>
 
-                  <div>
-                    <div className="space-y-3 relative">
-                      <AutoCompleteInput
-                        items={Array.from(companies).filter(
-                          (item: { id: string; label: string }) =>
-                            item.id.includes(searchTerm)
-                        )}
-                        placeholder={"Choose an option..."}
-                        setSearchTerm={setSearchTerm}
-                        setInputValue={(value: string) =>
-                          setTargetEmploymentStatus(
-                            (prev: TTargetEmployementStatus) => ({
-                              ...prev,
-                              yesFields: {
-                                ...prev.yesFields,
-                                company: value,
-                              },
-                            })
-                          )
-                        }
-                        className={`${!!searchTerm ? "block" : "hidden"}`}
-                      />
-                    </div>
+                  <div className="space-y-3 relative">
+                    <AutoCompleteInput
+                      items={Array.from(companies).filter(
+                        (item: { id: string; label: string }) =>
+                          item.id.includes(searchTerm)
+                      )}
+                      placeholder={"Choose an option..."}
+                      setSearchTerm={setSearchTerm}
+                      setInputValue={(value: string) =>
+                        setTargetEmploymentStatus(
+                          (prev: TTargetEmployementStatus) => ({
+                            ...prev,
+                            yesFields: {
+                              ...prev.yesFields,
+                              company: value,
+                            },
+                          })
+                        )
+                      }
+                      className={`${!!searchTerm ? "block" : "hidden"}`}
+                    />
                   </div>
                   <div>
                     <Input

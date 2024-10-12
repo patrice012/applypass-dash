@@ -299,7 +299,7 @@ export default function WorkStatus() {
                         <Button
                           variant={"outline"}
                           className={cn(
-                            "w-full justify-start text-left font-normal border bg-[#FBFAF8] py-6 px-2 rounded-md",
+                            "w-full flex justify-start items-center text-left font-normal border bg-[#FBFAF8] py-6 px-2 rounded-md",
                             !targetVisaStatus.expireDate &&
                               "text-muted-foreground"
                           )}

@@ -152,3 +152,11 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* phone input styles */
+  .react-internaional-phone-input-container
+  .react-international-phone-country-selector-button {
+  /* height: 3rem; */
+  padding-left: 4px;
+  padding-right: 2px;
+}

@@ -176,7 +176,7 @@ export default function UpdateSkills() {
   }, [selectExposureList, selectProficientList, currentProgrammingLanguage]);
 
   function goToNext() {
-    router.push("/onboarding/seniority");
+    router.push("/onboarding/update-education");
     toast({
       title: "Your data have been recorded",
     });
