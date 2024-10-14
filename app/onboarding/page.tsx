@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 import { SelectItemsList } from "@/components/onboarding/selectItemsList";
 
 // Define the items as a readonly array to ensure immutability.
-const items = [
+const domains = [
   { id: "android", label: "Android Software Engineer" },
   { id: "bi-analyst", label: "BI Developer/Analyst" },
   { id: "cloud-engineer", label: "Cloud Engineer" },
@@ -58,7 +58,7 @@ const items = [
 
 export default function SelectDomainsCheckList() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(16);
+  setSliderRange(0);
   const [itemsList, setItemsList] = useState([
     {
       id: "",
@@ -92,9 +92,9 @@ export default function SelectDomainsCheckList() {
 
   useEffect(() => {
     if (!searchTerm) {
-      setItemsList(items);
+      setItemsList(domains);
     } else {
-      const matchesList = items.filter((item) =>
+      const matchesList = domains.filter((item) =>
         item.label
           .toLowerCase()
           .trim()

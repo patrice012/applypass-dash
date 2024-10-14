@@ -22,7 +22,7 @@ import { useRouter } from "next/navigation";
 import { SelectItemsList } from "@/components/onboarding/selectItemsList";
 
 // Define the items as a readonly array to ensure immutability.
-const items = [
+const workLocations = [
   { id: "outside-us-canada", label: "Outside of US - Canada" },
   { id: "outside-us-other", label: "Outside of US - Other" },
   { id: "alabama", label: "Alabama" },
@@ -303,7 +303,7 @@ const officePreferences = {
 
 export default function SelectLocationCheckList() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(60);
+  setSliderRange(24);
   const [itemsList, setItemsList] = useState([
     {
       id: "",
@@ -330,9 +330,9 @@ export default function SelectLocationCheckList() {
 
   useEffect(() => {
     if (!searchTerm) {
-      setItemsList(items);
+      setItemsList(workLocations);
     } else {
-      const matchesList = items.filter((item) =>
+      const matchesList = workLocations.filter((item) =>
         item.label
           .toLowerCase()
           .trim()

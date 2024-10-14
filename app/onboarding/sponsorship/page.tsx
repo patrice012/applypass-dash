@@ -23,7 +23,7 @@ import { useRouter } from "next/navigation";
 
 export default function SelectSponsorshipAndSalaryCheckList() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(86);
+  setSliderRange(32);
   const [requireSponsorship, setRequireSponsorship] = useState(false);
   const [notRequireSponsorship, setNotRequireSponsorship] = useState(false);
   const [currentSalary, setCurrentSalaryRange] = useState(0);

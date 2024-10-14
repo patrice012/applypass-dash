@@ -19,7 +19,7 @@ import { PricingModal } from "@/components/onboarding/pricingModal";
 
 export default function GetStarted() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(16);
+  setSliderRange(100);
 
   const [canGetStarted, setCanGetStarted] = useState(false);
 

@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/components/hooks/use-toast";
 
 // Define the items as a readonly array to ensure immutability.
-const items = [
+const Technologies = [
   { id: "dart", label: "Dart" },
   { id: "elm", label: "Elm" },
   { id: "java", label: "Java" },
@@ -40,7 +40,7 @@ const items = [
 
 export default function SelectTechnologyCheckList() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(48);
+  setSliderRange(16);
   const [itemsList, setItemsList] = useState([
     {
       id: "",
@@ -65,9 +65,9 @@ export default function SelectTechnologyCheckList() {
 
   useEffect(() => {
     if (!searchTerm) {
-      setItemsList(items);
+      setItemsList(Technologies);
     } else {
-      const matchesList = items.filter((item) =>
+      const matchesList = Technologies.filter((item) =>
         item.label
           .toLowerCase()
           .trim()

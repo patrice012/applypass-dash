@@ -65,7 +65,7 @@ const blacklistCompanies = [
 
 export default function BlackListCompanies() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(60);
+  setSliderRange(64);
 
   const [otherBlackListCompany, setOtherBlackListCompany] = useState<
     Set<string>

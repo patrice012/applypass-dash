@@ -22,7 +22,7 @@ import { useRouter } from "next/navigation";
 
 export default function SelectSponsorshipAndSalaryCheckList() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(100);
+  setSliderRange(40);
   const [emotion, setEmotion] = useState("");
   const [isValidForm, setIsValidForm] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
