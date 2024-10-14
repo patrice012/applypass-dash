@@ -19,7 +19,7 @@ import { AddEducationModal } from "@/components/onboarding/educationModal";
 
 export default function UpdateEducation() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(16);
+  setSliderRange(80);
   const { toast } = useToast();
   const router = useRouter();
 

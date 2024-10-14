@@ -110,7 +110,7 @@ interface ValidationErrors {
 
 export default function UpdateProfile() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(16);
+  setSliderRange(88);
   const { toast } = useToast();
   const router = useRouter();
 

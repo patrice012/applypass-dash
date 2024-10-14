@@ -194,7 +194,7 @@ type TTargetEmployementStatus = {
 
 export default function CurrentStatus() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(60);
+  setSliderRange(48);
 
   const [targetJobsMotivation, setTargetJobsMotivation] =
     useState<{ id: string; label: string }[]>();

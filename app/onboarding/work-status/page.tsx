@@ -160,7 +160,7 @@ type TTargetStatusType = {
 
 export default function WorkStatus() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(60);
+  setSliderRange(56);
 
   const [targetCitizenshipStatus, setTargetCitizenshipStatus] =
     useState<TTargetStatusType>({

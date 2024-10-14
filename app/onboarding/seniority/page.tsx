@@ -19,7 +19,7 @@ import { SelectItemsList } from "@/components/onboarding/selectItemsList";
 import { Input } from "@/components/ui/input";
 
 // Define the items as a readonly array to ensure immutability.
-const items = [
+const seniorities = [
   { id: "intern-apprentice", label: "Intern, Apprentice" },
   { id: "mid-level", label: "Mid-Level" },
   { id: "staff-principal", label: "Staff, Principal" },
@@ -32,7 +32,7 @@ const items = [
 
 export default function SelectSeniorityCheckList() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(32);
+  setSliderRange(8);
   const [itemsList, setItemsList] = useState([
     {
       id: "",
@@ -67,7 +67,7 @@ export default function SelectSeniorityCheckList() {
     });
   }
   useEffect(() => {
-    setItemsList([...items]);
+    setItemsList([...seniorities]);
   }, []);
 
   return (

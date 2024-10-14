@@ -21,40 +21,129 @@ import { SelectItemsList } from "@/components/onboarding/selectItemsList";
 import { Info, X } from "lucide-react";
 
 // Define the items as a readonly array to ensure immutability.
-const items = [
-  { id: "android", label: "Android Software Engineer" },
-  { id: "bi-analyst", label: "BI Developer/Analyst" },
-  { id: "cloud-engineer", label: "Cloud Engineer" },
-  { id: "data-analyst", label: "Data Analyst" },
-  { id: "data-scientist", label: "Data Scientist" },
-  { id: "frontend", label: "Frontend Software Engineer" },
-  { id: "game-dev", label: "Game Developer" },
-  { id: "ios", label: "iOS Software Engineer" },
-  { id: "mobile", label: "Mobile Software Engineer" },
-  { id: "sales-engineer", label: "Sales Engineer" },
-  { id: "security-engineer", label: "Security Engineer" },
-  { id: "solutions-architect", label: "Solutions Architect" },
-  { id: "tpm", label: "Technical Program Manager" },
-  { id: "backend", label: "Backend Software Engineer" },
-  { id: "cloud-architect", label: "Cloud Architect" },
-  { id: "customer-success", label: "Customer Success Engineer" },
-  { id: "data-engineer", label: "Data Engineer" },
-  { id: "embedded", label: "Embedded Software Engineer" },
-  { id: "fullstack", label: "Fullstack Software Engineer" },
-  { id: "hardware", label: "Hardware Engineer" },
-  { id: "ml-engineer", label: "Machine Learning Engineer" },
-  { id: "product-manager", label: "Product Manager" },
-  {
-    id: "sdet",
-    label:
-      "SDET (Software Development Engineer in Test) / QA Automation Engineer (Quality Assurance)",
-  },
-  {
-    id: "sre-devops",
-    label: "Site Reliability Engineer (SRE) / DevOps Engineer",
-  },
-  { id: "support-engineer", label: "Support Engineer" },
-  { id: "tech-project-manager", label: "Technical Project Manager" },
+const skills = [
+  { id: "iar-embedded-workbench", label: "IAR Embedded Workbench" },
+  { id: "imagej", label: "ImageJ" },
+  { id: "influxdb", label: "InfluxDB" },
+  { id: "instruments", label: "Instruments" },
+  { id: "ionic", label: "Ionic" },
+  { id: "ionic-appflow", label: "Ionic Appflow" },
+  { id: "java", label: "Java" },
+  { id: "jest", label: "Jest" },
+  { id: "jenkins", label: "Jenkins" },
+  { id: "jmeter", label: "JMeter" },
+  { id: "json", label: "JSON" },
+  { id: "jquery", label: "JQuery" },
+  { id: "junit", label: "JUnit" },
+  { id: "jira", label: "Jira" },
+  { id: "kafka", label: "Kafka" },
+  { id: "karma", label: "Karma" },
+  { id: "keras", label: "Keras" },
+  { id: "kibana", label: "Kibana" },
+  { id: "kingfisher", label: "Kingfisher" },
+  { id: "kotlin", label: "Kotlin" },
+  { id: "kubernetes", label: "Kubernetes" },
+  { id: "laravel", label: "Laravel" },
+  { id: "linux", label: "Linux" },
+  { id: "figma", label: "Figma" },
+  { id: "firebase", label: "Firebase" },
+  { id: "flask", label: "Flask" },
+  { id: "flutter", label: "Flutter" },
+  { id: "fortran", label: "Fortran" },
+  { id: "foundation", label: "Foundation" },
+  { id: "freertos", label: "FreeRTOS" },
+  { id: "gatling", label: "Gatling" },
+  { id: "git", label: "Git" },
+  { id: "gitlab", label: "Gitlab" },
+  { id: "gitlab-ci", label: "Gitlab CI" },
+  { id: "github-actions", label: "GitHub Actions" },
+  { id: "go", label: "Go" },
+  { id: "gcp", label: "Google Cloud Platform" },
+  { id: "google-what-if", label: "Google What-If" },
+  { id: "gpu-parallel-computing", label: "GPU Parallel Computing" },
+  { id: "grafana", label: "Grafana" },
+  { id: "graphql", label: "GraphQL" },
+  { id: "hasura", label: "Hasura" },
+  { id: "helm", label: "Helm" },
+  { id: "heroku", label: "Heroku" },
+  { id: "hibernate", label: "Hibernate" },
+  { id: "html", label: "HTML" },
+  { id: "hugging-face", label: "Hugging Face" },
+  { id: "clojure", label: "Clojure" },
+  { id: "cmake", label: "CMake" },
+  { id: "confluence", label: "Confluence" },
+  { id: "core-animation", label: "Core Animation" },
+  { id: "core-data", label: "Core Data" },
+  { id: "core-location", label: "Core Location" },
+  { id: "core-ml", label: "Core ML" },
+  { id: "css", label: "CSS" },
+  { id: "cypress", label: "Cypress" },
+  { id: "dart", label: "Dart" },
+  { id: "dash", label: "Dash" },
+  { id: "django", label: "Django" },
+  { id: "django-rest-framework", label: "Django Rest Framework" },
+  { id: "docker", label: "Docker" },
+  { id: "docker-compose", label: "Docker Compose" },
+  { id: "elasticsearch", label: "ElasticSearch" },
+  { id: "elm", label: "Elm" },
+  { id: "ember-js", label: "Ember.js" },
+  { id: "enzyme", label: "Enzyme" },
+  { id: "express", label: "Express" },
+  { id: "embedded-linux", label: "Embedded Linux" },
+  { id: "fastapi", label: "FastAPI" },
+  { id: "arm-mbed", label: "ARM Mbed" },
+  { id: "assembly", label: "Assembly" },
+  { id: "async", label: "Async" },
+  { id: "avfoundation", label: "AVFoundation" },
+  { id: "aws", label: "AWS" },
+  { id: "axios", label: "Axios" },
+  { id: "azure", label: "Azure" },
+  { id: "babel", label: "Babel" },
+  { id: "bash", label: "Bash" },
+  { id: "behave", label: "Behave" },
+  { id: "bigquery", label: "BigQuery" },
+  { id: "beautiful-soup", label: "Beautiful Soup" },
+  { id: "bootstrap", label: "Bootstrap" },
+  { id: "bluebird", label: "Bluebird" },
+  { id: "c", label: "C" },
+  { id: "csharp", label: "C#" },
+  { id: "cpp", label: "C++" },
+  { id: "capistrano", label: "Capistrano" },
+  { id: "celery", label: "Celery" },
+  { id: "chai", label: "Chai" },
+  { id: "chef", label: "Chef" },
+  { id: "charts", label: "Charts" },
+  { id: "circleci", label: "CircleCI" },
+  { id: "adobe-xd", label: "Adobe XD" },
+  { id: "agile-development", label: "Agile Development" },
+  { id: "alamofire", label: "Alamofire" },
+  { id: "amazon-aurora", label: "Amazon Aurora" },
+  { id: "amazon-aws", label: "Amazon AWS" },
+  { id: "amazon-sagemaker", label: "Amazon SageMaker" },
+  { id: "android-sdk", label: "Android SDK" },
+  { id: "android-studio", label: "Android Studio" },
+  { id: "angular", label: "Angular" },
+  { id: "angularjs", label: "AngularJS" },
+  { id: "ansible", label: "Ansible" },
+  { id: "apache", label: "Apache" },
+  { id: "apache-airflow", label: "Apache Airflow" },
+  { id: "apache-cordova", label: "Apache Cordova/PhoneGap" },
+  { id: "apache-hadoop", label: "Apache Hadoop" },
+  { id: "apache-kafka", label: "Apache Kafka" },
+  { id: "apache-spark", label: "Apache Spark" },
+  { id: "appium", label: "Appium" },
+  { id: "argo-cd", label: "ArgoCD" },
+  { id: "sketch", label: "Sketch" },
+  { id: "sonarqube", label: "SonarQube" },
+  { id: "sprint", label: "Sprint" },
+  { id: "ssrs", label: "SSRS" },
+  { id: "svelte", label: "Svelte" },
+  { id: "swiftui", label: "SwiftUI" },
+  { id: "smarty", label: "Smarty" },
+  { id: "splunk", label: "Splunk" },
+  { id: "sqlalchemy", label: "SQLAlchemy" },
+  { id: "tesseract", label: "Tesseract" },
+  { id: "trello", label: "Trello" },
 ];
 
 const programmingLanguages = [
@@ -84,7 +173,7 @@ type CheckboxRef = {
 
 export default function UpdateSkills() {
   const { setSliderRange } = useStepSlider();
-  setSliderRange(16);
+  setSliderRange(72);
   const { toast } = useToast();
   const router = useRouter();
 
@@ -118,9 +207,9 @@ export default function UpdateSkills() {
   // Update Proficient List based on search term
   useEffect(() => {
     if (!searchProficientTerm) {
-      setProficientList([...items]);
+      setProficientList([...skills]);
     } else {
-      const matchesList = [...items].filter((item) =>
+      const matchesList = [...skills].filter((item) =>
         item.label
           .toLowerCase()
           .trim()
@@ -133,9 +222,9 @@ export default function UpdateSkills() {
   // Update Exposure List based on search term
   useEffect(() => {
     if (!searchExposureTerm) {
-      setExposureList([...items]);
+      setExposureList([...skills]);
     } else {
-      const matchesList = [...items].filter((item) =>
+      const matchesList = [...skills].filter((item) =>
         item.label
           .toLowerCase()
           .trim()
