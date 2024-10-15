@@ -21,7 +21,7 @@ const ProfileScore = () => {
             <div className="p-4 border-b-2 border-[#DDE3E7]">
               <h1 className="text-[20px] font-semibold">Overview</h1>
             </div>
-            <div className="flex flex-col p-4 gap-10">
+            <div className="flex flex-col xl:flex-row p-4 gap-10">
               <ScoreMeter svgScore={45} />
               <div className="flex flex-col flex-1 gap-3">
                 <ScoreDetailItem
