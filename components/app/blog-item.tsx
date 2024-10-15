@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import { LayoutValue } from "@/helpers/constants";
 import { CalendarDays, Clock4 } from "lucide-react";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 interface BlogItemProps {
   title?: string;
@@ -13,8 +15,11 @@ const BlogItem = ({
   image,
   style = LayoutValue.Grid,
 }: BlogItemProps) => {
+  const router = useRouter();
+
   return (
     <div
+      onClick={() => router.push("/dashboard/blogs/details")}
       title={title}
       className={`transition-all ease-in-out duration-200 cursor-pointer flex bg-white ${
         style == 0
