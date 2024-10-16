@@ -128,7 +128,6 @@ export default function BlackListCompanies() {
     }
   }
 
-
   return (
     <div>
       <Card className={cn("sm:w-[680px] border-none shadow-none bg-[#E5E7EB]")}>
@@ -214,13 +213,16 @@ export default function BlackListCompanies() {
                   })}
                 </div>
               </div>
+
               <AutoCompleteInput
                 items={autoCompleteItems}
                 placeholder={"Search company"}
-                setSearchTerm={setSearchTerm}
-                setInputValue={(value: string) => addBlackListCompany(value)}
-                className={`${searchTerm.length > 0 ? "block" : "hidden"}`}
-                setDefault={false}
+                searchValue={searchTerm}
+                onSearchValueChange={setSearchTerm}
+                selectedValue={""}
+                onSelectedValueChange={(value: string) => {
+                  if (value) addBlackListCompany(value);
+                }}
               />
             </div>
           </div>

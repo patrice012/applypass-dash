@@ -234,10 +234,15 @@ export default function CurrentStatus() {
 
     // Corrected comparison for employment status
     if (targetEmploymentStatus.option === "employed-yes") {
+      const roleStatus =
+        targetEmploymentStatus.yesFields.roleInTargetJobSearch ===
+        "role-target-no"
+          ? !!targetEmploymentStatus.yesFields.roleInTargetJobSearch
+          : !!targetEmploymentStatus.yesFields.roleInTargetJobSearch &&
+            !!targetEmploymentStatus.yesFields.roleInTargetJobSearchOption;
+
       selectEmploymentStatus =
-        !!targetEmploymentStatus.yesFields.company &&
-        !!targetEmploymentStatus.yesFields.roleInTargetJobSearch &&
-        !!targetEmploymentStatus.yesFields.roleInTargetJobSearchOption;
+        !!targetEmploymentStatus.yesFields.company && !!roleStatus;
     } else if (targetEmploymentStatus.option === "employed-no") {
       selectEmploymentStatus =
         targetEmploymentStatus.noFields.unemploymentDuration > 0 &&
@@ -364,9 +369,10 @@ export default function CurrentStatus() {
                           item.id.includes(searchTerm)
                       )}
                       placeholder={"Choose an option..."}
-                      setSearchTerm={setSearchTerm}
-                      setDefault={true}
-                      setInputValue={(value: string) =>
+                      searchValue={searchTerm}
+                      onSearchValueChange={setSearchTerm}
+                      selectedValue={""}
+                      onSelectedValueChange={(value: string) =>
                         setTargetEmploymentStatus(
                           (prev: TTargetEmployementStatus) => ({
                             ...prev,
@@ -377,7 +383,6 @@ export default function CurrentStatus() {
                           })
                         )
                       }
-                      className={`${!!searchTerm ? "block" : "hidden"}`}
                     />
                   </div>
                   <div>
