@@ -41,12 +41,11 @@ export const PhoneNumberInput: React.FC<PhoneNumberInputProps> = ({
     }
   }, [phone, isValidNumber]);
 
-  console.log(phone && isValidNumber, "phone && isValidNumber");
 
   return (
     <div>
       <PhoneInput
-        defaultCountry="ua"
+        defaultCountry="usa"
         value={phone}
         onChange={(phone, { country }) => {
           setPhone(phone);

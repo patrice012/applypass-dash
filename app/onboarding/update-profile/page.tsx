@@ -19,58 +19,9 @@ import { AutoCompleteInput } from "@/components/onboarding/autocompleteInput";
 import { Input } from "@/components/ui/input";
 import { Github, Linkedin, Link as LinkSVG, Info } from "lucide-react";
 import { z } from "zod";
-
-const cities = [
-  { id: "new-york-us", label: "New York, US" },
-  { id: "los-angeles-us", label: "Los Angeles, US" },
-  { id: "chicago-us", label: "Chicago, US" },
-  { id: "houston-us", label: "Houston, US" },
-  { id: "london-uk", label: "London, UK" },
-  { id: "manchester-uk", label: "Manchester, UK" },
-  { id: "birmingham-uk", label: "Birmingham, UK" },
-  { id: "toronto-ca", label: "Toronto, CA" },
-  { id: "vancouver-ca", label: "Vancouver, CA" },
-  { id: "montreal-ca", label: "Montreal, CA" },
-  { id: "sydney-au", label: "Sydney, AU" },
-  { id: "melbourne-au", label: "Melbourne, AU" },
-  { id: "brisbane-au", label: "Brisbane, AU" },
-  { id: "paris-fr", label: "Paris, France" },
-  { id: "lyon-fr", label: "Lyon, France" },
-  { id: "marseille-fr", label: "Marseille, France" },
-  { id: "berlin-de", label: "Berlin, Germany" },
-  { id: "munich-de", label: "Munich, Germany" },
-  { id: "hamburg-de", label: "Hamburg, Germany" },
-  { id: "tokyo-jp", label: "Tokyo, Japan" },
-  { id: "osaka-jp", label: "Osaka, Japan" },
-  { id: "nagoya-jp", label: "Nagoya, Japan" },
-  { id: "mumbai-in", label: "Mumbai, India" },
-  { id: "delhi-in", label: "Delhi, India" },
-  { id: "bengaluru-in", label: "Bengaluru, India" },
-  { id: "beijing-cn", label: "Beijing, China" },
-  { id: "shanghai-cn", label: "Shanghai, China" },
-  { id: "guangzhou-cn", label: "Guangzhou, China" },
-  { id: "madrid-es", label: "Madrid, Spain" },
-  { id: "barcelona-es", label: "Barcelona, Spain" },
-  { id: "seville-es", label: "Seville, Spain" },
-  { id: "rome-it", label: "Rome, Italy" },
-  { id: "milan-it", label: "Milan, Italy" },
-  { id: "naples-it", label: "Naples, Italy" },
-  { id: "moscow-ru", label: "Moscow, Russia" },
-  { id: "saint-petersburg-ru", label: "Saint Petersburg, Russia" },
-  { id: "sochi-ru", label: "Sochi, Russia" },
-  { id: "dubai-ae", label: "Dubai, UAE" },
-  { id: "abu-dhabi-ae", label: "Abu Dhabi, UAE" },
-  { id: "sharjah-ae", label: "Sharjah, UAE" },
-  { id: "mexico-city-mx", label: "Mexico City, Mexico" },
-  { id: "guadalajara-mx", label: "Guadalajara, Mexico" },
-  { id: "monterrey-mx", label: "Monterrey, Mexico" },
-  { id: "buenos-aires-ar", label: "Buenos Aires, Argentina" },
-  { id: "cordoba-ar", label: "Cordoba, Argentina" },
-  { id: "rosario-ar", label: "Rosario, Argentina" },
-  { id: "sao-paulo-br", label: "Sao Paulo, Brazil" },
-  { id: "rio-de-janeiro-br", label: "Rio de Janeiro, Brazil" },
-  { id: "salvador-br", label: "Salvador, Brazil" },
-];
+import { useDebounce } from "@/components/hooks/useDebounce";
+import { fetchGeoapifyData } from "@/helpers/fetchGeoapifyData";
+import { useQuery } from "@tanstack/react-query";
 
 const validationSchema = z.object({
   phone: z.string().min(1, "Phone number is required."),
@@ -156,7 +107,42 @@ export default function UpdateProfile() {
     });
   }
 
-  console.log(formData, "formdata");
+  const [searchTerm, setSearchTerm] = useState("");
+  const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const [formatedCities, setFormatedCities] = useState([]);
+
+  const citiesQuery = useQuery({
+    queryKey: ["cities", debouncedSearchTerm],
+    queryFn: async () => fetchGeoapifyData(searchTerm),
+    enabled: !!debouncedSearchTerm,
+  });
+
+  useEffect(() => {
+    if (citiesQuery.isSuccess) {
+      const formatedCities = citiesQuery.data?.features?.map(
+        (item: {
+          properties: {
+            city: string;
+            country: string;
+            formatted: string;
+          };
+        }) => {
+          const properties = item?.properties;
+          return {
+            id: `${properties?.city}-${properties?.country}`,
+            label: `${properties?.formatted}`,
+          };
+        }
+      );
+
+      setFormatedCities(formatedCities);
+    }
+  }, [
+    citiesQuery.isSuccess,
+    citiesQuery.isLoading,
+    citiesQuery.data?.features,
+  ]);
+
   return (
     <div>
       <Card className={cn("sm:w-[680px] border-none shadow-none bg-[#E5E7EB]")}>
@@ -183,19 +169,17 @@ export default function UpdateProfile() {
             <div className="space-y-3 relative">
               <Label className="text-[1rem]">Address</Label>
               <AutoCompleteInput
-                items={Array.from(cities).filter((item) =>
-                  item.id.includes(formData.address)
-                )}
-                setDefault={true}
+                isLoading={citiesQuery.isLoading}
+                items={formatedCities}
                 placeholder={"Enter or search location..."}
-                setSearchTerm={(value) =>
+                selectedValue={formData.address}
+                onSelectedValueChange={(value) =>
                   setFormData((prev) => ({ ...prev, address: value }))
                 }
-                setInputValue={(value) =>
-                  setFormData((prev) => ({ ...prev, address: value }))
-                }
-                className={`${formData.address ? "block" : "hidden"}`}
+                searchValue={searchTerm}
+                onSearchValueChange={(value) => setSearchTerm(value)}
               />
+
               {formErrors.address && (
                 <p className="text-red-500">{formErrors.address[0]}</p>
               )}

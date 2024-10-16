@@ -4,7 +4,6 @@ import "./globals.css";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/toaster";
 
-
 import { Provider } from "@/provider";
 
 const SpaceGrotesk = localFont({
