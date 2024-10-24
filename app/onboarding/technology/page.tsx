@@ -96,7 +96,7 @@ export default function SelectTechnologyCheckList() {
             setSearchTerm={setSearchTerm}
             placeholderText={"Search skills"}
           >
-            <Label htmlFor="domain" className="text-[1rem]">
+            <Label htmlFor="skills" className="text-[1rem]">
               What are your skills?
             </Label>
           </SearchInputWithLabel>
