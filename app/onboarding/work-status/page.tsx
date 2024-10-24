@@ -122,6 +122,10 @@ const securityClearance = {
     label: "",
     fields: [
       {
+        id: "not-applicable",
+        label: "Not Applicable",
+      },
+      {
         id: "confidential-clearance",
         label: "Confidential",
       },
@@ -140,10 +144,6 @@ const securityClearance = {
       {
         id: "top-secret-sci-polygraph-clearance",
         label: "Top Secret/SCI with Polygraph",
-      },
-      {
-        id: "no-clearance",
-        label: "Not Applicable",
       },
       {
         id: "expired-clearance",
@@ -316,7 +316,9 @@ export default function WorkStatus() {
                   ) : null}
 
                   <div className="space-y-4">
-                    <h5 className="font-semibold">{visaStatus.question}</h5>
+                    <h5 className="font-semibold">
+                      {visaStatus.jobSeeking.question}
+                    </h5>
 
                     <div className="flex items-center justify-between sm:flex-row flex-col sm:gap-10 gap-3">
                       {visaStatus.jobSeeking.options.fields.map(

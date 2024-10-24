@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { RadioGroupsMultipe } from "@/components/onboarding/radioGroups";
 import { AutoCompleteInput } from "@/components/onboarding/autocompleteInput";
+import { TooltipWrapper } from "@/components/onboarding/tooltipWrapper";
 
 // inputMappings
 const jobsMotivation = {
@@ -360,7 +361,20 @@ export default function CurrentStatus() {
             {targetEmploymentStatus.option === "employed-yes" ? (
               <>
                 <div className="space-y-4">
-                  <p>{employmentStatus.yesFields.currentCompanyName}</p>
+                  <div className="flex items-center gap-3">
+                    <p>{employmentStatus.yesFields.currentCompanyName}</p>
+                    <TooltipWrapper
+                      TooltipTriggerNode={
+                        <Info size={18} className="text-neutral-600" />
+                      }
+                      TooltipContentNode={
+                        <p className="max-w-[380px]">
+                          If you can&apos;t find your company in the top form
+                          field, write it in the lower form field
+                        </p>
+                      }
+                    />
+                  </div>
 
                   <div className="space-y-3 relative">
                     <AutoCompleteInput

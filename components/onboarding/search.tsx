@@ -29,7 +29,7 @@ export function SearchInputWithLabel({
       <div className="relative">
         <Input
           type="text"
-          id="domain"
+          id="search"
           placeholder={placeholderText}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}

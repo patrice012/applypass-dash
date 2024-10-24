@@ -23,8 +23,8 @@ import { SelectItemsList } from "@/components/onboarding/selectItemsList";
 
 // Define the items as a readonly array to ensure immutability.
 const workLocations = [
-  { id: "outside-us-canada", label: "Outside of US - Canada" },
-  { id: "outside-us-other", label: "Outside of US - Other" },
+  { id: "outside-of-us-canada", label: "Outside of US - Canada" },
+  { id: "outside-of-us-other", label: "Outside of US - Other" },
   { id: "alabama", label: "Alabama" },
   { id: "alaska", label: "Alaska" },
   { id: "arizona", label: "Arizona" },
@@ -477,7 +477,7 @@ export default function SelectLocationCheckList() {
               setSearchTerm={setSearchTerm}
               placeholderText={"Search location"}
             >
-              <Label htmlFor="domain" className="text-[1rem]">
+              <Label htmlFor="workLocation" className="text-[1rem]">
                 Where do you want to work?
               </Label>
             </SearchInputWithLabel>
