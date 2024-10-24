@@ -1078,25 +1078,6 @@ const skills = [
   },
 ];
 
-const programmingLanguages = [
-  { id: "dart", label: "Dart" },
-  { id: "elm", label: "Elm" },
-  { id: "java", label: "Java" },
-  { id: "kotlin", label: "Kotlin" },
-  { id: "php", label: "PHP" },
-  { id: "r", label: "R" },
-  { id: "rust", label: "Rust" },
-  { id: "swift", label: "Swift" },
-  { id: "elixir", label: "Elixir" },
-  { id: "go", label: "Go" },
-  { id: "javascript", label: "JavaScript" },
-  { id: "objective-c", label: "Objective-C" },
-  { id: "python", label: "Python" },
-  { id: "ruby", label: "Ruby" },
-  { id: "scala", label: "Scala" },
-  { id: "typescript", label: "TypeScript" },
-];
-
 type CheckboxRef = {
   updateSelectedItems: (newSelectedItems: Set<string>) => void;
   getSelectedItems: () => string[];
