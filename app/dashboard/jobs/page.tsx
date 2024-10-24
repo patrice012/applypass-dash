@@ -62,7 +62,9 @@ export default function JobsList() {
           </div>
         </div>
       </main>
-      <ContinueOnboarding />
+      <div className="relative">
+        <ContinueOnboarding />
+      </div>
     </>
   );
 }
